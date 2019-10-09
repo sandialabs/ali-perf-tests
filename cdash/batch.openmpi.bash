@@ -1,8 +1,8 @@
 #!/bin/bash
 ## Do not put any commands or blank lines before the #SBATCH lines
 #SBATCH --nodes=16                    # Number of nodes - all cores per node are allocated to the job
-#SBATCH --time=0:10:00               # Wall clock time (HH:MM:SS) - once the job exceeds this time, the job will be terminated (default is 5 minutes)
-#SBATCH --job-name=mini-em               # Name of job
+#SBATCH --time=0:59:00               # Wall clock time (HH:MM:SS) - once the job exceeds this time, the job will be terminated (default is 5 minutes)
+#SBATCH --job-name=ali-perf          # Name of job
 ##SBATCH --partition=batch       # partition/queue name: short or batch
                                       #            short: 4hrs wallclock limit
                                       #            batch: nodes reserved for > 4hrs (default)
@@ -15,7 +15,7 @@
                                       #           priority: High priority jobs (special request)
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ikalash@sandia.gov
-#SBATCH --exclude=node03
+#SBATCH --exclude=node03,node18
 
 nodes=$SLURM_JOB_NUM_NODES           # Number of nodes - the number of nodes you have requested (for a list of SLURM environment variables see "man sbatch")
 cores=48                             # Number MPI processes to run on each node (a.k.a. PPN)
@@ -23,8 +23,9 @@ cores=48                             # Number MPI processes to run on each node 
 
 unset http_proxy
 unset https_proxy
-bash nightly_cron_script_miniem_perf_tests_blake.sh
+bash nightly_cron_script_ali_perf_tests_blake.sh
 bash process_results_ctest.sh 
+bash nightly_cron_script_ali_perf_tests_blake_bzip2_save.sh >& nightly_log_blakeALIPerfTests_saveResults.txt
 
 #mpiexec --bind-to core --npernode $cores --n $(($cores*$nodes)) ./AlbanyT joint.yaml | tee out128  
 

@@ -37,6 +37,7 @@ SET (CTEST_BUILD_FLAGS "-j8")
 find_program (CTEST_GIT_COMMAND NAMES git)
 
 set (ALIPerfTests_REPOSITORY_LOCATION git@github.com:ikalash/ali-perf-tests.git)
+set (GithubIO_REPOSITORY_LOCATION git@github.com:ikalash/ikalash.github.io.git)
 set (MPI_PATH $ENV{MPI_ROOT})  
 set (MKL_PATH $ENV{MKL_ROOT})  
 set (BOOST_PATH $ENV{BOOST_ROOT}) 
@@ -99,6 +100,41 @@ if (DOWNLOAD_ALI_PERF_TESTS)
   if (HAD_ERROR)
     message(FATAL_ERROR "Cannot pull ali-perf-tests!")
   endif ()
+  #
+  # Get ikalash.github.io repo
+  #
+
+  if (NOT EXISTS "${CTEST_SOURCE_DIRECTORY}/ikalash.github.io")
+    execute_process (COMMAND "${CTEST_GIT_COMMAND}"
+      clone ${GithubIO_REPOSITORY_LOCATION} -b master ${CTEST_SOURCE_DIRECTORY}/ikalash.github.io
+      OUTPUT_VARIABLE _out
+      ERROR_VARIABLE _err
+      RESULT_VARIABLE HAD_ERROR)
+
+    message(STATUS "out: ${_out}")
+    message(STATUS "err: ${_err}")
+    message(STATUS "res: ${HAD_ERROR}")
+    if (HAD_ERROR)
+      message(FATAL_ERROR "Cannot clone ikalash.github.io repository!")
+    endif ()
+  endif ()
+
+  set (CTEST_UPDATE_COMMAND "${CTEST_GIT_COMMAND}")
+
+  # Pull the ikalash.github.io repo
+
+  execute_process (COMMAND "${CTEST_GIT_COMMAND}" pull
+      WORKING_DIRECTORY ${CTEST_SOURCE_DIRECTORY}/ikalash.github.io
+      OUTPUT_VARIABLE _out
+      ERROR_VARIABLE _err
+      RESULT_VARIABLE HAD_ERROR)
+  message(STATUS "Output of ikalash.github.io pull: ${_out}")
+  message(STATUS "Text sent to standard error stream: ${_err}")
+  message(STATUS "command result status: ${HAD_ERROR}")
+  if (HAD_ERROR)
+    message(FATAL_ERROR "Cannot pull ikalash.github.io!")
+  endif ()
+
 
 endif ()
 

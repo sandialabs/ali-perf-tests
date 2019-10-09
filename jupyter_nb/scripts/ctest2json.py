@@ -19,8 +19,7 @@ def ctest2json(file, allTimers):
                 formatwarning_orig(message, category, filename, lineno, line='')
 
     # ctest file specific information
-    testNameKey = ' Test: '
-    testNameLoc = 2
+    testNameKey = ' Testing: '
     wtimeAvgLoc = 0
     wtimeCallsLoc = 3
     testPassedKey = 'Test Passed'
@@ -35,10 +34,10 @@ def ctest2json(file, allTimers):
             # Extract test information
             if testNameKey in line:
                 # Init test info
-                testName = line.split()[testNameLoc]
+                testName = line.split(testNameKey)[1].split()[0]
                 ctestInfo[testName] = {}
-                ctestInfo[testName]['case'] = testName.split('_')[2]
-                ctestInfo[testName]['np'] = int(testName.split('_')[3][2:])
+                ctestInfo[testName]['case'] = '_'.join(testName.split('_')[:-1])
+                ctestInfo[testName]['np'] = int(testName.split('_')[-1][2:])
                 ctestInfo[testName]['date'] = int(file.split('_')[1].split('-')[0])
 
                 # Init list of timers
@@ -106,10 +105,10 @@ if __name__ == "__main__":
     files = glob.glob(os.path.join(dir,'LastTest_*'))
 
     # Specify timers to extract from ctest file (note: must be unique names per test in file)
-    timers = ('panzer::ModelEvaluator::evalModel(J):',
-              'Stratimikos: BelosLOWS:',
-              'GMRES block system: Operation Prec*x:',
-              'CG S_E: BlockCGSolMgr total solve time:')
+    timers = ('Albany: Total Time:',
+              'Albany: **Total Fill Time**:',
+              'NOX Total Preconditioner Construction:',
+              'NOX Total Linear Solve:')
 
     # Loop over files
     for file in files:

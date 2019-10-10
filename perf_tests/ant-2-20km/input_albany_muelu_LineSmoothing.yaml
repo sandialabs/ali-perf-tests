@@ -17,12 +17,12 @@ ANONYMOUS:
       Type: LandIce
     Response Functions: 
       Collection Method: Sum Responses
-      Number: 0
+      Number: 3
+      Response 0: Surface Velocity Mismatch
       Response 1: Boundary Squared L2 Norm
       ResponseParams 1: 
         Scaling Coefficient: 7.2e-05
         Field Name: L2 Projected Boundary Laplacian
-      Response 0: Surface Velocity Mismatch
       ResponseParams 0: 
         Regularization Coefficient: 0.0e+00
         Regularization Coefficient Stiffening: 1.0e+03

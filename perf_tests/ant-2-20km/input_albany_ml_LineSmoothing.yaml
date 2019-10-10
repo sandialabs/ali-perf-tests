@@ -17,12 +17,12 @@ ANONYMOUS:
       Type: LandIce
     Response Functions: 
       Collection Method: Sum Responses
-      Number: 0
+      Number: 3
+      Response 0: Surface Velocity Mismatch
       Response 1: Boundary Squared L2 Norm
       ResponseParams 1: 
         Scaling Coefficient: 7.2e-05
         Field Name: L2 Projected Boundary Laplacian
-      Response 0: Surface Velocity Mismatch
       ResponseParams 0: 
         Regularization Coefficient: 0.0e+00
         Regularization Coefficient Stiffening: 1.0e+03
@@ -92,6 +92,11 @@ ANONYMOUS:
       Boundary Edges Set Name: lateralside
     Body Force: 
       Type: FO INTERP SURF GRAD
+   #Regression Results:
+   # Number of Comparisons: 3
+   # Test Values: [3.33766568899999993e+03, 1.01755773425999996e+04, 4.90751612959999999e+05]
+   # Relative Tolerance: 1.00000000000000008e-05
+   # Absolute Tolerance: 1.00000000000000002e-03
   Discretization: 
     Method: Extruded
     Number Of Time Derivatives: 0

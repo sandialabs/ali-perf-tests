@@ -16,26 +16,9 @@ ANONYMOUS:
     Equation Set: 
       Type: LandIce
     Response Functions: 
-      Collection Method: Sum Responses
-      Number: 3
+      Number: 2
       Response 0: Surface Velocity Mismatch
-      Response 1: Boundary Squared L2 Norm
-      ResponseParams 1: 
-        Scaling Coefficient: 7.2e-05
-        Field Name: L2 Projected Boundary Laplacian
-      ResponseParams 0: 
-        Regularization Coefficient: 0.0e+00
-        Regularization Coefficient Stiffening: 1.0e+03
-        Asinh Scaling: 1.0e+01
-        Scaling Coefficient: 7.2e-08
-      Response 2: Surface Mass Balance Mismatch
-      ResponseParams 2: 
-        Regularization Coefficient: 1.0e+00
-        H Coefficient: 1.0e+00
-        SMB Coefficient: 1.0e+01
-        Scaling Coefficient: 7.2e-08
-        Cubature Degree: 3
-        Field Name: Velocity
+      Response 1: Solution Average
     Dirichlet BCs: { }
     Neumann BCs: { }
     LandIce BCs:

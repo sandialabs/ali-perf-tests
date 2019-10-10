@@ -1,2 +1,2 @@
-00 03 * * 1-7  cd /home/projects/albany/nightlyCDashAlbanyBlake/aliPerfTests/nightlyCDash; rm -rf *out* slurm*;  bash -l -c "source blake_intel_modules.sh >& modules.out; sbatch batch.openmpi.bash"
+00 04 * * 1-7  cd /home/projects/albany/nightlyCDashAlbanyBlake/aliPerfTests/nightlyCDash; rm -rf *out* slurm*;  bash -l -c "source blake_intel_modules.sh >& modules.out; sbatch batch.openmpi.bash"
 

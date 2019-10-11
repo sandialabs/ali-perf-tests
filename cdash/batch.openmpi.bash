@@ -1,6 +1,6 @@
 #!/bin/bash
 ## Do not put any commands or blank lines before the #SBATCH lines
-#SBATCH --nodes=16                    # Number of nodes - all cores per node are allocated to the job
+#SBATCH --nodes=8                    # Number of nodes - all cores per node are allocated to the job
 #SBATCH --time=0:59:00               # Wall clock time (HH:MM:SS) - once the job exceeds this time, the job will be terminated (default is 5 minutes)
 #SBATCH --job-name=ali-perf          # Name of job
 ##SBATCH --partition=batch       # partition/queue name: short or batch

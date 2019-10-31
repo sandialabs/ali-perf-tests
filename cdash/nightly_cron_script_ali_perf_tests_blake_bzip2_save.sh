@@ -8,8 +8,8 @@ python ctest2json.py >& ctest2json.out
 cd $BASE_DIR
 cp build/Testing/Temporary/LastTest_*bz2 saved/
 cp build/Testing/Temporary/ctest*json saved/
-cp saved/* /home/projects/albany/nightlyCDashAlbanyBlake/aliPerfTests/nightlyCDash/repos/ikalash.github.io/ali/blake_nightly_ali_data
-cd $BASE_DIR/repos/ikalash.github.io/ali/blake_nightly_ali_data
+cp saved/* /home/projects/albany/nightlyCDashAlbanyBlake/aliPerfTests/nightlyCDash/repos/ikalash.github.io/ali/blake_nightly_data
+cd $BASE_DIR/repos/ikalash.github.io/ali/blake_nightly_data
 now=$(date +"%Y%m%d")
 FILE=ctest-$now.json
 git add $FILE

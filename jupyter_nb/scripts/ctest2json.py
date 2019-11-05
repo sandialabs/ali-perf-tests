@@ -81,7 +81,7 @@ def ctest2json(file, allTimers):
 
     # If timers were not captured in any tests, the timers might not be valid
     if timersCaptured == 0:
-        raise RuntimeError('Parsing of timers failed for '+file+'. Check to see if timers are valid.')
+        warnings.warn('Parsing of timers failed for '+file+'. Check to see if timers are valid.', Warning)
 
     # Add date and save to json file
     date = file.split('_')[1].split('-')[0]

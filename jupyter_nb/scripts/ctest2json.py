@@ -20,6 +20,12 @@ def ctest2json(file, allTimers):
 
     # ctest file specific information
     testNameKey = ' Testing: '
+    trilinosGitCommitIdKey = 'Trilinos git commit id'
+    albanyGitBranchKey = 'Albany git branch'
+    albanyGitCommitIdKey = 'Albany git commit id'
+    albanyCXXCompilerKey = 'Albany cxx compiler'
+    albanyCudaCompilerKey = 'Albany cuda compiler'
+    simulationStartKey = 'Simulation start time'
     wtimeAvgLoc = 0
     wtimeCallsLoc = 3
     testPassedKey = 'Test Passed'
@@ -36,20 +42,47 @@ def ctest2json(file, allTimers):
                 # Init test info
                 testName = line.split(testNameKey)[1].split()[0]
                 ctestInfo[testName] = {}
-                ctestInfo[testName]['case'] = '_'.join(testName.split('_')[:-1])
-                ctestInfo[testName]['np'] = int(testName.split('_')[-1][2:])
-                ctestInfo[testName]['date'] = int(file.split('_')[1].split('-')[0])
+                testInfo = ctestInfo[testName]
+                testInfo['case'] = '_'.join(testName.split('_')[:-1])
+                testInfo['np'] = int(testName.split('_')[-1][2:])
+                testInfo['date'] = int(file.split('_')[1].split('-')[0])
 
                 # Init list of timers
                 timers = list(allTimers)
-                ctestInfo[testName]['timers'] = {}
+                testInfo['timers'] = {}
+
+            # Extract Trilinos git commit id
+            if trilinosGitCommitIdKey in line:
+                testInfo[trilinosGitCommitIdKey] = line.split()[-1]
+
+            # Extract Albany git branch
+            if albanyGitBranchKey in line:
+                testInfo[albanyGitBranchKey] = line.split()[-1]
+
+            # Extract Albany git commit id
+            if albanyGitCommitIdKey in line:
+                testInfo[albanyGitCommitIdKey] = line.split()[-1]
+
+            # Extract Albany cxx compiler
+            if albanyCXXCompilerKey in line:
+                tmpList = line.split()
+                testInfo[albanyCXXCompilerKey] = tmpList[-2] + ' ' + tmpList[-1]
+
+            # Extract Albany cuda compiler
+            if albanyCudaCompilerKey in line:
+                tmpList = line.split()
+                testInfo[albanyCudaCompilerKey] = tmpList[-2] + ' ' + tmpList[-1]
+
+            # Extract simulation start time
+            if simulationStartKey in line:
+                testInfo[simulationStartKey] = line.split()[-1]
 
             # Extract timer information
             for timer in timers:
                 if timer in line:
                     wtime = float(line.split(timer)[1].split()[wtimeAvgLoc])
                     calls = int(line.split(timer)[1].split()[wtimeCallsLoc].strip('[]'))
-                    ctestInfo[testName]['timers'][timer] = wtime / calls
+                    testInfo['timers'][timer] = wtime / calls
 
                     # Remove timer from list
                     timers.remove(timer)
@@ -57,17 +90,17 @@ def ctest2json(file, allTimers):
 
             # Extract pass
             if testPassedKey in line:
-                ctestInfo[testName]['passed'] = True
+                testInfo['passed'] = True
 
             # Extract fail
             if testFailedKey in line:
-                ctestInfo[testName]['passed'] = False
+                testInfo['passed'] = False
                 warnings.warn(testName+', '+file+' failed! Timers are not stored.', Warning)
 
 
     # Check if ctest data is empty
     if not ctestInfo:
-        raise RuntimeError('Parsing of '+file+' failed. Check to see if testNameKey is valid.')
+        warnings.warn('Parsing of '+file+' failed. Check to see if testNameKey is valid.', Warning)
 
     # Check to see if test timers were captured
     timersCaptured = 0
@@ -87,7 +120,7 @@ def ctest2json(file, allTimers):
     date = file.split('_')[1].split('-')[0]
     jsonFile = 'ctest-' + date + '.json'
     with open(jsonFile, 'w') as jf:
-        json.dump(ctestInfo, jf)
+        json.dump(ctestInfo, jf, indent=2, sort_keys=True)
 
 ###################################################################################################
 if __name__ == "__main__":

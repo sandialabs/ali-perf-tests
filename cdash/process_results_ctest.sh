@@ -12,7 +12,7 @@ cat results3 results4 >& results5
 echo "" >> results5
 grep "(Failed)" nightly_log_blakeAliPerfTests.txt >& results6
 cat results5 results6 >& results7
-grep "\*Timeout" nightly_log_blakeAliPerfTests.txt >& results8
+grep "(Timeout)" nightly_log_blakeAliPerfTests.txt >& results8
 cat results7 results8 >& results
 echo "" >> results 
 echo "The Albany CDash site can be accessed here: https://my.cdash.org/viewSubProjects.php?project=Albany" >> results

@@ -14,7 +14,7 @@ rm -rf slurm*
 unset http_proxy
 unset https_proxy
 
-#export OMP_NUM_THREADS=1
+export OMP_NUM_THREADS=1
 
 source blake_intel_modules.sh >& modules.out  
 

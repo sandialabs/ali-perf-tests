@@ -138,8 +138,15 @@ if __name__ == "__main__":
     files = glob.glob(os.path.join(dir,'LastTest_*'))
 
     # Specify timers to extract from ctest file (note: must be unique names per test in file)
-    timers = ('Albany: Total Time:',
-              'Albany: **Total Fill Time**:',
+    timers = ('Albany Total Time:',
+              'Albany: Setup Time:',
+              'Albany: Total Fill Time:',
+              'Albany Fill: Residual:',
+              'Albany Residual Fill: Evaluate:',
+              'Albany Residual Fill: Export:',
+              'Albany Fill: Jacobian:'
+              'Albany Jacobian Fill: Evaluate:',
+              'Albany Jacobian Fill: Export:',
               'NOX Total Preconditioner Construction:',
               'NOX Total Linear Solve:')
 

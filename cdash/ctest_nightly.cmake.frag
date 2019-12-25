@@ -154,7 +154,7 @@ if (BUILD_ALI_PERF_TESTS)
     "-Wno-dev"
     "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build/TrilinosSerialInstall"
     "-DTESTING_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad/src"
-    "-DMESH_FILE_DIR:FILEPATH=/ascldap/users/jwatkin/PerfTesting/ali-perf-tests-meshes"
+    "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_CXX_FLAGS:STRING='-std=gnu++11'"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"

@@ -20,7 +20,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_DecoupledLineSmoot
 get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
 execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
-  ${MESH_FILE_DIR}/green-1-7km ${CMAKE_CURRENT_BINARY_DIR}/mesh)
+  ${MESH_FILE_DIR}/green-1-7km-pop ${CMAKE_CURRENT_BINARY_DIR}/mesh)
 
 #create test
 add_test(${testName}_fea_1ws_np384 ${Np384Albany.exe} input_albany_FiniteElementAssembly_SingleWorkset.yaml)

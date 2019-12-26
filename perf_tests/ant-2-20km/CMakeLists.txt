@@ -10,7 +10,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_DecoupledLineSmoot
 get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
 execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
-  ${MESH_FILE_DIR}/ant-2-20km ${CMAKE_CURRENT_BINARY_DIR}/mesh)
+  ${MESH_FILE_DIR}/ant-2-20km-pop ${CMAKE_CURRENT_BINARY_DIR}/mesh)
 
 #create test
 add_test(${testName}_ml_ls_np384 ${Np384Albany.exe} input_albany_ML_LineSmoothing.yaml)

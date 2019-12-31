@@ -144,7 +144,7 @@ if __name__ == "__main__":
               'Albany Fill: Residual:',
               'Albany Residual Fill: Evaluate:',
               'Albany Residual Fill: Export:',
-              'Albany Fill: Jacobian:'
+              'Albany Fill: Jacobian:',
               'Albany Jacobian Fill: Evaluate:',
               'Albany Jacobian Fill: Export:',
               'NOX Total Preconditioner Construction:',

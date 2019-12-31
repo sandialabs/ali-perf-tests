@@ -27,7 +27,6 @@ def ctest2json(file, allTimers):
     albanyCudaCompilerKey = 'Albany cuda compiler'
     simulationStartKey = 'Simulation start time'
     wtimeAvgLoc = 0
-    wtimeCallsLoc = 3
     testPassedKey = 'Test Passed'
     testFailedKey = 'Test Failed'
 
@@ -81,8 +80,9 @@ def ctest2json(file, allTimers):
             for timer in timers:
                 if timer in line:
                     wtime = float(line.split(timer)[1].split()[wtimeAvgLoc])
-                    calls = int(line.split(timer)[1].split()[wtimeCallsLoc].strip('[]'))
-                    testInfo['timers'][timer] = wtime / calls
+                    testInfo['timers'][timer] = wtime
+                    #calls = int(line.split(timer)[1].split('[')[1].split(']')[0])
+                    #testInfo['timers'][timer] = wtime / calls
 
                     # Remove timer from list
                     timers.remove(timer)

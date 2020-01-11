@@ -27,6 +27,23 @@ ELSE()
   MESSAGE(FATAL_ERROR "ALI performance tests REQUIRE Piro. Please, configure Trilinos with guidance from trilinos-cmake script in doc directory.")
 ENDIF()
 
+IF(EXISTS "${Trilinos_INCLUDE_DIRS}/KokkosCore_config.h")
+  FILE(READ "${Trilinos_INCLUDE_DIRS}/KokkosCore_config.h" KOKKOS_CORE_CONFIG_FILE)
+  STRING(REGEX MATCH "KOKKOS_ENABLE_OPENMP" ALBANY_ENABLE_OPENMP ${KOKKOS_CORE_CONFIG_FILE})
+  IF(ALBANY_ENABLE_OPENMP)
+    MESSAGE("-- Kokkos is configured to use OpenMP, Albany will also.")
+  ENDIF()
+  STRING(REGEX MATCH "KOKKOS_ENABLE_CUDA" ALBANY_ENABLE_CUDA ${KOKKOS_CORE_CONFIG_FILE})
+  IF(ALBANY_ENABLE_CUDA)
+    MESSAGE("-- Kokkos is configured to use CUDA, Albany will also.")
+    STRING(REGEX MATCH "KOKKOS_COMPILER_CUDA_VERSION ([0-9]*)" _ ${KOKKOS_CORE_CONFIG_FILE})
+    SET(ALBANY_CUDA_COMPILER_VERSION "${CMAKE_MATCH_1}")
+    MESSAGE("-- ALBANY_CUDA_COMPILER_VERSION = ${ALBANY_CUDA_COMPILER_VERSION}")
+  ENDIF()
+ELSE()
+  MESSAGE(FATAL_ERROR "\nError: ${Trilinos_INCLUDE_DIRS}/KokkosCore_config.h not found!")
+ENDIF()
+
 #FIXME: throw error if Albany doesn't have ALI enabled? 
 
 IF (DEFINED TESTING_EXE_DIR)

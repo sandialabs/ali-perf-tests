@@ -24,11 +24,12 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
 
 #create test
 add_test(${testName}_fea_1ws_np384 ${Np384Albany.exe} input_albany_FiniteElementAssembly_SingleWorkset.yaml)
+add_test(${testName}_fea_mem_np384 ${Np384Albany.exe} input_albany_FiniteElementAssembly_Memoization.yaml)
+IF (NOT ALBANY_ENABLE_CUDA)  
 add_test(${testName}_ml_ls_1ws_np384 ${Np384Albany.exe} input_albany_ML_LineSmoothing_SingleWorkset.yaml)
 add_test(${testName}_mu_ls_1ws_np384 ${Np384Albany.exe} input_albany_MueLu_LineSmoothing_SingleWorkset.yaml)
 add_test(${testName}_mu_dls_1ws_np384 ${Np384Albany.exe} input_albany_MueLu_DecoupledLineSmoothing_SingleWorkset.yaml)
-add_test(${testName}_fea_mem_np384 ${Np384Albany.exe} input_albany_FiniteElementAssembly_Memoization.yaml)
 add_test(${testName}_ml_ls_mem_np384 ${Np384Albany.exe} input_albany_ML_LineSmoothing_Memoization.yaml)
 add_test(${testName}_mu_ls_mem_np384 ${Np384Albany.exe} input_albany_MueLu_LineSmoothing_Memoization.yaml)
 add_test(${testName}_mu_dls_mem_np384 ${Np384Albany.exe} input_albany_MueLu_DecoupledLineSmoothing_Memoization.yaml)
-
+ENDIF()

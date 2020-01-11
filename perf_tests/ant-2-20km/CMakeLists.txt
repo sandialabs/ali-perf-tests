@@ -13,7 +13,8 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
   ${MESH_FILE_DIR}/ant-2-20km-pop ${CMAKE_CURRENT_BINARY_DIR}/mesh)
 
 #create test
+IF (NOT ALBANY_ENABLE_CUDA)  
 add_test(${testName}_ml_ls_np384 ${Np384Albany.exe} input_albany_ML_LineSmoothing.yaml)
 add_test(${testName}_mu_ls_np384 ${Np384Albany.exe} input_albany_MueLu_LineSmoothing.yaml)
 add_test(${testName}_mu_dls_np384 ${Np384Albany.exe} input_albany_MueLu_DecoupledLineSmoothing.yaml)
-
+ENDIF()

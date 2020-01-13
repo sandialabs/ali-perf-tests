@@ -60,17 +60,15 @@ ELSE()
   MESSAGE(FATAL_ERROR "MESH_FILE_DIR not set!")
 ENDIF()
 
-IF(MPI_EXEC_LEADING_OPTIONS)
-  SET(MPIPRE ${MPI_EXEC_LEADING_OPTIONS})
-  SEPARATE_ARGUMENTS(MPIPRE)
+SET(ExePath ${TESTING_EXE_DIR}/Albany) 
+IF(ALBANY_ENABLE_CUDA)
+  SET(ALBANY_EXE ${Trilinos_MPI_EXEC} "--map-by" "ppr:2:socket" ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} 8 ${ExePath})
+  SET(ALBANY_EXTRA_ARGS "--kokkos-ndevices=4")
+ELSE()
+  SET(ALBANY_EXE ${Trilinos_MPI_EXEC} "--bind-to core" "--npernode" 48 ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} 384 ${ExePath})
 ENDIF()
-
-set(ExePath ${TESTING_EXE_DIR}/Albany) 
-set(Np384Albany.exe                 ${Trilinos_MPI_EXEC} ${MPIPRE} ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} 384 ${ExePath})
 
 enable_testing()
 
-
 add_subdirectory(perf_tests)
-
 

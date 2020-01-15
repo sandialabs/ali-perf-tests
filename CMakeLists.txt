@@ -65,7 +65,7 @@ IF(ALBANY_ENABLE_CUDA)
   SET(ALBANY_EXE ${Trilinos_MPI_EXEC} "--map-by" "ppr:2:socket" ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} 8 ${ExePath})
   SET(ALBANY_EXTRA_ARGS "--kokkos-ndevices=4")
 ELSE()
-  SET(ALBANY_EXE ${Trilinos_MPI_EXEC} "--bind-to core" "--npernode" 48 ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} 384 ${ExePath})
+  SET(ALBANY_EXE ${Trilinos_MPI_EXEC} "--bind-to" "core" "--npernode" 48 ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} 384 ${ExePath})
 ENDIF()
 
 enable_testing()

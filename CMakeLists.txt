@@ -60,7 +60,7 @@ ELSE()
   MESSAGE(FATAL_ERROR "MESH_FILE_DIR not set!")
 ENDIF()
 
-SET(ExePath ${TESTING_EXE_DIR}/Albany) 
+SET(ExePath ${TESTING_EXE_DIR}/src/Albany) 
 IF(ALBANY_ENABLE_CUDA)
   SET(ALBANY_EXE ${Trilinos_MPI_EXEC} "--map-by" "ppr:2:socket" ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} 8 ${ExePath})
   SET(ALBANY_EXTRA_ARGS "--kokkos-ndevices=4")

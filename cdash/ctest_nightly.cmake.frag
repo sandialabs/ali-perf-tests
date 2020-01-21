@@ -1,6 +1,6 @@
 
 # Begin User inputs:
-set (CTEST_SITE "blake.sandia.gov" ) # generally the output of hostname
+set (CTEST_SITE "waterman.sandia.gov" ) # generally the output of hostname
 set (CTEST_DASHBOARD_ROOT "$ENV{TEST_DIRECTORY}" ) # writable path
 set (CTEST_SCRIPT_DIRECTORY "$ENV{SCRIPT_DIRECTORY}" ) # where the scripts live
 set (CTEST_CMAKE_GENERATOR "Unix Makefiles" ) # What is your compilation apps ?
@@ -12,6 +12,7 @@ set (CTEST_PROJECT_NAME "Albany" )
 set (CTEST_SOURCE_NAME repos)
 set (CTEST_NAME "linux-gcc-${CTEST_BUILD_CONFIGURATION}")
 set (CTEST_BINARY_NAME build)
+set (CTEST_BUILD_NAME "waterman.sandia.gov")
 
 
 set (CTEST_SOURCE_DIRECTORY "${CTEST_DASHBOARD_ROOT}/${CTEST_SOURCE_NAME}")
@@ -32,6 +33,14 @@ set (CTEST_CMAKE_COMMAND "cmake")
 set (CTEST_COMMAND "ctest -D ${CTEST_TEST_TYPE}")
 set (CTEST_FLAGS "-j8")
 SET (CTEST_BUILD_FLAGS "-j8")
+
+if (CTEST_DROP_METHOD STREQUAL "http")
+  set (CTEST_DROP_SITE "cdash.sandia.gov")
+  set (CTEST_PROJECT_NAME "Albany")
+  set (CTEST_DROP_LOCATION "/CDash-2-3-0/submit.php?project=Albany")
+  set (CTEST_TRIGGER_SITE "")
+  set (CTEST_DROP_SITE_CDASH TRUE)
+endif ()
 
 
 find_program (CTEST_GIT_COMMAND NAMES git)
@@ -147,14 +156,14 @@ if (BUILD_ALI_PERF_TESTS)
   #
   # Configure the ali-perf-tests build
   #
-  set_property (GLOBAL PROPERTY SubProject IKTBlakeALIPerformTests)
-  set_property (GLOBAL PROPERTY Label IKTBlakeALIPerformTests)
+  set_property (GLOBAL PROPERTY SubProject IKTWatermanALIPerformTests)
+  set_property (GLOBAL PROPERTY Label IKTWatermanALIPerformTests)
 
   set (CONFIGURE_OPTIONS
     "-Wno-dev"
-    "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build/TrilinosSerialInstall"
-    "-DTESTING_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad"
-    "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
+    "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/waterman/build/TrilinosInstall"
+    "-DTESTING_EXE_DIR:FILEPATH=/home/projects/albany/waterman/build/AlbBuildSFad/"
+    "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/waterman/ali-perf-tests-meshes"
     "-DCMAKE_CXX_FLAGS:STRING='-std=gnu++11'"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"
@@ -191,8 +200,8 @@ if (BUILD_ALI_PERF_TESTS)
   # Build the rest of Trilinos and install everything
   #
 
-  set_property (GLOBAL PROPERTY SubProject IKTBlakeALIPerformTests)
-  set_property (GLOBAL PROPERTY Label IKTBlakeALIPerformTests)
+  set_property (GLOBAL PROPERTY SubProject IKTWatermanALIPerformTests)
+  set_property (GLOBAL PROPERTY Label IKTWatermanALIPerformTests)
   #set (CTEST_BUILD_TARGET all)
   #set (CTEST_BUILD_TARGET install)
 

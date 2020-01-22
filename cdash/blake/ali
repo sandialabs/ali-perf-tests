@@ -1,0 +1,11 @@
+
+#cmake_minimum_required (VERSION 2.8)
+set (CTEST_DO_SUBMIT ON)
+set (CTEST_TEST_TYPE Nightly)
+
+# What to build and test
+set (CLEAN_BUILD TRUE)
+set (DOWNLOAD_ALI_PERF_TESTS TRUE)
+set (BUILD_ALI_PERF_TESTS TRUE)
+set (RUN_ALI_PERF_TESTS TRUE)
+

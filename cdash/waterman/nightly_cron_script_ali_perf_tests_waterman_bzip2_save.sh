@@ -10,6 +10,8 @@ cp build/Testing/Temporary/LastTest_*bz2 saved/
 cp build/Testing/Temporary/ctest*json saved/
 cp saved/* $BASE_DIR/repos/ikalash.github.io/ali/waterman_nightly_data
 cd $BASE_DIR/repos/ikalash.github.io/ali/waterman_nightly_data
+git reset --hard origin/master
+git pull
 now=$(date +"%Y%m%d")
 FILE=ctest-$now.json
 git add $FILE

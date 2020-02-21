@@ -51,15 +51,16 @@ ANONYMOUS:
         Cubature Degree: 3
         Side Set Name: lateralside
 
-#   Performance parameters
-    Use MDField Memoization: false
-
 #   Output
     Phalanx Graph Visualization Detail: 0
     Response Functions: 
       Number: 1
       Response 0: Solution Average
       Response 1: Surface Velocity Mismatch
+
+#   Performance parameters
+    Use MDField Memoization: false
+    Number RBMs for ML: 3
 
 # Final solution comparison
   Regression Results:
@@ -218,7 +219,6 @@ ANONYMOUS:
             Write Linear System: false
             Tolerance: 1.0e-8
           Stratimikos Linear Solver: 
-            NOX Stratimikos Options: { }
             Stratimikos: 
 
 #             Linear Solver Information

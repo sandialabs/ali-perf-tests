@@ -48,8 +48,6 @@ ANONYMOUS:
 
 #   Performance parameters
     Use MDField Memoization: true
-
-#   Not sure
     Number RBMs for ML: 3
 
 # Discretization Description
@@ -62,7 +60,6 @@ ANONYMOUS:
     Cubature Degree: 1
     Columnwise Ordering: true
     Use Glimmer Spacing: true
-#    Exodus Output File Name: gis_3d.exo
 
 #   Field Information
     Thickness Field Name: ice_thickness
@@ -94,7 +91,6 @@ ANONYMOUS:
         Cubature Degree: 3
         Restart Index: 1
         Exodus Input File Name: mesh/gis_basal_populated.exo
-#        Exodus Output File Name: gis_basal.exo
         Required Fields Info: 
           Number Of Fields: 4
           Field 0: 
@@ -156,7 +152,7 @@ ANONYMOUS:
         Newton: 
           Forcing Term Method: Constant
           Rescue Bad Newton Solve: true
-          Linear Solver: 
+          Linear Solver:
             Write Linear System: false
             Tolerance: 1.0e-8
           Stratimikos Linear Solver: 

@@ -1,6 +1,6 @@
 #!/bin/csh
 
-BASE_DIR=/home/projects/albany/waterman/aliPerfTests
+BASE_DIR=/home/projects/albany/watermanNewCDash/aliPerfTests
 cd $BASE_DIR/build/Testing/Temporary
 ln -s $BASE_DIR/repos/ali-perf-tests/jupyter_nb/scripts/ctest2json.py 
 python ctest2json.py >& ctest2json.out  

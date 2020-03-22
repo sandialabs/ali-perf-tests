@@ -1,6 +1,6 @@
 #!/bin/csh
 
-BASE_DIR=/home/projects/albany/watermanNewCDash/aliPerfTests
+BASE_DIR=/home/projects/albany/waterman/aliPerfTests
 cd $BASE_DIR
 
 rm -rf build

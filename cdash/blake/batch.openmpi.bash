@@ -16,7 +16,7 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ikalash@sandia.gov
 ##SBATCH --exclude=node03,node27,node29,node30,node22
-#SBATCH --exclude=node03,node27,node22
+#SBATCH --exclude=node03,node06,node02,node04,node05,node07,node08
 
 nodes=$SLURM_JOB_NUM_NODES           # Number of nodes - the number of nodes you have requested (for a list of SLURM environment variables see "man sbatch")
 cores=48                             # Number MPI processes to run on each node (a.k.a. PPN)

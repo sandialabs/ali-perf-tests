@@ -1,0 +1,11 @@
+cp: cannot create regular file ‘saved/’: Not a directory
+cp: cannot create regular file ‘saved/’: Not a directory
+cp: cannot stat ‘saved/*’: No such file or directory
+HEAD is now at f238627 Adding blake ALI nightly performance tests.
+Already up-to-date.
+fatal: pathspec 'ctest-20200322.json' did not match any files
+fatal: pathspec 'LastTest_20200322-0500.log.bz2' did not match any files
+On branch master
+Your branch is up-to-date with 'origin/master'.
+nothing to commit, working tree clean
+Everything up-to-date

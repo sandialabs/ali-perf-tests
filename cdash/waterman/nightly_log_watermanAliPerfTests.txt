@@ -1,0 +1,629 @@
+* Extra verbosity turned on
+Reading Script: /home/projects/albany/watermanNewCDash/aliPerfTests/ctest_nightly_perfTests.cmake
+CMake Error at /home/projects/albany/watermanNewCDash/aliPerfTests/ctest_nightly_perfTests.cmake:81 (ctest_empty_binary_directory):
+  ctest_empty_binary_directory problem removing the binary directory:
+  /home/projects/albany/watermanNewCDash/aliPerfTests/build
+
+
+-- out: 
+-- err: Cloning into '/home/projects/albany/watermanNewCDash/aliPerfTests/repos/ali-perf-tests'...
+
+-- res: 0
+-- Output of ali-perf-tests pull: Already up-to-date.
+
+-- Text sent to standard error stream: 
+-- command result status: 0
+-- out: 
+-- err: Cloning into '/home/projects/albany/watermanNewCDash/aliPerfTests/repos/ikalash.github.io'...
+Checking out files:   2% (22/1036)   Checking out files:   3% (32/1036)   Checking out files:   3% (36/1036)   Checking out files:   4% (42/1036)   Checking out files:   4% (49/1036)   Checking out files:   5% (52/1036)   Checking out files:   6% (63/1036)   Checking out files:   7% (73/1036)   Checking out files:   8% (83/1036)   Checking out files:   9% (94/1036)   Checking out files:  10% (104/1036)   Checking out files:  11% (114/1036)   Checking out files:  12% (125/1036)   Checking out files:  13% (135/1036)   Checking out files:  14% (146/1036)   Checking out files:  15% (156/1036)   Checking out files:  16% (166/1036)   Checking out files:  17% (177/1036)   Checking out files:  18% (187/1036)   Checking out files:  19% (197/1036)   Checking out files:  20% (208/1036)   Checking out files:  21% (218/1036)   Checking out files:  22% (228/1036)   Checking out files:  23% (239/1036)   Checking out files:  24% (249/1036)   Checking out files:  25% (259/1036)   Checking out files:  26% (270/1036)   Checking out files:  27% (280/1036)   Checking out files:  28% (291/1036)   Checking out files:  29% (301/1036)   Checking out files:  30% (311/1036)   Checking out files:  31% (322/1036)   Checking out files:  32% (332/1036)   Checking out files:  33% (342/1036)   Checking out files:  34% (353/1036)   Checking out files:  35% (363/1036)   Checking out files:  35% (370/1036)   Checking out files:  36% (373/1036)   Checking out files:  37% (384/1036)   Checking out files:  38% (394/1036)   Checking out files:  39% (405/1036)   Checking out files:  40% (415/1036)   Checking out files:  41% (425/1036)   Checking out files:  42% (436/1036)   Checking out files:  43% (446/1036)   Checking out files:  44% (456/1036)   Checking out files:  45% (467/1036)   Checking out files:  46% (477/1036)   Checking out files:  47% (487/1036)   Checking out files:  48% (498/1036)   Checking out files:  49% (508/1036)   Checking out files:  50% (518/1036)   Checking out files:  51% (529/1036)   Checking out files:  52% (539/1036)   Checking out files:  53% (550/1036)   Checking out files:  54% (560/1036)   Checking out files:  54% (567/1036)   Checking out files:  55% (570/1036)   Checking out files:  56% (581/1036)   Checking out files:  57% (591/1036)   Checking out files:  58% (601/1036)   Checking out files:  59% (612/1036)   Checking out files:  60% (622/1036)   Checking out files:  61% (632/1036)   Checking out files:  62% (643/1036)   Checking out files:  63% (653/1036)   Checking out files:  64% (664/1036)   Checking out files:  65% (674/1036)   Checking out files:  66% (684/1036)   Checking out files:  67% (695/1036)   Checking out files:  68% (705/1036)   Checking out files:  69% (715/1036)   Checking out files:  70% (726/1036)   Checking out files:  71% (736/1036)   Checking out files:  72% (746/1036)   Checking out files:  73% (757/1036)   Checking out files:  74% (767/1036)   Checking out files:  75% (777/1036)   Checking out files:  76% (788/1036)   Checking out files:  77% (798/1036)   Checking out files:  77% (801/1036)   Checking out files:  78% (809/1036)   Checking out files:  79% (819/1036)   Checking out files:  80% (829/1036)   Checking out files:  81% (840/1036)   Checking out files:  82% (850/1036)   Checking out files:  83% (860/1036)   Checking out files:  84% (871/1036)   Checking out files:  85% (881/1036)   Checking out files:  86% (891/1036)   Checking out files:  87% (902/1036)   Checking out files:  88% (912/1036)   Checking out files:  89% (923/1036)   Checking out files:  90% (933/1036)   Checking out files:  91% (943/1036)   Checking out files:  92% (954/1036)   Checking out files:  93% (964/1036)   Checking out files:  94% (974/1036)   Checking out files:  95% (985/1036)   Checking out files:  96% (995/1036)   Checking out files:  97% (1005/1036)   Checking out files:  98% (1016/1036)   Checking out files:  99% (1026/1036)   Checking out files: 100% (1036/1036)   Checking out files: 100% (1036/1036), done.
+
+-- res: 0
+-- Output of ikalash.github.io pull: Already up-to-date.
+
+-- Text sent to standard error stream: 
+-- command result status: 0
+SetCTestConfiguration:SourceDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/repos
+SetCTestConfiguration:BuildDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/build
+Run dashboard with model Nightly
+   Source directory: /home/projects/albany/watermanNewCDash/aliPerfTests/repos
+   Build directory: /home/projects/albany/watermanNewCDash/aliPerfTests/build
+   Reading ctest configuration file: /home/projects/albany/watermanNewCDash/aliPerfTests/repos/CTestConfig.cmake
+SetCTestConfigurationFromCMakeVariable:NightlyStartTime:CTEST_NIGHTLY_START_TIME
+SetCTestConfiguration:NightlyStartTime:00:00:00 EST
+SetCTestConfigurationFromCMakeVariable:Site:CTEST_SITE
+SetCTestConfiguration:Site:waterman.sandia.gov
+SetCTestConfigurationFromCMakeVariable:BuildName:CTEST_BUILD_NAME
+SetCTestConfiguration:BuildName:linux-gcc-CUDA-Albany-Perf-Tests
+   Site: waterman.sandia.gov
+   Build name: linux-gcc-CUDA-Albany-Perf-Tests
+Determine Nightly Start Time
+   Specified time: 00:00:00 EST
+   Use Nightly tag: 20200322-0500
+ctest state: BUILD_ALI_PERF_TESTS
+SetCTestConfiguration:BuildDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/build/ALIPerfTestsBuild
+SetCTestConfiguration:SourceDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/repos/ali-perf-tests
+SetCTestConfiguration:ConfigureCommand:"/home/projects/ppc64le/cmake/3.12.3/bin/cmake" "-Wno-dev" "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/build/TrilinosInstall" "-DTESTING_EXE_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/build/AlbBuildSFad/" "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/ali-perf-tests-meshes" "-DCMAKE_CXX_FLAGS:STRING='-std=gnu++11'" "-DCMAKE_BUILD_TYPE:STRING=RELEASE" "-DBUILD_SHARED_LIBS:BOOL=ON" "-DMPI_EXEC_LEADING_OPTIONS='--bind-to core --npernode 48'" "-DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF" "-GUnix Makefiles" "/home/projects/albany/watermanNewCDash/aliPerfTests/repos/ali-perf-tests"
+Configure project
+Configure with command: "/home/projects/ppc64le/cmake/3.12.3/bin/cmake" "-Wno-dev" "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/build/TrilinosInstall" "-DTESTING_EXE_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/build/AlbBuildSFad/" "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/ali-perf-tests-meshes" "-DCMAKE_CXX_FLAGS:STRING='-std=gnu++11'" "-DCMAKE_BUILD_TYPE:STRING=RELEASE" "-DBUILD_SHARED_LIBS:BOOL=ON" "-DMPI_EXEC_LEADING_OPTIONS='--bind-to core --npernode 48'" "-DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF" "-GUnix Makefiles" "/home/projects/albany/watermanNewCDash/aliPerfTests/repos/ali-perf-tests"
+Run command: "/home/projects/ppc64le/cmake/3.12.3/bin/cmake" "-Wno-dev" "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/build/TrilinosInstall" "-DTESTING_EXE_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/build/AlbBuildSFad/" "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/watermanNewCDash/ali-perf-tests-meshes" "-DCMAKE_CXX_FLAGS:STRING='-std=gnu++11'" "-DCMAKE_BUILD_TYPE:STRING=RELEASE" "-DBUILD_SHARED_LIBS:BOOL=ON" "-DMPI_EXEC_LEADING_OPTIONS='--bind-to core --npernode 48'" "-DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF" "-GUnix Makefiles" "/home/projects/albany/watermanNewCDash/aliPerfTests/repos/ali-perf-tests"
+-- The C compiler identification is GNU 7.2.0
+-- The CXX compiler identification is GNU 7.2.0
+-- Check for working C compiler: /home/projects/ppc64le/gcc/7.2.0/bin/gcc
+-- Check for working C compiler: /home/projects/ppc64le/gcc/7.2.0/bin/gcc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /home/projects/ppc64le/gcc/7.2.0/bin/g++
+-- Check for working CXX compiler: /home/projects/ppc64le/gcc/7.2.0/bin/g++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Enabled Kokkos devices: CUDA;SERIAL
+CMake Warning at /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Kokkos/KokkosConfig.cmake:177 (MESSAGE):
+  The installed Kokkos configuration does not support CXX extensions.
+  Forcing -DCMAKE_CXX_EXTENSIONS=Off
+Call Stack (most recent call first):
+  /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Amesos2/Amesos2Config.cmake:164 (INCLUDE)
+  /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Stratimikos/StratimikosConfig.cmake:146 (INCLUDE)
+  /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Teko/TekoConfig.cmake:146 (INCLUDE)
+  /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/NOX/NOXConfig.cmake:146 (INCLUDE)
+  /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Tempus/TempusConfig.cmake:146 (INCLUDE)
+  /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Piro/PiroConfig.cmake:146 (INCLUDE)
+  /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Trilinos/TrilinosConfig.cmake:130 (INCLUDE)
+  CMakeLists.txt:10 (FIND_PACKAGE)
+
+
+
+Found Trilinos!  Here are the details: 
+   Trilinos_DIR = /home/projects/albany/watermanNewCDash/build/TrilinosInstall/lib/cmake/Trilinos
+   Trilinos_VERSION = 12.17
+   Trilinos_BIN_DIRS = 
+   Trilinos_TPL_LIST = DLlib;BoostLib;Netcdf;Pnetcdf;HDF5;Boost;LAPACK;BLAS;MPI;Thrust;CUSPARSE;CUSOLVER;CUBLAS;CUDA
+   Trilinos_TPL_LIBRARY_DIRS = 
+   Trilinos_BUILD_SHARED_LIBS = FALSE
+   Trilinos_CXX_COMPILER_FLAGS =   -std=c++11  -expt-extended-lambda -arch=sm_70  -Xcudafe --diag_suppress=esa_on_defaulted_function_ignored -O3 -DNDEBUG
+End of Trilinos details
+
+-- Looking for Piro (required) in Trilinos ...                Found!
+-- Kokkos is configured to use CUDA, Albany will also.
+-- ALBANY_CUDA_COMPILER_VERSION = 101
+
+-- TESTING_EXE_DIR set: /home/projects/albany/watermanNewCDash/build/AlbBuildSFad.
+
+-- MESH_FILE_DIR set: /home/projects/albany/watermanNewCDash/ali-perf-tests-meshes.
+-- Configuring done
+-- Generating done
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    MPI_EXEC_LEADING_OPTIONS
+
+
+-- Build files have been written to: /home/projects/albany/watermanNewCDash/aliPerfTests/build/ALIPerfTestsBuild
+Command exited with the value: 0
+SetCTestConfiguration:BuildDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/build
+SetCTestConfiguration:SourceDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/repos
+SetCTestConfiguration:ProjectName:Albany
+SetCTestConfiguration:DropMethod:https
+SetCTestConfiguration:DropSite:sems-cdash-son.sandia.gov
+SetCTestConfiguration:DropLocation:/cdash/submit.php?project=Albany
+SetCTestConfiguration:IsCDash:TRUE
+Submit files (using https)
+   Using HTTP submit method
+   Drop site:https://sems-cdash-son.sandia.gov/cdash/submit.php?project=Albany
+   Upload file: /home/projects/albany/watermanNewCDash/aliPerfTests/build/Testing/20200322-0500/Configure.xml to https://sems-cdash-son.sandia.gov/cdash/submit.php?project=Albany&FileName=waterman.sandia.gov___linux-gcc-CUDA-Albany-Perf-Tests___20200322-0500-Nightly___XML___Configure.xml&MD5=b760b4bd4459b3fbac3ea6f5c587ced1 Size: 4640
+   Uploaded: /home/projects/albany/watermanNewCDash/aliPerfTests/build/Testing/20200322-0500/Configure.xml
+   Submission successful
+
+Building target: '' ...
+
+SetCTestConfiguration:BuildDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/build/ALIPerfTestsBuild
+SetCTestConfiguration:SourceDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/repos
+SetMakeCommand:/home/projects/ppc64le/cmake/3.12.3/bin/cmake --build . --config "Debug" -- -i -j8
+SetCTestConfiguration:MakeCommand:/home/projects/ppc64le/cmake/3.12.3/bin/cmake --build . --config "Debug" -- -i -j8
+Build project
+MakeCommand:/home/projects/ppc64le/cmake/3.12.3/bin/cmake --build . --config "Debug" -- -i -j8
+Run command: "/home/projects/ppc64le/cmake/3.12.3/bin/cmake" "--build" "." "--config" "Debug" "--" "-i" "-j8"
+gmake: Warning: File `Makefile' has modification time 439 s in the future
+gmake[1]: Warning: File `CMakeFiles/Makefile2' has modification time 439 s in the future
+gmake[1]: warning:  Clock skew detected.  Your build may be incomplete.
+gmake: warning:  Clock skew detected.  Your build may be incomplete.
+Command exited with the value: 0
+MakeCommand:/home/projects/ppc64le/cmake/3.12.3/bin/cmake --build . --config "Debug" -- -i -j8
+   0 Compiler errors
+   0 Compiler warnings
+SetCTestConfiguration:BuildDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/build
+SetCTestConfiguration:SourceDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/repos
+SetCTestConfiguration:ProjectName:Albany
+SetCTestConfiguration:DropMethod:https
+SetCTestConfiguration:DropSite:sems-cdash-son.sandia.gov
+SetCTestConfiguration:DropLocation:/cdash/submit.php?project=Albany
+SetCTestConfiguration:IsCDash:TRUE
+Submit files (using https)
+   Using HTTP submit method
+   Drop site:https://sems-cdash-son.sandia.gov/cdash/submit.php?project=Albany
+   Upload file: /home/projects/albany/watermanNewCDash/aliPerfTests/build/Testing/20200322-0500/Build.xml to https://sems-cdash-son.sandia.gov/cdash/submit.php?project=Albany&FileName=waterman.sandia.gov___linux-gcc-CUDA-Albany-Perf-Tests___20200322-0500-Nightly___XML___Build.xml&MD5=95b0c9a2a4c0d9a4fb6f5fcd18a11df7 Size: 1085
+   Uploaded: /home/projects/albany/watermanNewCDash/aliPerfTests/build/Testing/20200322-0500/Build.xml
+   Submission successful
+SetCTestConfiguration:BuildDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/build/ALIPerfTestsBuild
+SetCTestConfiguration:SourceDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/repos
+Test project /home/projects/albany/watermanNewCDash/aliPerfTests/build/ALIPerfTestsBuild
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: green-1-7km_fea_1ws_np8
+
+1: Test command: /home/projects/ppc64le-pwr9-nvidia/openmpi/4.0.1/gcc/7.2.0/cuda/10.1.105/bin/mpiexec "--map-by" "ppr:2:socket" "-np" "8" "/home/projects/albany/watermanNewCDash/build/AlbBuildSFad/src/Albany" "input_albany_FiniteElementAssembly_SingleWorkset.yaml" "--kokkos-ndevices=4"
+1: Test timeout computed to be: 700
+1: --------------------------------------------------------------------------
+1: By default, for Open MPI 4.0 and later, infiniband ports on a device
+1: are not used by default.  The intent is to use UCX for these devices.
+1: You can override this policy by setting the btl_openib_allow_ib MCA parameter
+1: to true.
+1: 
+1:   Local host:              waterman8
+1:   Local adapter:           mlx5_0
+1:   Local port:              1
+1: 
+1: --------------------------------------------------------------------------
+1: --------------------------------------------------------------------------
+1: WARNING: There was an error initializing an OpenFabrics device.
+1: 
+1:   Local host:   waterman8
+1:   Local device: mlx5_0
+1: --------------------------------------------------------------------------
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 1!
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 2!
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 3!
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 0!
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 4!
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 5!
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 6!
+1: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 7!
+1: ***************************************************************
+1: **  ______   __       ______   ______   __   __   __  __     **
+1: ** /\  __ \ /\ \     /\  == \ /\  __ \ /\ "-.\ \ /\ \_\ \    **
+1: ** \ \  __ \\ \ \____\ \  __< \ \  __ \\ \ \-.  \\ \____ \   **
+1: **  \ \_\ \_\\ \_____\\ \_____\\ \_\ \_\\ \_\\"\_\\/\_____\  **
+1: **   \/_/\/_/ \/_____/ \/_____/ \/_/\/_/ \/_/ \/_/ \/_____/  **
+1: **                                                           **
+1: ***************************************************************
+1: ** Trilinos git commit id - 2e010b3
+1: ** Albany git branch ------ master
+1: ** Albany git commit id --- 13ab790
+1: ** Albany cxx compiler ---- GNU 7.2.0
+1: ** Albany cuda compiler --- Cuda 101
+1: ** Simulation start time -- 2020-03-22 at 01:13:11
+1: ***************************************************************
+1: Albany_IOSS: Loading STKMesh from Exodus file  mesh/gis_basal_populated.exo
+1: IOSS-STK: number of node sets = 1
+1: IOSS-STK: number of side sets = 1
+1: Restart Index set, reading solution index : 1
+1: [GenericSTKMeshStruct] Processing field requirements...
+1:   - Skipping field 'ice_thickness' since it's listed as present in the mesh.
+1:   - Skipping field 'surface_height' since it's listed as present in the mesh.
+1:   - Skipping field 'temperature' since it's listed as present in the mesh.
+1:   - Skipping field 'basal_friction' since it's listed as present in the mesh.
+1: [ExtrudedSTKMesh] Adding nodes... done!
+1: [ExtrudedSTKMesh] Adding elements... [waterman8:19998] 7 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+1: [waterman8:19998] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+1: [waterman8:19998] 7 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+1: done!
+1: [ExtrudedSTKMesh] Adding basalside sides... done!
+1: [ExtrudedSTKMesh] Adding upperside sides... done!
+1: [ExtrudedSTKMesh] Adding lateral sides... done!
+1: [ExtrudedSTKMesh] Extruding basal fields...
+1:   - Extruding Scalar Node field ice_thickness...done!
+1:   - Extruding Scalar Node field surface_height...done!
+1: [ExtrudedSTKMesh] Interpolating layered basal fields...
+1:   - Interpolating Scalar field temperature...done!
+1: [GenericSTKMeshStruct] Processing field requirements...
+1:   - Skipping field 'temperature' since it's listed as present in the mesh.
+1:   - Skipping field 'ice_thickness' since it's listed as present in the mesh.
+1:   - Skipping field 'surface_height' since it's listed as present in the mesh.
+1: STKDisc: 1799730 elements on Proc 0 
+1: STKDisc: nodeset bottom has size 32261  on Proc 0.
+1: STKDisc: nodeset extruded_node has size 354871  on Proc 0.
+1: STKDisc: nodeset lateral has size 35046  on Proc 0.
+1: STKDisc: nodeset top has size 32261  on Proc 0.
+1: STKDisc: sideset basalside has size 59991  on Proc 0.
+1: STKDisc: sideset extruded_lateralside has size 44320  on Proc 0.
+1: STKDisc: sideset extruded_surface_tri3_edge2_1 has size 44320  on Proc 0.
+1: STKDisc: sideset lateralside has size 44320  on Proc 0.
+1: STKDisc: sideset upperside has size 59991  on Proc 0.
+1: STKDisc: 59991 elements on Proc 0 
+1: STKDisc: nodeset node has size 32261  on Proc 0.
+1: STKDisc: sideset lateralside has size 2216  on Proc 0.
+1: StateManager: initializing state:  temperature
+1: StateManager: initializing state:  ice_thickness
+1: StateManager: initializing state:  surface_height
+1: 
+1: StateManager: initializing state:  ice_thickness
+1: StateManager: initializing state:  surface_height
+1: StateManager: initializing state:  temperature
+1: StateManager: initializing state:  basal_friction
+1: 
+1: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+1:  Sacado ParameterLibrary has been initialized:
+1:  Library of all registered parameters:
+1: 	Bed Roughness:  Supports AD = 1, Supports_Analytic = 0
+1: 	Coulomb Friction Coefficient:  Supports AD = 1, Supports_Analytic = 0
+1: 	Glen's Law Homotopy Parameter:  Supports AD = 1, Supports_Analytic = 0
+1: 	Hydraulic-Over-Hydrostatic Potential Ratio:  Supports AD = 1, Supports_Analytic = 0
+1: 	Power Exponent:  Supports AD = 1, Supports_Analytic = 0
+1: 	Power Law Coefficient:  Supports AD = 1, Supports_Analytic = 0
+1: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+1: 
+1: Number of parameter vectors  = 0
+1: Number of response vectors  = 0
+1: Number of distributed parameters vectors  = 0
+1: Finished eval of first model: Params, Responses 
+1: 
+1: Main_Solve: MeanValue of final solution -3.62371422574e-06
+1: 
+1: Number of Failed Comparisons: 0
+1: *** Teuchos::StackedTimer::report() - Remainder for a level will be ***
+1: *** incorrect if a timer in the level does not exist on every rank  ***
+1: *** of the MPI Communicator.                                        ***
+1: Albany Total Time: 616.171 [1] {min=616.029, max=616.227, std dev=0.0698398}
+1: |   Albany: Setup Time: 38.8675 - 6.30791% [1] {min=38.8389, max=38.8973, std dev=0.0217936}
+1: |   Piro::NOXSolver::evalModelImpl::solve: 574.999 - 93.3182% [1] {min=574.998, max=575.001, std dev=0.00136829}
+1: |   |   Thyra::NOXNonlinearSolver::solve: 574.998 - 99.9998% [1] {min=574.997, max=574.999, std dev=0.00131575}
+1: |   |   |   Thyra::DefaultModelEvaluatorWithSolveFactory<double>::evalModel(...): 564.309 - 98.1411% [201] {min=559.435, max=568.021, std dev=2.9655}
+1: |   |   |   |   Albany: Total Fill Time: 564.304 - 99.999% [201] {min=559.429, max=568.016, std dev=2.96556}
+1: |   |   |   |   |   Albany Fill: Residual: 93.8269 - 16.627% [101] {min=86.1022, max=99.4084, std dev=5.02333}
+1: |   |   |   |   |   |   Phalanx::SortAndOrderEvaluators: 6.24375e-07 - 6.65454e-07% [1] {min=5e-07, max=8.73e-07, std dev=1.34959e-07}
+1: |   |   |   |   |   |   Albany Residual Fill: Evaluate: 86.302 - 91.98% [101] {min=81.3964, max=92.5794, std dev=3.87469}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 37: [<Residual>] Shared Parameter Glen's Law Homotopy Parameter<Residual>: 0.00559555 - 0.00648368% [101] {min=0.00125809, max=0.00901474, std dev=0.00348584}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 0: [<Residual>] LoadStateField(temperature)<Residual>: 5.61865 - 6.51045% [101] {min=5.59705, max=5.66532, std dev=0.0230437}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 63: [<Residual>] Gather Coordinate Vector<Residual>: 6.40131 - 7.41734% [101] {min=6.26956, max=6.54989, std dev=0.090147}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 33: [<Residual>] ComputeBasisFunctions<Residual>: 6.37453 - 7.3863% [101] {min=4.91847, max=8.20702, std dev=1.39631}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 11: [<Residual>] NodesToCellInterpolation<Residual>: 6.08023 - 7.0453% [101] {min=5.81188, max=6.20226, std dev=0.146243}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 61: [<Residual>] Gather Solution<Residual>: 2.39668 - 2.77709% [101] {min=1.69931, max=3.39199, std dev=0.751291}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 8: [<Residual>] FastSolutionVecGradInterpolationBase<Residual>: 0.293225 - 0.339767% [101] {min=0.192803, max=0.390047, std dev=0.0947873}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 39: [<Residual>] ViscosityFO<Residual>: 0.387829 - 0.449386% [101] {min=0.366493, max=0.402944, std dev=0.0124293}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 2: [<Residual>] LoadStateField(surface_height)<Residual>: 6.11789 - 7.08893% [101] {min=6.06897, max=6.22095, std dev=0.045775}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 10: [<Residual>] DOFGradInterpolationBase<Residual>: 1.35194 - 1.56652% [101] {min=1.16258, max=1.51559, std dev=0.128558}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 40: [<Residual>] StokesFOBodyForce<Residual>: 0.0375389 - 0.0434972% [101] {min=0.0147155, max=0.195516, std dev=0.0638327}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 7: [<Residual>] FastSolutionVecInterpolationBase<Residual>: 1.25967 - 1.4596% [101] {min=1.16801, max=1.35948, std dev=0.0845677}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 36: [<Residual>] StokesFOResid<Residual>: 0.258457 - 0.299479% [101] {min=0.134277, max=0.471774, std dev=0.116957}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 31: [<Residual>] DOFCellToSide(Coord Vec -> Coord Vec lateralside)<Residual>: 1.00056 - 1.15937% [101] {min=0.630587, max=1.30547, std dev=0.231229}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 28: [<Residual>] ComputeBasisFunctionsSide<Residual>: 8.9684 - 10.3919% [101] {min=5.90327, max=11.8621, std dev=1.75508}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 23: [<Residual>] DOFCellToSide(surface_height -> surface_height_lateralside)<Residual>: 0.291658 - 0.33795% [101] {min=0.175572, max=0.36444, std dev=0.0577627}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 22: [<Residual>] DOFInterpolationSide<Residual>: 0.256426 - 0.297126% [101] {min=0.0780749, max=0.421302, std dev=0.101148}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 1: [<Residual>] LoadStateField(ice_thickness)<Residual>: 5.61689 - 6.50841% [101] {min=5.58614, max=5.66378, std dev=0.0310375}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 21: [<Residual>] DOFCellToSide(ice_thickness -> ice_thickness_lateralside)<Residual>: 0.0440897 - 0.0510876% [101] {min=0.0158582, max=0.0679073, std dev=0.0155478}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 20: [<Residual>] DOFInterpolationSide<Residual>: 0.257444 - 0.298306% [101] {min=0.0785182, max=0.427642, std dev=0.103}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 41: [<Residual>] StokesFOLateralResid<Residual>: 1.21938 - 1.41292% [101] {min=0.558666, max=1.65791, std dev=0.32618}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 27: [<Residual>] DOFCellToSide(Coord Vec -> Coord Vec basalside)<Residual>: 1.44546 - 1.67488% [101] {min=1.13161, max=1.72949, std dev=0.18801}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 24: [<Residual>] ComputeBasisFunctionsSide<Residual>: 12.9894 - 15.0511% [101] {min=12.5932, max=13.8432, std dev=0.528019}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 14: [<Residual>] DOFCellToSide(Velocity -> Velocity_basalside)<Residual>: 1.113 - 1.28966% [101] {min=1.1009, max=1.1244, std dev=0.0078311}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 12: [<Residual>] DOFVecInterpolationSide<Residual>: 1.59402 - 1.84702% [101] {min=1.50755, max=1.84519, std dev=0.118715}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 6: [<Residual>] Load Side Set Field basal_friction_basalside from Side Set State basal_friction<Residual>: 6.66727 - 7.7255% [101] {min=6.51044, max=6.82198, std dev=0.112889}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 15: [<Residual>] DOFInterpolationSide<Residual>: 0.893036 - 1.03478% [101] {min=0.850157, max=0.936141, std dev=0.0312106}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 54: [<Residual>] BasalFrictionCoefficient<Residual>: 0.235325 - 0.272676% [101] {min=0.230322, max=0.238815, std dev=0.00291377}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 42: [<Residual>] StokesFOBasalResid<Residual>: 3.27346 - 3.79303% [101] {min=3.0969, max=3.4666, std dev=0.116481}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 62: [<Residual>] Scatter Velocity Residual<Residual>: 1.59098 - 1.8435% [101] {min=1.53186, max=1.62184, std dev=0.0338011}
+1: |   |   |   |   |   |   |   Remainder: 2.26167 - 2.62065%
+1: |   |   |   |   |   |   Albany Residual Fill: Export: 2.46695 - 2.62926% [101] {min=0.0296842, max=10.5904, std dev=3.93211}
+1: |   |   |   |   |   |   Remainder: 5.05793 - 5.3907%
+1: |   |   |   |   |   Albany Fill: Jacobian: 470.472 - 83.3721% [100] {min=468.603, max=473.325, std dev=2.36462}
+1: |   |   |   |   |   |   Phalanx::SortAndOrderEvaluators: 5.0575e-07 - 1.07498e-07% [1] {min=4.34e-07, max=7.34e-07, std dev=9.49282e-08}
+1: |   |   |   |   |   |   Albany Jacobian Fill: Evaluate: 202.544 - 43.0513% [100] {min=168.218, max=251.338, std dev=29.8829}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 101: [<Jacobian>] Shared Parameter Glen's Law Homotopy Parameter<Jacobian>: 0.00477644 - 0.00235822% [100] {min=0.00112037, max=0.0102858, std dev=0.00387596}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 64: [<Jacobian>] LoadStateField(temperature)<Jacobian>: 5.52478 - 2.72769% [100] {min=5.50495, max=5.57975, std dev=0.0302872}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 127: [<Jacobian>] Gather Coordinate Vector<Jacobian>: 6.1467 - 3.03474% [100] {min=6.06874, max=6.26981, std dev=0.062696}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 97: [<Jacobian>] ComputeBasisFunctions<Jacobian>: 5.95411 - 2.93966% [100] {min=4.65643, max=7.62321, std dev=1.28625}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 75: [<Jacobian>] NodesToCellInterpolation<Jacobian>: 9.85103 - 4.86365% [100] {min=6.10135, max=11.8552, std dev=2.41189}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 125: [<Jacobian>] Gather Solution<Jacobian>: 16.9096 - 8.34861% [100] {min=14.0302, max=19.8543, std dev=2.90393}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 72: [<Jacobian>] FastSolutionVecGradInterpolationBase<Jacobian>: 1.93824 - 0.956945% [100] {min=0.913709, max=2.8778, std dev=0.964947}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 103: [<Jacobian>] ViscosityFO<Jacobian>: 0.918332 - 0.453399% [100] {min=0.666214, max=1.27875, std dev=0.21756}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 66: [<Jacobian>] LoadStateField(surface_height)<Jacobian>: 6.09065 - 3.00707% [100] {min=6.03238, max=6.13136, std dev=0.0368231}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 74: [<Jacobian>] DOFGradInterpolationBase<Jacobian>: 1.37678 - 0.679741% [100] {min=1.13752, max=1.64566, std dev=0.194088}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 104: [<Jacobian>] StokesFOBodyForce<Jacobian>: 0.60919 - 0.300769% [100] {min=0.305746, max=1.03729, std dev=0.307557}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 71: [<Jacobian>] FastSolutionVecInterpolationBase<Jacobian>: 2.04648 - 1.01039% [100] {min=1.6195, max=2.49571, std dev=0.435506}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 100: [<Jacobian>] StokesFOResid<Jacobian>: 5.38394 - 2.65816% [100] {min=3.70982, max=6.93924, std dev=1.49291}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 95: [<Jacobian>] DOFCellToSide(Coord Vec -> Coord Vec lateralside)<Jacobian>: 0.967639 - 0.477742% [100] {min=0.614918, max=1.32639, std dev=0.243473}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 92: [<Jacobian>] ComputeBasisFunctionsSide<Jacobian>: 9.28946 - 4.58639% [100] {min=5.84894, max=12.9052, std dev=2.17978}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 87: [<Jacobian>] DOFCellToSide(surface_height -> surface_height_lateralside)<Jacobian>: 0.317775 - 0.156892% [100] {min=0.187615, max=0.418299, std dev=0.0756694}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 86: [<Jacobian>] DOFInterpolationSide<Jacobian>: 0.323591 - 0.159763% [100] {min=0.0748972, max=0.597739, std dev=0.167311}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 65: [<Jacobian>] LoadStateField(ice_thickness)<Jacobian>: 5.52727 - 2.72892% [100] {min=5.50378, max=5.54126, std dev=0.014406}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 85: [<Jacobian>] DOFCellToSide(ice_thickness -> ice_thickness_lateralside)<Jacobian>: 0.0637522 - 0.0314757% [100] {min=0.0138464, max=0.132002, std dev=0.040683}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 84: [<Jacobian>] DOFInterpolationSide<Jacobian>: 0.323389 - 0.159664% [100] {min=0.0747882, max=0.607564, std dev=0.167177}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 105: [<Jacobian>] StokesFOLateralResid<Jacobian>: 9.72803 - 4.80291% [100] {min=4.44687, max=13.2647, std dev=2.97455}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 91: [<Jacobian>] DOFCellToSide(Coord Vec -> Coord Vec basalside)<Jacobian>: 1.56258 - 0.771478% [100] {min=1.12922, max=1.80253, std dev=0.252328}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 88: [<Jacobian>] ComputeBasisFunctionsSide<Jacobian>: 16.8818 - 8.33486% [100] {min=12.3956, max=25.7376, std dev=5.62555}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 78: [<Jacobian>] DOFCellToSide(Velocity -> Velocity_basalside)<Jacobian>: 13.7189 - 6.77331% [100] {min=10.4208, max=18.5343, std dev=2.56667}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 76: [<Jacobian>] DOFVecInterpolationSide<Jacobian>: 16.878 - 8.333% [100] {min=12.1063, max=27.1296, std dev=6.08669}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 70: [<Jacobian>] Load Side Set Field basal_friction_basalside from Side Set State basal_friction<Jacobian>: 6.78758 - 3.35116% [100] {min=6.52145, max=7.134, std dev=0.216189}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 79: [<Jacobian>] DOFInterpolationSide<Jacobian>: 1.42801 - 0.705036% [100] {min=0.874853, max=2.65162, std dev=0.764671}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 118: [<Jacobian>] BasalFrictionCoefficient<Jacobian>: 2.48894 - 1.22884% [100] {min=1.63018, max=5.59511, std dev=1.38914}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 106: [<Jacobian>] StokesFOBasalResid<Jacobian>: 36.3888 - 17.9659% [100] {min=30.5776, max=43.882, std dev=5.0459}
+1: |   |   |   |   |   |   |   Phalanx: Evaluator 126: [<Jacobian>] Scatter Velocity Residual<Jacobian>: 14.8255 - 7.31962% [100] {min=12.5644, max=17.0139, std dev=1.38212}
+1: |   |   |   |   |   |   |   Remainder: 2.28856 - 1.12991%
+1: |   |   |   |   |   |   Albany Jacobian Fill: Export: 156.124 - 33.1845% [100] {min=124.403, max=199.936, std dev=24.6862}
+1: |   |   |   |   |   |   Remainder: 111.804 - 23.7642%
+1: |   |   |   |   |   Remainder: 0.00475891 - 0.000843325%
+1: |   |   |   |   Remainder: 0.00541182 - 0.000959017%
+1: |   |   |   NOX Total Preconditioner Construction: 0.00493831 - 0.000858839% [100] {min=0.00333973, max=0.00540106, std dev=0.000657293}
+1: |   |   |   NOX Total Linear Solve: 6.42384 - 1.11719% [100] {min=6.41193, max=6.4501, std dev=0.0118217}
+1: |   |   |   |   Stratimikos: BelosLOWS: 6.42371 - 99.998% [100] {min=6.41181, max=6.44997, std dev=0.0118211}
+1: |   |   |   |   |   Belos: Operation Op*x: 4.53213 - 70.5531% [100] {min=4.00934, max=4.99482, std dev=0.298214}
+1: |   |   |   |   |   Belos::MVT::MvAddMv: 0.00543012 - 0.0845324% [100] {min=0.00502949, max=0.00589318, std dev=0.000312098}
+1: |   |   |   |   |   Belos: BlockGmresSolMgr total solve time: 1.76621 - 27.4952% [100] {min=1.38203, max=1.96229, std dev=0.20575}
+1: |   |   |   |   |   |   Belos: DGKS[2]: Orthogonalization: 1.18334 - 66.9987% [200] {min=0.759772, max=1.41981, std dev=0.224167}
+1: |   |   |   |   |   |   |   Belos: DGKS[2]: Ortho (Norm): 0.674333 - 56.9858% [400] {min=0.19597, max=1.005, std dev=0.283025}
+1: |   |   |   |   |   |   |   |   Belos::MVT::MvDot: 0.673909 - 99.937% [400] {min=0.195558, max=1.00455, std dev=0.283012}
+1: |   |   |   |   |   |   |   |   Remainder: 0.00042481 - 0.0629971%
+1: |   |   |   |   |   |   |   Belos::MVT::MvScale: 0.0079004 - 0.667637% [200] {min=0.00777435, max=0.00806554, std dev=8.60282e-05}
+1: |   |   |   |   |   |   |   Belos: DGKS[2]: Ortho (Inner Product): 0.0469647 - 3.96884% [100] {min=0.0465817, max=0.0479097, std dev=0.000475349}
+1: |   |   |   |   |   |   |   |   Belos::MVT::MvTransMv: 0.0468048 - 99.6595% [100] {min=0.0464375, max=0.0477035, std dev=0.000441037}
+1: |   |   |   |   |   |   |   |   Remainder: 0.000159907 - 0.340483%
+1: |   |   |   |   |   |   |   Belos: DGKS[2]: Ortho (Update): 0.449627 - 37.9965% [100] {min=0.337292, max=0.562615, std dev=0.105181}
+1: |   |   |   |   |   |   |   |   Belos::MVT::MvTimesMatAddMv: 0.449489 - 99.9694% [100] {min=0.337163, max=0.562466, std dev=0.10518}
+1: |   |   |   |   |   |   |   |   Remainder: 0.000137533 - 0.0305882%
+1: |   |   |   |   |   |   |   Remainder: 0.00451124 - 0.38123%
+1: |   |   |   |   |   |   Belos::MVT::MvAddMv: 0.0870194 - 4.9269% [200] {min=0.0792508, max=0.0984732, std dev=0.00824022}
+1: |   |   |   |   |   |   Belos::MVT::MvNorm: 0.0261247 - 1.47914% [100] {min=0.0145889, max=0.034147, std dev=0.00832042}
+1: |   |   |   |   |   |   Belos: Operation Op*x: 0.167826 - 9.50204% [100] {min=0.158187, max=0.179893, std dev=0.00747397}
+1: |   |   |   |   |   |   Belos::MVT::MvTimesMatAddMv: 0.128236 - 7.2605% [100] {min=0.120482, max=0.153141, std dev=0.0107082}
+1: |   |   |   |   |   |   Remainder: 0.173667 - 9.83275%
+1: |   |   |   |   |   Remainder: 0.119941 - 1.86717%
+1: |   |   |   |   Remainder: 0.000127779 - 0.00198914%
+1: |   |   |   Remainder: 4.26002 - 0.740875%
+1: |   |   Remainder: 0.00141676 - 0.000246393%
+1: |   Thyra::DefaultModelEvaluatorWithSolveFactory<double>::evalModel(...): 5.36418e-05 - 8.70566e-06% [1] {min=4.826e-05, max=6.1365e-05, std dev=5.07138e-06}
+1: |   |   Albany: Total Fill Time: 1.12467e-05 - 20.9664% [1] {min=9.006e-06, max=1.3982e-05, std dev=1.8998e-06}
+1: |   |   Remainder: 4.2395e-05 - 79.0336%
+1: |   Remainder: 2.30377 - 0.373884%
+1/2 Test #1: green-1-7km_fea_1ws_np8 ..........   Passed  619.26 sec
+test 2
+    Start 2: green-1-7km_fea_mem_np8
+
+2: Test command: /home/projects/ppc64le-pwr9-nvidia/openmpi/4.0.1/gcc/7.2.0/cuda/10.1.105/bin/mpiexec "--map-by" "ppr:2:socket" "-np" "8" "/home/projects/albany/watermanNewCDash/build/AlbBuildSFad/src/Albany" "input_albany_FiniteElementAssembly_Memoization.yaml" "--kokkos-ndevices=4"
+2: Test timeout computed to be: 700
+2: --------------------------------------------------------------------------
+2: By default, for Open MPI 4.0 and later, infiniband ports on a device
+2: are not used by default.  The intent is to use UCX for these devices.
+2: You can override this policy by setting the btl_openib_allow_ib MCA parameter
+2: to true.
+2: 
+2:   Local host:              waterman8
+2:   Local adapter:           mlx5_0
+2:   Local port:              1
+2: 
+2: --------------------------------------------------------------------------
+2: --------------------------------------------------------------------------
+2: WARNING: There was an error initializing an OpenFabrics device.
+2: 
+2:   Local host:   waterman8
+2:   Local device: mlx5_0
+2: --------------------------------------------------------------------------
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 0!
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 1!
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 2!
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman8 and rank 3!
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 6!
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 7!
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 4!
+2: Teuchos::GlobalMPISession::GlobalMPISession(): started processor with name waterman10 and rank 5!
+2: ***************************************************************
+2: **  ______   __       ______   ______   __   __   __  __     **
+2: ** /\  __ \ /\ \     /\  == \ /\  __ \ /\ "-.\ \ /\ \_\ \    **
+2: ** \ \  __ \\ \ \____\ \  __< \ \  __ \\ \ \-.  \\ \____ \   **
+2: **  \ \_\ \_\\ \_____\\ \_____\\ \_\ \_\\ \_\\"\_\\/\_____\  **
+2: **   \/_/\/_/ \/_____/ \/_____/ \/_/\/_/ \/_/ \/_/ \/_____/  **
+2: **                                                           **
+2: ***************************************************************
+2: ** Trilinos git commit id - 2e010b3
+2: ** Albany git branch ------ master
+2: ** Albany git commit id --- 13ab790
+2: ** Albany cxx compiler ---- GNU 7.2.0
+2: ** Albany cuda compiler --- Cuda 101
+2: ** Simulation start time -- 2020-03-22 at 01:23:30
+2: ***************************************************************
+2: Albany_IOSS: Loading STKMesh from Exodus file  mesh/gis_basal_populated.exo
+2: IOSS-STK: number of node sets = 1
+2: IOSS-STK: number of side sets = 1
+2: Restart Index set, reading solution index : 1
+2: [GenericSTKMeshStruct] Processing field requirements...
+2:   - Skipping field 'ice_thickness' since it's listed as present in the mesh.
+2:   - Skipping field 'surface_height' since it's listed as present in the mesh.
+2:   - Skipping field 'temperature' since it's listed as present in the mesh.
+2:   - Skipping field 'basal_friction' since it's listed as present in the mesh.
+2: [ExtrudedSTKMesh] Adding nodes... done!
+2: [ExtrudedSTKMesh] Adding elements... [waterman8:20062] 7 more processes have sent help message help-mpi-btl-openib.txt / ib port not selected
+2: [waterman8:20062] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+2: [waterman8:20062] 7 more processes have sent help message help-mpi-btl-openib.txt / error in device init
+2: done!
+2: [ExtrudedSTKMesh] Adding basalside sides... done!
+2: [ExtrudedSTKMesh] Adding upperside sides... done!
+2: [ExtrudedSTKMesh] Adding lateral sides... done!
+2: [ExtrudedSTKMesh] Extruding basal fields...
+2:   - Extruding Scalar Node field ice_thickness...done!
+2:   - Extruding Scalar Node field surface_height...done!
+2: [ExtrudedSTKMesh] Interpolating layered basal fields...
+2:   - Interpolating Scalar field temperature...done!
+2: [GenericSTKMeshStruct] Processing field requirements...
+2:   - Skipping field 'temperature' since it's listed as present in the mesh.
+2:   - Skipping field 'ice_thickness' since it's listed as present in the mesh.
+2:   - Skipping field 'surface_height' since it's listed as present in the mesh.
+2: STKDisc: 1799730 elements on Proc 0 
+2: STKDisc: nodeset bottom has size 32261  on Proc 0.
+2: STKDisc: nodeset extruded_node has size 354871  on Proc 0.
+2: STKDisc: nodeset lateral has size 35046  on Proc 0.
+2: STKDisc: nodeset top has size 32261  on Proc 0.
+2: STKDisc: sideset basalside has size 59991  on Proc 0.
+2: STKDisc: sideset extruded_lateralside has size 44320  on Proc 0.
+2: STKDisc: sideset extruded_surface_tri3_edge2_1 has size 44320  on Proc 0.
+2: STKDisc: sideset lateralside has size 44320  on Proc 0.
+2: STKDisc: sideset upperside has size 59991  on Proc 0.
+2: STKDisc: 59991 elements on Proc 0 
+2: STKDisc: nodeset node has size 32261  on Proc 0.
+2: STKDisc: sideset lateralside has size 2216  on Proc 0.
+2: StateManager: initializing state:  temperature
+2: StateManager: initializing state:  ice_thickness
+2: StateManager: initializing state:  surface_height
+2: 
+2: StateManager: initializing state:  ice_thickness
+2: StateManager: initializing state:  surface_height
+2: StateManager: initializing state:  temperature
+2: StateManager: initializing state:  basal_friction
+2: 
+2: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+2:  Sacado ParameterLibrary has been initialized:
+2:  Library of all registered parameters:
+2: 	Bed Roughness:  Supports AD = 1, Supports_Analytic = 0
+2: 	Coulomb Friction Coefficient:  Supports AD = 1, Supports_Analytic = 0
+2: 	Glen's Law Homotopy Parameter:  Supports AD = 1, Supports_Analytic = 0
+2: 	Hydraulic-Over-Hydrostatic Potential Ratio:  Supports AD = 1, Supports_Analytic = 0
+2: 	Power Exponent:  Supports AD = 1, Supports_Analytic = 0
+2: 	Power Law Coefficient:  Supports AD = 1, Supports_Analytic = 0
+2: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+2: 
+2: Number of parameter vectors  = 0
+2: Number of response vectors  = 0
+2: Number of distributed parameters vectors  = 0
+2: Finished eval of first model: Params, Responses 
+2: 
+2: Main_Solve: MeanValue of final solution -3.62371422574e-06
+2: 
+2: Number of Failed Comparisons: 0
+2: *** Teuchos::StackedTimer::report() - Remainder for a level will be ***
+2: *** incorrect if a timer in the level does not exist on every rank  ***
+2: *** of the MPI Communicator.                                        ***
+2: Albany Total Time: 448.484 [1] {min=448.356, max=448.551, std dev=0.0611294}
+2: |   Albany: Setup Time: 38.7475 - 8.63966% [1] {min=38.6807, max=38.8002, std dev=0.0515019}
+2: |   Piro::NOXSolver::evalModelImpl::solve: 407.444 - 90.8491% [1] {min=407.443, max=407.445, std dev=0.00109248}
+2: |   |   Thyra::NOXNonlinearSolver::solve: 407.442 - 99.9996% [1] {min=407.441, max=407.443, std dev=0.00106495}
+2: |   |   |   Thyra::DefaultModelEvaluatorWithSolveFactory<double>::evalModel(...): 399.382 - 98.0218% [201] {min=397.301, max=401.072, std dev=1.61413}
+2: |   |   |   |   Albany: Total Fill Time: 399.377 - 99.9987% [201] {min=397.295, max=401.067, std dev=1.61404}
+2: |   |   |   |   |   Albany Fill: Residual: 23.4574 - 5.87349% [101] {min=18.3056, max=26.9343, std dev=4.05517}
+2: |   |   |   |   |   |   Phalanx::SortAndOrderEvaluators: 5.88875e-07 - 2.51041e-06% [1] {min=4.77e-07, max=7.46e-07, std dev=1.09302e-07}
+2: |   |   |   |   |   |   Albany Residual Fill: Evaluate: 16.9783 - 72.3796% [101] {min=14.6928, max=20.0395, std dev=2.29189}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 37: [<Residual>] Shared Parameter Glen's Law Homotopy Parameter<Residual>: 0.0059081 - 0.0347979% [101] {min=0.00160624, max=0.008099, std dev=0.00265599}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 0: [<Residual>] LoadStateField(temperature)<Residual>: 0.0608366 - 0.358319% [101] {min=0.0591603, max=0.0616336, std dev=0.000823997}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 63: [<Residual>] Gather Coordinate Vector<Residual>: 0.0666865 - 0.392774% [101] {min=0.058971, max=0.075374, std dev=0.00594173}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 33: [<Residual>] ComputeBasisFunctions<Residual>: 1.07144 - 6.31061% [101] {min=0.408699, max=1.91388, std dev=0.680068}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 11: [<Residual>] NodesToCellInterpolation<Residual>: 0.0629545 - 0.370793% [101] {min=0.0603932, max=0.0670478, std dev=0.00225934}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 61: [<Residual>] Gather Solution<Residual>: 1.82573 - 10.7533% [101] {min=1.53967, max=2.17586, std dev=0.273019}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 8: [<Residual>] FastSolutionVecGradInterpolationBase<Residual>: 0.638505 - 3.7607% [101] {min=0.335667, max=0.955295, std dev=0.308016}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 39: [<Residual>] ViscosityFO<Residual>: 0.052207 - 0.307492% [101] {min=0.0427083, max=0.0654365, std dev=0.00932449}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 2: [<Residual>] LoadStateField(surface_height)<Residual>: 0.0638861 - 0.37628% [101] {min=0.0633732, max=0.0643808, std dev=0.000376132}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 10: [<Residual>] DOFGradInterpolationBase<Residual>: 0.0116086 - 0.0683731% [101] {min=0.0107244, max=0.0132561, std dev=0.000941834}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 40: [<Residual>] StokesFOBodyForce<Residual>: 0.000602511 - 0.00354871% [101] {min=0.000564315, max=0.000645903, std dev=3.04641e-05}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 7: [<Residual>] FastSolutionVecInterpolationBase<Residual>: 0.0718285 - 0.423059% [101] {min=0.0626477, max=0.0846967, std dev=0.00782251}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 36: [<Residual>] StokesFOResid<Residual>: 0.797295 - 4.69596% [101] {min=0.172217, max=1.52194, std dev=0.470255}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 31: [<Residual>] DOFCellToSide(Coord Vec -> Coord Vec lateralside)<Residual>: 0.0259569 - 0.152883% [101] {min=0.0192691, max=0.0317749, std dev=0.00403022}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 28: [<Residual>] ComputeBasisFunctionsSide<Residual>: 0.287234 - 1.69177% [101] {min=0.189222, max=0.365689, std dev=0.0607945}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 23: [<Residual>] DOFCellToSide(surface_height -> surface_height_lateralside)<Residual>: 0.00813387 - 0.0479074% [101] {min=0.00488949, max=0.0101269, std dev=0.00160908}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 22: [<Residual>] DOFInterpolationSide<Residual>: 0.00946087 - 0.0557232% [101] {min=0.00491598, max=0.0120278, std dev=0.00227498}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 1: [<Residual>] LoadStateField(ice_thickness)<Residual>: 0.0637119 - 0.375254% [101] {min=0.0632271, max=0.0645312, std dev=0.000409717}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 21: [<Residual>] DOFCellToSide(ice_thickness -> ice_thickness_lateralside)<Residual>: 0.00558801 - 0.0329126% [101] {min=0.00321669, max=0.00692687, std dev=0.00116359}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 20: [<Residual>] DOFInterpolationSide<Residual>: 0.00937969 - 0.0552451% [101] {min=0.00479512, max=0.0119219, std dev=0.00229715}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 41: [<Residual>] StokesFOLateralResid<Residual>: 1.24437 - 7.32918% [101] {min=0.576596, max=1.66396, std dev=0.322012}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 27: [<Residual>] DOFCellToSide(Coord Vec -> Coord Vec basalside)<Residual>: 0.03086 - 0.181761% [101] {min=0.0302011, max=0.0315606, std dev=0.000507753}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 24: [<Residual>] ComputeBasisFunctionsSide<Residual>: 0.28268 - 1.66495% [101] {min=0.279193, max=0.291721, std dev=0.0050757}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 14: [<Residual>] DOFCellToSide(Velocity -> Velocity_basalside)<Residual>: 1.13314 - 6.67405% [101] {min=1.11659, max=1.151, std dev=0.0124722}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 12: [<Residual>] DOFVecInterpolationSide<Residual>: 1.61305 - 9.50065% [101] {min=1.54129, max=1.7283, std dev=0.0553126}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 6: [<Residual>] Load Side Set Field basal_friction_basalside from Side Set State basal_friction<Residual>: 0.0752039 - 0.442941% [101] {min=0.0708243, max=0.0806257, std dev=0.0032766}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 15: [<Residual>] DOFInterpolationSide<Residual>: 0.0165318 - 0.0973697% [101] {min=0.0162163, max=0.0171308, std dev=0.00029574}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 54: [<Residual>] BasalFrictionCoefficient<Residual>: 0.0100461 - 0.0591702% [101] {min=0.0098613, max=0.0103042, std dev=0.000148151}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 42: [<Residual>] StokesFOBasalResid<Residual>: 3.30226 - 19.4499% [101] {min=3.13759, max=3.46211, std dev=0.112367}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 62: [<Residual>] Scatter Velocity Residual<Residual>: 1.92694 - 11.3494% [101] {min=1.69375, max=2.4766, std dev=0.284039}
+2: |   |   |   |   |   |   |   Remainder: 2.20429 - 12.9829%
+2: |   |   |   |   |   |   Albany Residual Fill: Export: 1.29717 - 5.52989% [101] {min=0.0243989, max=7.42116, std dev=2.55115}
+2: |   |   |   |   |   |   Remainder: 5.18185 - 22.0905%
+2: |   |   |   |   |   Albany Fill: Jacobian: 375.915 - 94.1254% [100] {min=374.042, max=378.985, std dev=2.50595}
+2: |   |   |   |   |   |   Phalanx::SortAndOrderEvaluators: 4.8775e-07 - 1.2975e-07% [1] {min=4.08e-07, max=5.33e-07, std dev=4.37027e-08}
+2: |   |   |   |   |   |   Albany Jacobian Fill: Evaluate: 130.6 - 34.7419% [100] {min=114.868, max=159.764, std dev=17.882}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 101: [<Jacobian>] Shared Parameter Glen's Law Homotopy Parameter<Jacobian>: 0.00582599 - 0.00446094% [100] {min=0.000446082, max=0.00924851, std dev=0.00299575}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 64: [<Jacobian>] LoadStateField(temperature)<Jacobian>: 0.0614429 - 0.0470466% [100] {min=0.060156, max=0.0628924, std dev=0.000949294}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 127: [<Jacobian>] Gather Coordinate Vector<Jacobian>: 0.0737712 - 0.0564863% [100] {min=0.0722463, max=0.0751235, std dev=0.00105085}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 97: [<Jacobian>] ComputeBasisFunctions<Jacobian>: 1.36169 - 1.04264% [100] {min=0.367041, max=2.85399, std dev=1.00907}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 75: [<Jacobian>] NodesToCellInterpolation<Jacobian>: 0.100022 - 0.0765864% [100] {min=0.0584449, max=0.120568, std dev=0.0255117}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 125: [<Jacobian>] Gather Solution<Jacobian>: 16.9332 - 12.9657% [100] {min=14.3028, max=19.0421, std dev=1.88475}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 72: [<Jacobian>] FastSolutionVecGradInterpolationBase<Jacobian>: 1.99342 - 1.52636% [100] {min=0.932335, max=2.90856, std dev=0.950155}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 103: [<Jacobian>] ViscosityFO<Jacobian>: 0.465074 - 0.356106% [100] {min=0.263706, max=0.660258, std dev=0.167242}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 66: [<Jacobian>] LoadStateField(surface_height)<Jacobian>: 0.0598087 - 0.0457953% [100] {min=0.0593927, max=0.0607058, std dev=0.000429651}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 74: [<Jacobian>] DOFGradInterpolationBase<Jacobian>: 0.111032 - 0.0850169% [100] {min=0.0104901, max=0.314833, std dev=0.126427}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 104: [<Jacobian>] StokesFOBodyForce<Jacobian>: 0.603606 - 0.462179% [100] {min=0.220295, max=1.08207, std dev=0.376926}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 71: [<Jacobian>] FastSolutionVecInterpolationBase<Jacobian>: 0.752846 - 0.576452% [100] {min=0.356286, max=1.09707, std dev=0.352209}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 100: [<Jacobian>] StokesFOResid<Jacobian>: 5.71349 - 4.3748% [100] {min=4.27874, max=7.30383, std dev=1.36482}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 95: [<Jacobian>] DOFCellToSide(Coord Vec -> Coord Vec lateralside)<Jacobian>: 0.00878169 - 0.00672411% [100] {min=0.00497382, max=0.0113479, std dev=0.00209388}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 92: [<Jacobian>] ComputeBasisFunctionsSide<Jacobian>: 0.1806 - 0.138285% [100] {min=0.132439, max=0.226231, std dev=0.0375893}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 87: [<Jacobian>] DOFCellToSide(surface_height -> surface_height_lateralside)<Jacobian>: 0.00344991 - 0.00264158% [100] {min=0.00215991, max=0.00434617, std dev=0.000670869}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 86: [<Jacobian>] DOFInterpolationSide<Jacobian>: 0.00572803 - 0.00438593% [100] {min=0.00232902, max=0.00871341, std dev=0.00199957}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 65: [<Jacobian>] LoadStateField(ice_thickness)<Jacobian>: 0.0593547 - 0.0454477% [100] {min=0.0587147, max=0.0601403, std dev=0.000448124}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 85: [<Jacobian>] DOFCellToSide(ice_thickness -> ice_thickness_lateralside)<Jacobian>: 0.00259473 - 0.00198677% [100] {min=0.00136055, max=0.00334161, std dev=0.00069939}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 84: [<Jacobian>] DOFInterpolationSide<Jacobian>: 0.00564802 - 0.00432467% [100] {min=0.00222713, max=0.0085775, std dev=0.00200271}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 105: [<Jacobian>] StokesFOLateralResid<Jacobian>: 10.2564 - 7.85328% [100] {min=4.61684, max=13.7788, std dev=3.00614}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 91: [<Jacobian>] DOFCellToSide(Coord Vec -> Coord Vec basalside)<Jacobian>: 0.0238853 - 0.0182889% [100] {min=0.0200586, max=0.02617, std dev=0.00209099}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 88: [<Jacobian>] ComputeBasisFunctionsSide<Jacobian>: 0.286691 - 0.219518% [100] {min=0.206966, max=0.357387, std dev=0.0623508}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 78: [<Jacobian>] DOFCellToSide(Velocity -> Velocity_basalside)<Jacobian>: 16.7333 - 12.8126% [100] {min=14.9878, max=19.8074, std dev=1.58043}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 76: [<Jacobian>] DOFVecInterpolationSide<Jacobian>: 17.1922 - 13.164% [100] {min=11.6831, max=28.0425, std dev=6.3594}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 70: [<Jacobian>] Load Side Set Field basal_friction_basalside from Side Set State basal_friction<Jacobian>: 0.0810682 - 0.0620736% [100] {min=0.0735606, max=0.0952816, std dev=0.00732694}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 79: [<Jacobian>] DOFInterpolationSide<Jacobian>: 0.0222061 - 0.0170031% [100] {min=0.0160408, max=0.0366247, std dev=0.00834765}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 118: [<Jacobian>] BasalFrictionCoefficient<Jacobian>: 0.098773 - 0.0756301% [100] {min=0.0827195, max=0.132458, std dev=0.0180708}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 106: [<Jacobian>] StokesFOBasalResid<Jacobian>: 38.0706 - 29.1506% [100] {min=34.0084, max=44.5205, std dev=4.22367}
+2: |   |   |   |   |   |   |   Phalanx: Evaluator 126: [<Jacobian>] Scatter Velocity Residual<Jacobian>: 17.0619 - 13.0642% [100] {min=16.3716, max=17.6891, std dev=0.503636}
+2: |   |   |   |   |   |   |   Remainder: 2.27158 - 1.73934%
+2: |   |   |   |   |   |   Albany Jacobian Fill: Export: 142.139 - 37.8116% [100] {min=121.916, max=167.714, std dev=14.9194}
+2: |   |   |   |   |   |   Remainder: 103.176 - 27.4465%
+2: |   |   |   |   |   Remainder: 0.00461174 - 0.00115473%
+2: |   |   |   |   Remainder: 0.00527501 - 0.00132079%
+2: |   |   |   NOX Total Preconditioner Construction: 0.00483175 - 0.00118587% [100] {min=0.00317953, max=0.00517583, std dev=0.000672838}
+2: |   |   |   NOX Total Linear Solve: 6.19984 - 1.52165% [100] {min=6.18215, max=6.23851, std dev=0.0175665}
+2: |   |   |   |   Stratimikos: BelosLOWS: 6.19971 - 99.9978% [100] {min=6.18203, max=6.23832, std dev=0.0175477}
+2: |   |   |   |   |   Belos: Operation Op*x: 4.54867 - 73.3691% [100] {min=4.15508, max=5.0066, std dev=0.312803}
+2: |   |   |   |   |   Belos::MVT::MvAddMv: 0.00550391 - 0.0887769% [100] {min=0.00508435, max=0.00578877, std dev=0.000292363}
+2: |   |   |   |   |   Belos: BlockGmresSolMgr total solve time: 1.57162 - 25.3499% [100] {min=1.11429, max=1.96095, std dev=0.306755}
+2: |   |   |   |   |   |   Belos: DGKS[2]: Orthogonalization: 0.986573 - 62.7744% [200] {min=0.462657, max=1.39093, std dev=0.328111}
+2: |   |   |   |   |   |   |   Belos: DGKS[2]: Ortho (Norm): 0.586942 - 59.493% [400] {min=0.0316105, max=1.03165, std dev=0.34303}
+2: |   |   |   |   |   |   |   |   Belos::MVT::MvDot: 0.586513 - 99.9269% [400] {min=0.0311955, max=1.03121, std dev=0.343021}
+2: |   |   |   |   |   |   |   |   Remainder: 0.00042889 - 0.0730719%
+2: |   |   |   |   |   |   |   Belos::MVT::MvScale: 0.00795978 - 0.806812% [200] {min=0.00783483, max=0.00809348, std dev=7.76127e-05}
+2: |   |   |   |   |   |   |   Belos: DGKS[2]: Ortho (Inner Product): 0.0379273 - 3.84435% [100] {min=0.0376606, max=0.0381832, std dev=0.000163494}
+2: |   |   |   |   |   |   |   |   Belos::MVT::MvTransMv: 0.0377863 - 99.6283% [100] {min=0.0375302, max=0.0380542, std dev=0.000160021}
+2: |   |   |   |   |   |   |   |   Remainder: 0.000140982 - 0.371716%
+2: |   |   |   |   |   |   |   Belos: DGKS[2]: Ortho (Update): 0.350483 - 35.5253% [100] {min=0.310596, max=0.381683, std dev=0.0288622}
+2: |   |   |   |   |   |   |   |   Belos::MVT::MvTimesMatAddMv: 0.350331 - 99.9565% [100] {min=0.310466, max=0.381547, std dev=0.0288784}
+2: |   |   |   |   |   |   |   |   Remainder: 0.000152594 - 0.0435383%
+2: |   |   |   |   |   |   |   Remainder: 0.00326037 - 0.330474%
+2: |   |   |   |   |   |   Belos::MVT::MvAddMv: 0.0834287 - 5.30847% [200] {min=0.0761978, max=0.0972393, std dev=0.00748952}
+2: |   |   |   |   |   |   Belos::MVT::MvNorm: 0.0317656 - 2.02121% [100] {min=0.017518, max=0.0390599, std dev=0.00767554}
+2: |   |   |   |   |   |   Belos: Operation Op*x: 0.16265 - 10.3492% [100] {min=0.152212, max=0.1812, std dev=0.0105893}
+2: |   |   |   |   |   |   Belos::MVT::MvTimesMatAddMv: 0.128383 - 8.16882% [100] {min=0.114262, max=0.165423, std dev=0.0163237}
+2: |   |   |   |   |   |   Remainder: 0.178818 - 11.3779%
+2: |   |   |   |   |   Remainder: 0.0739186 - 1.19229%
+2: |   |   |   |   Remainder: 0.000133948 - 0.00216052%
+2: |   |   |   Remainder: 1.85538 - 0.455372%
+2: |   |   Remainder: 0.00148277 - 0.00036392%
+2: |   Thyra::DefaultModelEvaluatorWithSolveFactory<double>::evalModel(...): 5.2162e-05 - 1.16307e-05% [1] {min=4.734e-05, max=5.8848e-05, std dev=4.51744e-06}
+2: |   |   Albany: Total Fill Time: 1.1212e-05 - 21.4946% [1] {min=9.283e-06, max=1.2968e-05, std dev=1.35684e-06}
+2: |   |   Remainder: 4.095e-05 - 78.5054%
+2: |   Remainder: 2.29265 - 0.5112%
+2/2 Test #2: green-1-7km_fea_mem_np8 ..........   Passed  451.10 sec
+
+100% tests passed, 0 tests failed out of 2
+
+Total Test time (real) = 1070.39 sec
+SetCTestConfiguration:BuildDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/build
+SetCTestConfiguration:SourceDirectory:/home/projects/albany/watermanNewCDash/aliPerfTests/repos
+SetCTestConfiguration:ProjectName:Albany
+SetCTestConfiguration:DropMethod:https
+SetCTestConfiguration:DropSite:sems-cdash-son.sandia.gov
+SetCTestConfiguration:DropLocation:/cdash/submit.php?project=Albany
+SetCTestConfiguration:IsCDash:TRUE
+Submit files (using https)
+   Using HTTP submit method
+   Drop site:https://sems-cdash-son.sandia.gov/cdash/submit.php?project=Albany
+   Upload file: /home/projects/albany/watermanNewCDash/aliPerfTests/build/Testing/20200322-0500/Test.xml to https://sems-cdash-son.sandia.gov/cdash/submit.php?project=Albany&FileName=waterman.sandia.gov___linux-gcc-CUDA-Albany-Perf-Tests___20200322-0500-Nightly___XML___Test.xml&MD5=4313049a64c6c9b18cec3188083e39ac Size: 18963
+   Uploaded: /home/projects/albany/watermanNewCDash/aliPerfTests/build/Testing/20200322-0500/Test.xml
+   Submission successful

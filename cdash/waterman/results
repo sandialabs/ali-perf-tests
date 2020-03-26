@@ -1,0 +1,13 @@
+Subject: ALI performance tests, waterman: 2 tests passed, 0 tests failed, 0 tests not run, 0 timeouts
+
+1/2 Test #1: green-1-7km_fea_1ws_np8 ..........   Passed  619.26 sec
+2/2 Test #2: green-1-7km_fea_mem_np8 ..........   Passed  451.10 sec
+
+100% tests passed, 0 tests failed out of 2
+Total Test time (real) = 1070.39 sec
+
+
+The Albany CDash site can be accessed here: https://sems-cdash-son.sandia.gov/cdash/index.php?project=Albany
+
+The Jupyter notebooks containing Waterman ALI performance data can be accessed here: https://ikalash.github.io/ali/index_waterman.html
+

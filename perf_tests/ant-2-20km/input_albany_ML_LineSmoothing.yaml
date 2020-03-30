@@ -230,7 +230,7 @@ ANONYMOUS:
                       Aztec Solver: GMRES
                       Convergence Test: r0
                       Size of Krylov Subspace: 200
-                      Output Frequency: 20
+                      Output Frequency: 0
                     Max Iterations: 200
 
 #             Preconditioner Information

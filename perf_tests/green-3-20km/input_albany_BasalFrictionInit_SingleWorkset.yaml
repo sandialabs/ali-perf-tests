@@ -9,6 +9,7 @@ ANONYMOUS:
     Solution Method: Steady
     Required Fields: [temperature]
     Basal Side Name: basalside
+    Surface Side Name: upperside
 
 #   LandIce parameters
     LandIce Physical Parameters: 
@@ -33,18 +34,31 @@ ANONYMOUS:
         Side Set Name: basalside
         Cubature Degree: 3
         Basal Friction Coefficient:
-          Type: Given Field
+          Type: Exponent Of Given Field
           Given Field Variable Name: basal_friction
       BC 1:
         Type: Lateral
         Cubature Degree: 3
         Side Set Name: lateralside
 
+#   Optimization parameters and objective function
+    Distributed Parameters: 
+      Number of Parameter Vectors: 1
+      Distributed Parameter 0: 
+        Name: basal_friction
+        Lower Bound: -1.20000000000000000e+01
+        Upper Bound: 1.20000000000000000e+01
+        Mesh Part: bottom
+    Response Functions: 
+      Number: 1
+      Response 0: Surface Velocity Mismatch
+      ResponseParams 0: 
+        Regularization Coefficient: 10.0e+00
+        Asinh Scaling: 1.0e+01
+        Scaling Coefficient: 5.8824e-07
+
 #   Output
     Phalanx Graph Visualization Detail: 0
-    Response Functions: 
-      Number: 0
-      Response 0: Surface Velocity Mismatch
 
 #   Performance parameters
     Use MDField Memoization: false
@@ -63,12 +77,12 @@ ANONYMOUS:
 
 #   Field Information
     Thickness Field Name: ice_thickness
-    Basal Node Fields Ranks: [1, 1]
-    Extrude Basal Node Fields: [ice_thickness, surface_height]
+    Basal Node Fields Ranks: [1, 1, 1]
+    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction]
     Basal Node Layered Fields Ranks: [1]
     Interpolate Basal Node Layered Fields: [temperature]
     Required Fields Info: 
-      Number Of Fields: 3
+      Number Of Fields: 4
       Field 0: 
         Field Name: temperature
         Field Type: Node Scalar
@@ -81,10 +95,14 @@ ANONYMOUS:
         Field Name: surface_height
         Field Type: Node Scalar
         Field Origin: Mesh
+      Field 3: 
+        Field Name: basal_friction
+        Field Type: Node Scalar
+        Field Origin: Mesh
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
-      Side Sets: [basalside]
+      Side Sets: [basalside, upperside]
       basalside: 
         Number Of Time Derivatives: 0
         Method: Ioss
@@ -92,26 +110,135 @@ ANONYMOUS:
         Restart Index: 1
         Exodus Input File Name: mesh/gis_basal_populated.exo
         Required Fields Info: 
-          Number Of Fields: 4
-          Field 0: 
+          Number Of Fields: 5
+          Field 0:
             Field Name: ice_thickness
-            Field Origin: Mesh
             Field Type: Node Scalar
-          Field 1: 
+            Field Origin: Mesh
+          Field 1:
             Field Name: surface_height
-            Field Origin: Mesh
             Field Type: Node Scalar
-          Field 2: 
+            Field Origin: Mesh
+          Field 2:
             Field Name: temperature
-            Field Origin: Mesh
             Field Type: Node Layered Scalar
-            Number Of Layers: 11
-          Field 3: 
-            Field Name: basal_friction
             Field Origin: Mesh
+            Number Of Layers: 11
+          Field 3:
+            Field Name: basal_friction
             Field Type: Node Scalar
+            Field Origin: Mesh
+          Field 4:
+            Field Name: bed_topography
+            Field Type: Node Scalar
+            Field Origin: Mesh
+      upperside: 
+        Number Of Time Derivatives: 0
+        Method: Ioss
+        Cubature Degree: 3
+        Restart Index: 1
+        Exodus Input File Name: mesh/gis_upper_populated.exo
+        Required Fields Info: 
+          Number Of Fields: 2
+          Field 0: 
+            Field Name: observed_surface_velocity
+            Field Type: Node Vector
+            Field Origin: Mesh
+          Field 1: 
+            Field Name: observed_surface_velocity_RMS
+            Field Type: Node Scalar
+            Field Origin: Mesh
 
-  Piro: 
+  Piro:
+#   Optimization Information
+    Sensitivity Method: Adjoint
+    Analysis:
+      Analysis Package: ROL
+      ROL:
+        Number of Parameters: 1 
+        Check Gradient: false
+        Gradient Tolerance: 1.00000000000000005e-04
+        Step Tolerance: 1.00000000000000005e-04
+        Max Iterations: 10
+        Print Output: true
+        Parameter Initial Guess Type: From Model Evaluator
+        Uniform Parameter Guess: 0.00000000000000000e+00
+        Min And Max Of Random Parameter Guess: [1.00000000000000000e+00, 2.00000000000000000e+00]
+        Bound Constrained: true
+        bound_eps: 1.00000000000000006e-01
+
+        Use Old Reduced Space Interface: true
+        Full Space: false
+        Use NOX Solver: true        
+
+        ROL Options: 
+          General: 
+            Variable Objective Function: false
+            Scale for Epsilon Active Sets: 1.00000000000000000e+00
+            Inexact Objective Function: false
+            Inexact Gradient: false
+            Inexact Hessian-Times-A-Vector: false
+            Projected Gradient Criticality Measure: false
+            Secant: 
+              Type: Limited-Memory BFGS
+              Use as Preconditioner: false
+              Use as Hessian: false
+              Maximum Storage: 50
+              Barzilai-Borwein Type: 1
+            Krylov: 
+              Type: Conjugate Gradients
+              Absolute Tolerance: 1.00000000000000005e-04
+              Relative Tolerance: 1.00000000000000002e-02
+              Iteration Limit: 100
+          Step: 
+            Line Search: 
+              Function Evaluation Limit: 60
+              Sufficient Decrease Tolerance: 9.99999999999999945e-21
+              Initial Step Size: 1.00000000000000000e+00
+              User Defined Initial Step Size: false
+              Accept Linesearch Minimizer: false
+              Accept Last Alpha: false
+              Descent Method: 
+                Type: Quasi-Newton
+                Nonlinear CG Type: Hestenes-Stiefel
+              Curvature Condition: 
+                Type: Strong Wolfe Conditions
+                General Parameter: 9.00000000000000022e-01
+                Generalized Wolfe Parameter: 5.99999999999999978e-01
+              Line-Search Method: 
+                Type: Cubic Interpolation
+                Backtracking Rate: 5.00000000000000000e-01
+                Bracketing Tolerance: 1.00000000000000002e-08
+                Path-Based Target Level: 
+                  Target Relaxation Parameter: 1.00000000000000000e+00
+                  Upper Bound on Path Length: 1.00000000000000000e+00
+            Trust Region: 
+              Subproblem Solver: Truncated CG
+              Initial Radius: 1.00000000000000000e+01
+              Maximum Radius: 5.00000000000000000e+03
+              Step Acceptance Threshold: 5.00000000000000028e-02
+              Radius Shrinking Threshold: 5.00000000000000028e-02
+              Radius Growing Threshold: 9.00000000000000022e-01
+              Radius Shrinking Rate (Negative rho): 6.25000000000000000e-02
+              Radius Shrinking Rate (Positive rho): 2.50000000000000000e-01
+              Radius Growing Rate: 2.50000000000000000e+00
+              Safeguard Size: 1.00000000000000000e+08
+              Inexact: 
+                Value: 
+                  Tolerance Scaling: 1.00000000000000006e-01
+                  Exponent: 9.00000000000000022e-01
+                  Forcing Sequence Initial Value: 1.00000000000000000e+00
+                  Forcing Sequence Update Frequency: 10
+                  Forcing Sequence Reduction Factor: 1.00000000000000006e-01
+                Gradient: 
+                  Tolerance Scaling: 1.00000000000000006e-01
+                  Relative Tolerance: 2.00000000000000000e+00
+          Status Test: 
+            Gradient Tolerance: 1.00000000000000004e-10
+            Constraint Tolerance: 1.00000000000000004e-10
+            Step Tolerance: 9.99999999999999999e-15
+            Iteration Limit: 1000
+
 #   Nonlinear Solver Information
     NOX: 
       Nonlinear Solver: Line Search Based
@@ -165,7 +292,8 @@ ANONYMOUS:
                   Solver Type: Block GMRES
                   Solver Types:
                     Block GMRES:
-                      Output Frequency: 20
+                      Convergence Tolerance: 1.0e-08
+                      Output Frequency: 0
                       Output Style: 1
                       Verbosity: 33
                       Maximum Iterations: 200
@@ -174,7 +302,7 @@ ANONYMOUS:
                       Flexible Gmres: false
                   VerboseObject:
                     Output File: none
-                    Verbosity Level: low
+                    Verbosity Level: none
 
 #             Preconditioner Information
               Preconditioner Type: MueLu

@@ -153,6 +153,7 @@ ANONYMOUS:
 #   Optimization Information
     Sensitivity Method: Adjoint
     Analysis:
+      Output Final Parameters: false
       Analysis Package: ROL
       ROL:
         Number of Parameters: 1 

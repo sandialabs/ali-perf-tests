@@ -1,4 +1,15 @@
 
+#cmake_minimum_required (VERSION 2.8)
+set (CTEST_DO_SUBMIT ON)
+set (CTEST_TEST_TYPE Nightly)
+
+# What to build and test
+set (CLEAN_BUILD TRUE)
+set (DOWNLOAD_ALI_PERF_TESTS TRUE)
+set (BUILD_ALI_PERF_TESTS TRUE)
+set (RUN_ALI_PERF_TESTS TRUE)
+
+
 # Begin User inputs:
 set (CTEST_SITE "blake.sandia.gov" ) # generally the output of hostname
 set (CTEST_DASHBOARD_ROOT "$ENV{TEST_DIRECTORY}" ) # writable path
@@ -10,7 +21,7 @@ set (INITIAL_LD_LIBRARY_PATH $ENV{LD_LIBRARY_PATH})
 
 set (CTEST_PROJECT_NAME "Albany" )
 set (CTEST_SOURCE_NAME repos)
-set (CTEST_NAME "linux-gcc-${CTEST_BUILD_CONFIGURATION}")
+set (CTEST_BUILD_NAME "blake-serial-sfad-Albany-PerfTests")
 set (CTEST_BINARY_NAME build)
 
 
@@ -147,8 +158,6 @@ if (BUILD_ALI_PERF_TESTS)
   #
   # Configure the ali-perf-tests build
   #
-  set_property (GLOBAL PROPERTY SubProject IKTBlakeALIPerformTests)
-  set_property (GLOBAL PROPERTY Label IKTBlakeALIPerformTests)
 
   set (CONFIGURE_OPTIONS
     "-Wno-dev"
@@ -158,6 +167,7 @@ if (BUILD_ALI_PERF_TESTS)
     "-DCMAKE_CXX_FLAGS:STRING='-std=gnu++11'"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"
+    "-DMPI_EXEC_LEADING_OPTIONS='--bind-to core --npernode 48'"
     "-DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF"
   )
 
@@ -190,8 +200,6 @@ if (BUILD_ALI_PERF_TESTS)
   # Build the rest of Trilinos and install everything
   #
 
-  set_property (GLOBAL PROPERTY SubProject IKTBlakeALIPerformTests)
-  set_property (GLOBAL PROPERTY Label IKTBlakeALIPerformTests)
   #set (CTEST_BUILD_TARGET all)
   #set (CTEST_BUILD_TARGET install)
 

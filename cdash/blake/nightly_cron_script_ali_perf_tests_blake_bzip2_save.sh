@@ -13,7 +13,7 @@ cd $BASE_DIR/repos/ikalash.github.io/ali/blake_nightly_data
 now=$(date +"%Y%m%d")
 FILE=ctest-$now.json
 git add $FILE
-FILE2=LastTest_$now-0500.log.bz2
+FILE2=LastTest_$now-0100.log.bz2
 git add $FILE2
 git commit -m "Adding blake ALI nightly performance tests." 
 git push

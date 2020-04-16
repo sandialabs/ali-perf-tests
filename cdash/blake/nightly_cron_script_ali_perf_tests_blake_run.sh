@@ -6,9 +6,19 @@ cd $BASE_DIR
 unset http_proxy
 unset https_proxy
 
-#export OMP_NUM_THREADS=1
+rm -rf *slurm*
+rm -rf repos
+rm -rf build
+rm -rf *txt
+rm -rf modules.out
+rm -rf results
+rm -rf batch.openmp.bash 
+
+export OMP_NUM_THREADS=1
 
 source blake_intel_modules.sh >& modules.out  
+
+printenv |& tee out-env.txt
 
 now=$(date +"%m_%d_%Y-%H_%M")
 LOG_FILE=$BASE_DIR/nightly_log_blakeAliPerfTests.txt

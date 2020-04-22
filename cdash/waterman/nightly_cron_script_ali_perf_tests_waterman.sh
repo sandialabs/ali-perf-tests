@@ -17,6 +17,8 @@ export OMP_NUM_THREADS=1
 
 source waterman_modules_cuda.sh >& modules.out  
 
+printenv |& tee out-env.txt
+
 now=$(date +"%m_%d_%Y-%H_%M")
 LOG_FILE=$BASE_DIR/nightly_log_watermanAliPerfTests.txt
 

@@ -247,7 +247,7 @@ if (RUN_ALI_PERF_TESTS)
   #
   # Run tests  
   #
-  set (CTEST_TEST_TIMEOUT 700)
+  set (CTEST_TEST_TIMEOUT 1200)
 
   CTEST_TEST(
     BUILD "${CTEST_BINARY_DIRECTORY}/ALIPerfTestsBuild"

@@ -16,11 +16,11 @@ rm -rf batch.openmp.bash
 
 export OMP_NUM_THREADS=1
 
+export INTEL_LICENSE_FILE=/home/projects/x86-64/intel/licenses/USE_SERVER-ohpc.lic
 source blake_intel_modules.sh >& modules.out  
 
 printenv |& tee out-env.txt
 
-now=$(date +"%m_%d_%Y-%H_%M")
 LOG_FILE=$BASE_DIR/nightly_log_blakeAliPerfTests.txt
 
 eval "env  TEST_DIRECTORY=$BASE_DIR SCRIPT_DIRECTORY=$BASE_DIR ctest -VV -S $BASE_DIR/ctest_nightly.cmake" > $LOG_FILE 2>&1

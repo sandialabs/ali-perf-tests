@@ -27,6 +27,8 @@ def ctest2json(file, allTimers):
     albanyCudaCompilerKey = 'Albany cuda compiler'
     simulationStartKey = 'Simulation start time'
     wtimeAvgLoc = 0
+    maxKokkosMemoryKey = 'MAX MEMORY ALLOCATED:'
+    maxHostMemoryKey = 'Host process high water mark memory consumption:'
     testPassedKey = 'Test Passed'
     testFailedKey = 'Test Failed'
 
@@ -87,6 +89,14 @@ def ctest2json(file, allTimers):
                     # Remove timer from list
                     timers.remove(timer)
                     break
+
+            # Extract maximum memory allocated by Kokkos
+            if maxKokkosMemoryKey in line:
+                testInfo['max kokkos memory'] = line.split()[-2]
+
+            # Extract maximum memory allocated by Kokkos
+            if maxHostMemoryKey in line:
+                testInfo['max host memory'] = line.split()[-2]
 
             # Extract pass
             if testPassedKey in line:

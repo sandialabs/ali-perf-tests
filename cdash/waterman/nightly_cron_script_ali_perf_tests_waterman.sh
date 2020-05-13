@@ -14,7 +14,7 @@ unset http_proxy
 unset https_proxy
 
 export OMP_NUM_THREADS=1
-
+export KOKKOS_PROFILE_LIBRARY=/home/projects/albany/waterman/kokkos-tools/profiling/space-time-stack-mem-only/kp_space_time_stack.so
 source waterman_modules_cuda.sh >& modules.out  
 
 printenv |& tee out-env.txt

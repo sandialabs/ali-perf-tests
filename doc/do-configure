@@ -24,11 +24,11 @@ rm -rf CMake*
 cmake \
   -Wno-dev \
   -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build/TrilinosSerialInstall \
-  -D TESTING_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/AlbBuildSerial/src \
+  -D SFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad \
+  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/tempBuilds/build-albany-blake-intel-serial-sfad6 \
+  -D SFAD4_EXE_DIR:FILEPATH=/home/projects/albany/tempBuilds/build-albany-blake-intel-serial-sfad4 \
   -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
-  -D CMAKE_CXX_FLAGS:STRING="-std=gnu++11 -g" \
-  -D CMAKE_BUILD_TYPE:STRING=DEBUG \
+  -D CMAKE_BUILD_TYPE:STRING=RELEASE \
   -D BUILD_SHARED_LIBS:BOOL=ON \
-  -D MPI_EXEC_LEADING_OPTIONS="--bind-to core --npernode 48" \
   -D CMAKE_VERBOSE_MAKEFILE:BOOL=OFF \
 ../

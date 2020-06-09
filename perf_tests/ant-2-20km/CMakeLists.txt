@@ -16,8 +16,8 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
 
 #create test
 IF (NOT ALBANY_ENABLE_CUDA)
-  add_test(${testName}_a_test_np${ALBANY_NUM_PROCS} ${ALBANY_EXE} input_albany_short.yaml ${ALBANY_EXTRA_ARGS})
-  add_test(${testName}_ml_ls_np${ALBANY_NUM_PROCS} ${ALBANY_EXE} input_albany_ML_LineSmoothing.yaml ${ALBANY_EXTRA_ARGS})
-  add_test(${testName}_mu_ls_np${ALBANY_NUM_PROCS} ${ALBANY_EXE} input_albany_MueLu_LineSmoothing.yaml ${ALBANY_EXTRA_ARGS})
-  add_test(${testName}_mu_dls_np${ALBANY_NUM_PROCS} ${ALBANY_EXE} input_albany_MueLu_DecoupledLineSmoothing.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_a_test_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD8_EXE} input_albany_short.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_ml_ls_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD8_EXE} input_albany_ML_LineSmoothing.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_mu_ls_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD8_EXE} input_albany_MueLu_LineSmoothing.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_mu_dls_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD8_EXE} input_albany_MueLu_DecoupledLineSmoothing.yaml ${ALBANY_EXTRA_ARGS})
 ENDIF()

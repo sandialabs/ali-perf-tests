@@ -14,8 +14,8 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
 
 #create test
 IF (NOT ALBANY_ENABLE_CUDA)  
-  add_test(${testName}_beta_1ws_np${ALBANY_NUM_PROCS} ${ALBANY_ANALYSIS_EXE} input_albany_BasalFrictionInit_SingleWorkset.yaml ${ALBANY_EXTRA_ARGS})
-  add_test(${testName}_beta_mem_np${ALBANY_NUM_PROCS} ${ALBANY_ANALYSIS_EXE} input_albany_BasalFrictionInit_Memoization.yaml ${ALBANY_EXTRA_ARGS})
-  add_test(${testName}_beta_memp_np${ALBANY_NUM_PROCS} ${ALBANY_ANALYSIS_EXE} input_albany_BasalFrictionInit_MemoizationForParams.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_beta_1ws_np${ALBANY_NUM_PROCS} ${ALBANY_ANALYSIS_SFAD8_EXE} input_albany_BasalFrictionInit_SingleWorkset.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_beta_mem_np${ALBANY_NUM_PROCS} ${ALBANY_ANALYSIS_SFAD8_EXE} input_albany_BasalFrictionInit_Memoization.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_beta_memp_np${ALBANY_NUM_PROCS} ${ALBANY_ANALYSIS_SFAD8_EXE} input_albany_BasalFrictionInit_MemoizationForParams.yaml ${ALBANY_EXTRA_ARGS})
 ENDIF()
 

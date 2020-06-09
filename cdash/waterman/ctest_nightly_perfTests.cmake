@@ -172,12 +172,12 @@ if (BUILD_ALI_PERF_TESTS)
   set (CONFIGURE_OPTIONS
     "-Wno-dev"
     "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/waterman/build/TrilinosInstall"
-    "-DTESTING_EXE_DIR:FILEPATH=/home/projects/albany/waterman/build/AlbBuildSFad/"
+    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/waterman/build/AlbBuildSFad"
+    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/waterman/tempBuilds/build-albany-waterman-cuda-gcc-sfad6"
+    "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/waterman/tempBuilds/build-albany-waterman-cuda-gcc-sfad4"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/waterman/ali-perf-tests-meshes"
-    "-DCMAKE_CXX_FLAGS:STRING='-std=gnu++11'"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"
-    "-DMPI_EXEC_LEADING_OPTIONS='--bind-to core --npernode 48'"
     "-DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF"
   )
 

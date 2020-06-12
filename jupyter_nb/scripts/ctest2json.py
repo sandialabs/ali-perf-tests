@@ -92,11 +92,11 @@ def ctest2json(file, allTimers):
 
             # Extract maximum memory allocated by Kokkos
             if maxKokkosMemoryKey in line:
-                testInfo['max kokkos memory'] = line.split()[-2]
+                testInfo['max kokkos memory'] = float(line.split()[-2])
 
             # Extract maximum memory allocated by Kokkos
             if maxHostMemoryKey in line:
-                testInfo['max host memory'] = line.split()[-2]
+                testInfo['max host memory'] = float(line.split()[-2])
 
             # Extract pass
             if testPassedKey in line:

@@ -8,11 +8,10 @@ ANONYMOUS:
     Name: LandIce Enthalpy 3D
     Solution Method: Steady
     Required Fields: [basal_friction, surface_air_temperature]
-    Required Basal Fields: [thickness]
+    Required Basal Fields: [ice_thickness]
     Basal Side Name: basalside
     Needs Dissipation: true
     Needs Basal Friction: true
-    Constant Geothermal Flux: false
 
 #   LandIce parameters
     LandIce Physical Parameters:
@@ -77,16 +76,16 @@ ANONYMOUS:
     Use Glimmer Spacing: true
 
 #   Field Information
-    Thickness Field Name: thickness
+    Thickness Field Name: ice_thickness
     Surface Height Field Name: surface_height
     Basal Node Fields Ranks: [1, 1, 1, 1]
-    Extrude Basal Node Fields: [thickness, surface_height, basal_friction, surface_air_temperature]
+    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction, surface_air_temperature]
     Basal Node Layered Fields Ranks: [2, 1]
     Interpolate Basal Node Layered Fields: [velocity, vertical_velocity]
     Required Fields Info:
       Number Of Fields: 6
       Field 0:
-        Field Name: thickness
+        Field Name: ice_thickness
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 1:
@@ -122,7 +121,7 @@ ANONYMOUS:
         Required Fields Info:
           Number Of Fields: 7
           Field 0:
-            Field Name: thickness
+            Field Name: ice_thickness
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 1:
@@ -138,7 +137,7 @@ ANONYMOUS:
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 4:
-            Field Name: basal_heat_flux
+            Field Name: heat_flux
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 5:

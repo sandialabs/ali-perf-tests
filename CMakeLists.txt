@@ -9,6 +9,8 @@ IF (DEFINED TRILINOS_DIR)
 ENDIF()
 FIND_PACKAGE(Trilinos REQUIRED)
 
+SET(Trilinos_BIN_DIRS "${Trilinos_DIR}/../../../bin")
+
 MESSAGE("\nFound Trilinos!  Here are the details: ")
 MESSAGE("   Trilinos_DIR = ${Trilinos_DIR}")
 MESSAGE("   Trilinos_VERSION = ${Trilinos_VERSION}")
@@ -19,14 +21,24 @@ MESSAGE("   Trilinos_BUILD_SHARED_LIBS = ${Trilinos_BUILD_SHARED_LIBS}")
 MESSAGE("   Trilinos_CXX_COMPILER_FLAGS = ${Trilinos_CXX_COMPILER_FLAGS}")
 MESSAGE("End of Trilinos details\n")
 
-LIST(FIND Trilinos_PACKAGE_LIST Piro Piro_List_ID)
-IF (Piro_List_ID GREATER -1)
-  MESSAGE("-- Looking for Piro (required) in Trilinos ...                Found!")
+# Ensure SEACASIoss, Iopx are available
+LIST(FIND Trilinos_PACKAGE_LIST SEACASIoss SEACASIoss_List_ID)
+IF (SEACASIoss_List_ID GREATER -1)
+  MESSAGE("-- Looking for SEACASIoss (required) in Trilinos ...        Found!")
 ELSE()
-  MESSAGE("-- Looking for Piro (required) in Trilinos ...                NOT Found!")
-  MESSAGE(FATAL_ERROR "ALI performance tests REQUIRE Piro. Please, configure Trilinos with guidance from trilinos-cmake script in doc directory.")
+  MESSAGE("-- Looking for SEACASIoss (required) in Trilinos ...    NOT Found")
+  MESSAGE(FATAL_ERROR "ALI performance tests REQUIRE SEACASIoss. Please, configure Trilinos with guidance from trilinos-cmake script in doc directory.")
 ENDIF()
 
+# Find SEACAS decomp
+find_program(
+  ALBANY_SEACAS_DECOMP
+  NAMES decomp
+  PATHS ${Trilinos_BIN_DIRS} ENV PATH
+)
+MESSAGE("-- ALBANY_SEACAS_DECOMP  = ${ALBANY_SEACAS_DECOMP}")
+
+# Configure for openmp or cuda
 IF(EXISTS "${Trilinos_INCLUDE_DIRS}/KokkosCore_config.h")
   FILE(READ "${Trilinos_INCLUDE_DIRS}/KokkosCore_config.h" KOKKOS_CORE_CONFIG_FILE)
   STRING(REGEX MATCH "#define KOKKOS_ENABLE_OPENMP" ALBANY_ENABLE_OPENMP ${KOKKOS_CORE_CONFIG_FILE})
@@ -44,6 +56,7 @@ ELSE()
   MESSAGE(FATAL_ERROR "\nError: ${Trilinos_INCLUDE_DIRS}/KokkosCore_config.h not found!")
 ENDIF()
 
+# Define Albany executable paths
 #FIXME: throw error if Albany doesn't have ALI enabled? 
 IF (DEFINED SFAD4_EXE_DIR)
   MESSAGE("\n-- SFAD4_EXE_DIR set: ${SFAD4_EXE_DIR}.")
@@ -72,6 +85,7 @@ ELSE()
   MESSAGE(FATAL_ERROR "MESH_FILE_DIR not set!")
 ENDIF()
 
+# Define Albany executables, procs and args
 IF(ALBANY_ENABLE_CUDA)
   SET(ALBANY_NUM_PROCS 8)
   SET(ALBANY_SFAD4_EXE ${Trilinos_MPI_EXEC} "--map-by" "ppr:2:socket" ${Trilinos_MPI_EXEC_NUMPROCS_FLAG} ${ALBANY_NUM_PROCS} ${SFAD4ExePath})

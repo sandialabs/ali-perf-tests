@@ -14,7 +14,7 @@ ANONYMOUS:
     Method: Extruded
     NumLayers: 10
     Element Shape: Tetrahedron
-    Cubature Degree: 4
+    Cubature Degree: 1
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -27,47 +27,42 @@ ANONYMOUS:
       basalside: 
         Number Of Time Derivatives: 0
         Method: Ioss
-        Cubature Degree: 5
-        Exodus Input File Name: mesh-decomp/antarctica_2d.exo
-        Exodus Output File Name: mesh-pop/ais_basal_populated.exo
+        Cubature Degree: 3
+        Exodus Input File Name: mesh-decomp/gis_1k_2d.exo
+        Exodus Output File Name: mesh-pop/gis_basal_populated.exo
         Required Fields Info: 
-          Number Of Fields: 6
+          Number Of Fields: 5
           Field 0:
-            Field Name: basal_friction
-            Field Type: Node Scalar
-            Field Origin: File
-            File Name: mesh/basal_friction_log_const.ascii
-          Field 1:
             Field Name: ice_thickness
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/thickness.ascii
-          Field 2:
+          Field 1:
             Field Name: surface_height
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/surface_height.ascii
-          Field 3:
+          Field 2:
             Field Name: temperature
-            Field Type: Elem Layered Scalar
-            Number Of Layers: 10
+            Field Type: Node Layered Scalar
+            Number Of Layers: 11
             Field Origin: File
             File Name: mesh/temperature.ascii
+          Field 3:
+            Field Name: basal_friction
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/log_basal_friction.ascii
           Field 4:
             Field Name: bed_topography
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/bed_topography.ascii
-          Field 5:
-            Field Name: stiffening_factor
-            Field Type: Node Scalar
-            Field Origin: File
-            File Name: mesh/stiffening_factor_const.ascii
       upperside: 
         Number Of Time Derivatives: 0
         Method: SideSetSTK
         Cubature Degree: 3
-        Exodus Output File Name: mesh-pop/ais_upper_populated.exo
+        Exodus Output File Name: mesh-pop/gis_upper_populated.exo
         Required Fields Info: 
           Number Of Fields: 2
           Field 0:

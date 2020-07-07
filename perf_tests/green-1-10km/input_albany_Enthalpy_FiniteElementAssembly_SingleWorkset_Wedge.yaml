@@ -62,7 +62,6 @@ ANONYMOUS:
 
 #   Performance parameters
     Use MDField Memoization: false
-    Number RBMs for ML: 1
 
 # Discretization Description
   Discretization: 

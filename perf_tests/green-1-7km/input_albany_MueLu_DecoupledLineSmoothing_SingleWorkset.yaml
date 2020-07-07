@@ -48,7 +48,9 @@ ANONYMOUS:
 
 #   Performance parameters
     Use MDField Memoization: false
-    Number RBMs for ML: 3
+    LandIce Rigid Body Modes For Preconditioner:
+      Compute Constant Modes: true
+      Compute Rotation Modes: true
 
 # Discretization Description
   Discretization: 

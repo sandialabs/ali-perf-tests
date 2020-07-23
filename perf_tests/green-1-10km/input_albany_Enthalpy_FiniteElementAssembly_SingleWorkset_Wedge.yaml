@@ -57,11 +57,18 @@ ANONYMOUS:
 #   Output
     Phalanx Graph Visualization Detail: 0
     Response Functions: 
-      Number: 0
+      Number: 1
       Response 0: Solution Average
 
 #   Performance parameters
     Use MDField Memoization: false
+
+# Final solution comparison
+  Regression Results:
+    Number of Comparisons: 1
+    Test Values: [-1.20352971037]
+    Relative Tolerance: 1.00000000000000008e-05
+    Absolute Tolerance: 1.00000000000000002e-03
 
 # Discretization Description
   Discretization: 

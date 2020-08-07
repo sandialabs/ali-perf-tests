@@ -12,4 +12,4 @@ ulimit -c 0
 
 unset http_proxy
 unset https_proxy
-bash -c -l "source waterman_modules_cuda.sh >& modules.out; bash nightly_cron_script_ali_perf_tests_waterman.sh; bash nightly_cron_script_ali_perf_tests_waterman_bzip2_save.sh >& nightly_log_watermanAliPerfTests_saveResults.txt"
+bash -c -l "source weaver_modules_cuda.sh >& modules.out; bash nightly_cron_script_ali_perf_tests_weaver.sh; bash nightly_cron_script_ali_perf_tests_weaver_bzip2_save.sh >& nightly_log_weaverAliPerfTests_saveResults.txt"

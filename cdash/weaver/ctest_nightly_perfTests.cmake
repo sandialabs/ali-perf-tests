@@ -11,7 +11,7 @@ set (RUN_ALI_PERF_TESTS TRUE)
 
 
 # Begin User inputs:
-set (CTEST_SITE "waterman.sandia.gov" ) # generally the output of hostname
+set (CTEST_SITE "weaver.sandia.gov" ) # generally the output of hostname
 set (CTEST_DASHBOARD_ROOT "$ENV{TEST_DIRECTORY}" ) # writable path
 set (CTEST_SCRIPT_DIRECTORY "$ENV{SCRIPT_DIRECTORY}" ) # where the scripts live
 set (CTEST_CMAKE_GENERATOR "Unix Makefiles" ) # What is your compilation apps ?
@@ -21,9 +21,9 @@ set (INITIAL_LD_LIBRARY_PATH $ENV{LD_LIBRARY_PATH})
 
 set (CTEST_PROJECT_NAME "Albany" )
 set (CTEST_SOURCE_NAME repos)
-set (CTEST_NAME "waterman-CUDA-Albany-Perf-Tests")
+set (CTEST_NAME "weaver-CUDA-Albany-Perf-Tests")
 set (CTEST_BINARY_NAME build)
-set (CTEST_BUILD_NAME "waterman-CUDA-Albany-Perf-Tests")
+set (CTEST_BUILD_NAME "weaver-CUDA-Albany-Perf-Tests")
 
 
 set (CTEST_SOURCE_DIRECTORY "${CTEST_DASHBOARD_ROOT}/${CTEST_SOURCE_NAME}")
@@ -171,11 +171,11 @@ if (BUILD_ALI_PERF_TESTS)
 
   set (CONFIGURE_OPTIONS
     "-Wno-dev"
-    "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/waterman/build/TrilinosInstall"
-    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/waterman/build/AlbBuildSFad"
-    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/waterman/build/AlbBuildSFad6"
-    "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/waterman/build/AlbBuildSFad4"
-    "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/waterman/ali-perf-tests-meshes"
+    "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/TrilinosInstall"
+    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad"
+    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6"
+    "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad4"
+    "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"
     "-DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF"

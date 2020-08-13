@@ -119,7 +119,7 @@ def ctest2json(file, allTimers):
             timersCaptured = timersCaptured+1
 
         if info['passed'] and not info['timers']:
-            ctestInfo[testName]['passed'] = False
+            info['passed'] = False
             warnings.warn(name+', '+file+' passed but parsing of timers failed. Setting test to failed.', Warning)
 
     # If timers were not captured in any tests, the timers might not be valid

@@ -34,10 +34,8 @@ add_test(${testName}_mu_ls_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD8_EXE} input_alban
 add_test(${testName}_mu_dls_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD8_EXE} input_albany_MueLu_DecoupledLineSmoothing.yaml ${ALBANY_EXTRA_ARGS})
 
 # Add dependencies
-set_tests_properties(${testName}_a_test_np${ALBANY_NUM_PROCS}
-                     PROPERTIES FIXTURES_SETUP ${testName}_a_test)
 set_tests_properties(${testName}_pop_np${ALBANY_NUM_PROCS}
-                     PROPERTIES FIXTURES_SETUP ${testName}_pop FIXTURES_REQUIRED ${testName}_a_test)
+                     PROPERTIES FIXTURES_SETUP ${testName}_pop)
 set_tests_properties(${testName}_ml_ls_np${ALBANY_NUM_PROCS}
                      ${testName}_mu_ls_np${ALBANY_NUM_PROCS}
                      ${testName}_mu_dls_np${ALBANY_NUM_PROCS}

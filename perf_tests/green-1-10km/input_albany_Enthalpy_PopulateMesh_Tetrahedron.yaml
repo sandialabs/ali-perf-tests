@@ -25,7 +25,7 @@ ANONYMOUS:
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
       Side Sets: [basalside]
-      basalside: 
+      basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
         Cubature Degree: 4

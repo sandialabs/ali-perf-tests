@@ -89,7 +89,7 @@ ANONYMOUS:
     Basal Node Layered Fields Ranks: [2, 1]
     Interpolate Basal Node Layered Fields: [velocity, vertical_velocity]
     Required Fields Info:
-      Number Of Fields: 6
+      Number Of Fields: 5
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -110,10 +110,10 @@ ANONYMOUS:
         Field Name: surface_enthalpy
         Field Type: Node Scalar
         Field Usage: Output
-      Field 5:
-        Field Name: temperature
-        Field Type: Node Scalar
-        Field Usage: Output
+#      Field 5:
+#        Field Name: temperature
+#        Field Type: Node Scalar
+#        Field Usage: Output
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 

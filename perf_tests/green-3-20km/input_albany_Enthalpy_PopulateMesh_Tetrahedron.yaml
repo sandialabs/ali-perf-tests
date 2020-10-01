@@ -13,8 +13,8 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Element Shape: Wedge
-    Cubature Degree: 4
+    Element Shape: Tetrahedron
+    Cubature Degree: 1
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -29,8 +29,8 @@ ANONYMOUS:
         Number Of Time Derivatives: 0
         Method: Ioss
         Cubature Degree: 4
-        Exodus Input File Name: mesh-decomp/gis_2d.exo
-        Exodus Output File Name: mesh-ent-wdg/gis_basal_populated.exo
+        Exodus Input File Name: mesh-decomp/gis_1k_2d.exo
+        Exodus Output File Name: mesh-ent-tet/gis_basal_populated.exo
         Required Fields Info: 
           Number Of Fields: 7
           Field 0:
@@ -47,7 +47,7 @@ ANONYMOUS:
             Field Name: basal_friction
             Field Type: Node Scalar
             Field Origin: File
-            File Name: mesh/basal_friction_zeroed.ascii
+            File Name: mesh/basal_friction.ascii
           Field 3:
             Field Name: surface_air_temperature
             Field Type: Node Scalar

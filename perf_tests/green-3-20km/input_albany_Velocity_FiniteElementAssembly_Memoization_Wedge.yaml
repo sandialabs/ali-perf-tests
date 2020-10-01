@@ -5,13 +5,11 @@ ANONYMOUS:
 
 # Problem Description
   Problem: 
-    Name: LandIce Enthalpy 3D
+    Name: LandIce Stokes First Order 3D
     Solution Method: Steady
-    Required Fields: [basal_friction, surface_air_temperature]
-    Required Basal Fields: [ice_thickness]
+    Required Fields: [temperature]
     Basal Side Name: basalside
-    Needs Dissipation: true
-    Needs Basal Friction: true
+    Surface Side Name: upperside
 
 #   LandIce parameters
     LandIce Physical Parameters:
@@ -28,18 +26,6 @@ ANONYMOUS:
       Viscosity of water: 1.79999999999999995e-03
       Omega exponent alpha: 2.00000000000000000e+00
       Diffusivity homotopy exponent: -1.10000000000000009e+00
-    LandIce Enthalpy:
-      Regularization:
-        Flux Regularization:
-          alpha: 4.0
-          beta: 0.0000000000000000e+00
-        Basal Melting Regularization:
-          alpha: 4.0
-          beta: 0.0000000000000000e+00
-      Stabilization:
-        Type: Upwind
-        Parameter Delta: 0.5
-      Bed Lubrication: Dry
     LandIce Viscosity:
       Extract Strain Rate Sq: true
       Type: 'Glen''s Law'
@@ -49,10 +35,29 @@ ANONYMOUS:
       'Glen''s Law A': 7.56960000000000017e-05
       'Glen''s Law n': 3.00000000000000000e+00
       Flow Rate Type: Temperature Based
+    Body Force: 
+      Type: FO INTERP SURF GRAD
 
 #   Boundary Conditions
-    Dirichlet BCs:
-      DBC on NS top for DOF Enth prescribe Field: surface_enthalpy
+    LandIce BCs:
+      Number : 2
+      BC 0:
+        Type: Basal Friction
+        Side Set Name: basalside
+        Cubature Degree: 4
+        Basal Friction Coefficient:
+          Type: Exponent Of Given Field
+          Given Field Variable Name: log_basal_friction
+          Zero Beta On Floating Ice: true
+      BC 1:
+        Type: Lateral
+        Cubature Degree: 4
+        Side Set Name: extruded_boundary_side_set_1
+    LandIce Field Norm:
+      sliding_velocity_basalside:
+        Regularization Type: Given Value
+        Type: Exponent Of Given Field
+        Regularization Value: 1.0e-05
 
 #   Output
     Phalanx Graph Visualization Detail: 0
@@ -61,12 +66,15 @@ ANONYMOUS:
       Response 0: Solution Average
 
 #   Performance parameters
-    Use MDField Memoization: false
+    Use MDField Memoization: true
+    LandIce Rigid Body Modes For Preconditioner:
+      Compute Constant Modes: true
+      Compute Rotation Modes: true
 
 # Final solution comparison
   Regression Results:
     Number of Comparisons: 1
-    Test Values: [-1.15378931587]
+    Test Values: [-0.000133244901306]
     Relative Tolerance: 1.00000000000000008e-05
     Absolute Tolerance: 1.00000000000000002e-03
 
@@ -76,20 +84,20 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Element Shape: Tetrahedron
-    Cubature Degree: 1
+    Element Shape: Wedge
+    Cubature Degree: 4
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
 #   Field Information
     Thickness Field Name: ice_thickness
     Surface Height Field Name: surface_height
-    Basal Node Fields Ranks: [1, 1, 1, 1]
-    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction, surface_air_temperature]
-    Basal Node Layered Fields Ranks: [2, 1]
-    Interpolate Basal Node Layered Fields: [velocity, vertical_velocity]
+    Basal Node Fields Ranks: [1, 1, 1, 1, 1, 1]
+    Extrude Basal Node Fields: [ice_thickness, surface_height, log_basal_friction, bed_topography, apparent_mass_balance, apparent_mass_balance_RMS]
+    Basal Node Layered Fields Ranks: [1]
+    Interpolate Basal Node Layered Fields: [temperature]
     Required Fields Info:
-      Number Of Fields: 5
+      Number Of Fields: 9
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -99,63 +107,100 @@ ANONYMOUS:
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 2:
-        Field Name: basal_friction
+        Field Name: log_basal_friction
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 3:
-        Field Name: surface_air_temperature
+        Field Name: temperature
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 4:
-        Field Name: surface_enthalpy
+        Field Name: bed_topography
         Field Type: Node Scalar
+        Field Origin: Mesh
+      Field 5:
+        Field Name: apparent_mass_balance
+        Field Type: Node Scalar
+        Field Origin: Mesh
+      Field 6:
+        Field Name: apparent_mass_balance_RMS
+        Field Type: Node Scalar
+        Field Origin: Mesh
+      Field 7:
+        Field Name: bed_topography
+        Field Type: Node Scalar
+        Field Origin: Mesh
         Field Usage: Output
-#      Field 5:
-#        Field Name: temperature
-#        Field Type: Node Scalar
-#        Field Usage: Output
+      Field 8:
+        Field Name: surface_height
+        Field Type: Node Scalar
+        Field Origin: Mesh
+        Field Usage: Output
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
-      Side Sets: [basalside]
+      Side Sets: [basalside, upperside]
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
         Cubature Degree: 4
         Restart Index: 1
-        Exodus Input File Name: mesh-ent-tet/gis_basal_populated.exo
+        Exodus Input File Name: mesh-vel-wdg/gis_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 7
+          Number Of Fields: 9
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 1:
-            Field Name: surface_height
+            Field Name: observed_ice_thickness
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 2:
-            Field Name: basal_friction
+            Field Name: observed_ice_thickness_RMS
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 3:
-            Field Name: surface_air_temperature
+            Field Name: surface_height
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 4:
-            Field Name: heat_flux
+            Field Name: bed_topography
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 5:
-            Number Of Layers: 11
-            Vector Dim: 2
-            Field Name: velocity
-            Field Type: Node Layered Vector
+            Field Name: log_basal_friction
+            Field Type: Node Scalar
             Field Origin: Mesh
           Field 6:
-            Number Of Layers: 11
-            Field Name: vertical_velocity
+            Field Name: temperature
             Field Type: Node Layered Scalar
+            Field Origin: Mesh
+            Number Of Layers: 11
+          Field 7:
+            Field Name: apparent_mass_balance
+            Field Type: Node Scalar
+            Field Origin: Mesh
+          Field 8:
+            Field Name: apparent_mass_balance_RMS
+            Field Type: Node Scalar
+            Field Origin: Mesh
+      upperside:
+        Number Of Time Derivatives: 0
+        Method: Ioss
+        Cubature Degree: 4
+        Restart Index: 1
+        Exodus Input File Name: mesh-vel-wdg/gis_upper_populated.exo
+        Required Fields Info:
+          Number Of Fields: 2
+          Field 0:
+            Field Name: observed_surface_velocity
+            Field Type: Node Vector
+            Vector Dim: 2
+            Field Origin: Mesh
+          Field 1:
+            Field Name: observed_surface_velocity_RMS
+            Field Type: Node Scalar
             Field Origin: Mesh
 
   Piro: 
@@ -170,7 +215,7 @@ ANONYMOUS:
         Status Test Check Type: Minimal
       Status Tests: 
         Test Type: MaxIters
-        Maximum Iterations: 20
+        Maximum Iterations: 100
       Printing: 
         Output Precision: 3
         Output Processor: 0

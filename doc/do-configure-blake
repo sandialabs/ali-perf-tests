@@ -18,15 +18,20 @@
 #
 # CMAKE_VERBOSE_MAKEFILE: Set to ON if you prefer verbose Make output.
 #
+#  -D SFAD4_EXE_DIR:FILEPATH=/home/jwatkin/LandIce/Albany/build-blake-intel-serial-slfad12 \
+#  -D SFAD6_EXE_DIR:FILEPATH=/home/jwatkin/LandIce/Albany/build-blake-intel-serial-slfad12 \
+#  -D SFAD8_EXE_DIR:FILEPATH=/home/jwatkin/LandIce/Albany/build-blake-intel-serial-slfad12 \
+#  -D SFAD12_EXE_DIR:FILEPATH=/home/jwatkin/LandIce/Albany/build-blake-intel-serial-slfad12 \
 
 rm -rf CMake*
 
 cmake \
   -Wno-dev \
   -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build/TrilinosSerialInstall \
-  -D SFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad \
-  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad6 \
   -D SFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad4 \
+  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad6 \
+  -D SFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad \
+  -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad12 \
   -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \
   -D BUILD_SHARED_LIBS:BOOL=ON \

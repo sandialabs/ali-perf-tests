@@ -162,9 +162,10 @@ if (BUILD_ALI_PERF_TESTS)
   set (CONFIGURE_OPTIONS
     "-Wno-dev"
     "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build/TrilinosSerialInstall"
-    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad"
-    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad6"
     "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad4"
+    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad6"
+    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad"
+    "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad12"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"

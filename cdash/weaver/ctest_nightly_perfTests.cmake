@@ -172,9 +172,10 @@ if (BUILD_ALI_PERF_TESTS)
   set (CONFIGURE_OPTIONS
     "-Wno-dev"
     "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/TrilinosInstall"
-    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad"
-    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6"
     "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad4"
+    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6"
+    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad"
+    "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"

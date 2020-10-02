@@ -61,9 +61,6 @@ ENDIF()
 set_tests_properties(${testName}_vel_pop_tet_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_SETUP ${testName}_vel_pop_tet)
 set_tests_properties(${testName}_vel_fea_mem_tet_np${ALBANY_NUM_PROCS}
-                     ${testName}_beta_1ws_np${ALBANY_NUM_PROCS}
-                     ${testName}_beta_mem_np${ALBANY_NUM_PROCS}
-                     ${testName}_beta_memp_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_vel_pop_tet)
 set_tests_properties(${testName}_vel_pop_wdg_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_SETUP ${testName}_vel_pop_wdg)
@@ -77,4 +74,11 @@ set_tests_properties(${testName}_ent_pop_wdg_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_SETUP ${testName}_ent_pop_wdg)
 set_tests_properties(${testName}_ent_fea_mem_wdg_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_ent_pop_wdg)
+
+IF (NOT ALBANY_ENABLE_CUDA)
+  set_tests_properties(${testName}_beta_1ws_np${ALBANY_NUM_PROCS}
+                       ${testName}_beta_mem_np${ALBANY_NUM_PROCS}
+                       ${testName}_beta_memp_np${ALBANY_NUM_PROCS}
+                       PROPERTIES FIXTURES_REQUIRED ${testName}_vel_pop_tet)
+ENDIF()
 

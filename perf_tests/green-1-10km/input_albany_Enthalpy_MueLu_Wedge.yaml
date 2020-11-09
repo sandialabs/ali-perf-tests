@@ -56,17 +56,18 @@ ANONYMOUS:
 
 #   Output
     Phalanx Graph Visualization Detail: 0
-    Response Functions: 
-      Number: 1
-      Response 0: Solution Average
+    Response Functions:
+      Number Of Responses: 1
+      Response 0:
+        Name: Solution Average
+        Type: Scalar Response
 
 #   Performance parameters
     Use MDField Memoization: true
 
 # Final solution comparison
-  Regression Results:
-    Number of Comparisons: 1
-    Test Values: [-8.033641155463]
+  Regression For Response 0:
+    Test Value: -8.033641155463
     Relative Tolerance: 1.00000000000000008e-05
     Absolute Tolerance: 1.00000000000000002e-03
 
@@ -221,7 +222,7 @@ ANONYMOUS:
                       Flexible Gmres: false
                   VerboseObject:
                     Output File: none
-                    Verbosity Level: none
+                    Verbosity Level: low
 
 #             Preconditioner Information
               Preconditioner Type: MueLu
@@ -342,7 +343,7 @@ ANONYMOUS:
                   Hierarchy: 
                     max levels: 7
                     'coarse: max size': 2000
-                    verbosity: None
+                    verbosity: low
                     Finest: 
                       Smoother: mySmoother1
                       CoarseSolver: mySmoother4

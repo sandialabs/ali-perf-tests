@@ -56,17 +56,18 @@ ANONYMOUS:
 
 #   Output
     Phalanx Graph Visualization Detail: 0
-    Response Functions: 
-      Number: 1
-      Response 0: Solution Average
+    Response Functions:
+      Number Of Responses: 1
+      Response 0:
+        Name: Solution Average
+        Type: Scalar Response
 
 #   Performance parameters
     Use MDField Memoization: true
 
 # Final solution comparison
-  Regression Results:
-    Number of Comparisons: 1
-    Test Values: [-1.20352971037]
+  Regression For Response 0:
+    Test Value: -1.20352971037
     Relative Tolerance: 1.00000000000000008e-05
     Absolute Tolerance: 1.00000000000000002e-03
 

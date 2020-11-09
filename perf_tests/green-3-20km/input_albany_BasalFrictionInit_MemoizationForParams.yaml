@@ -60,17 +60,19 @@ ANONYMOUS:
         Regularization Value: 1.0e-05
 
 #   Optimization parameters and objective function
-    Distributed Parameters: 
-      Number of Parameter Vectors: 1
-      Distributed Parameter 0: 
+    Parameters:
+      Number Of Parameters: 1
+      Parameter 0:
         Name: log_basal_friction
+        Type: Distributed
         Lower Bound: -1.20000000000000000e+01
         Upper Bound: 1.20000000000000000e+01
         Mesh Part: bottom
-    Response Functions: 
-      Number: 1
-      Response 0: Surface Velocity Mismatch
-      ResponseParams 0: 
+    Response Functions:
+      Number Of Responses: 1
+      Response 0:
+        Name: Surface Velocity Mismatch
+        Type: Scalar Response
         Regularization Coefficient: 10.0e+00
         Asinh Scaling: 1.0e+01
         Scaling Coefficient: 5.8824e-07
@@ -85,9 +87,8 @@ ANONYMOUS:
       Compute Rotation Modes: true
 
 # Final solution comparison
-  Regression Results:
-    Number of Comparisons: 1
-    Test Values: [1.12277949e+02]
+  Regression For Response 0:
+    Test Value: 1.12277949e+02
     Relative Tolerance: 1.00000000000000008e-05
     Absolute Tolerance: 1.00000000000000002e-03
 

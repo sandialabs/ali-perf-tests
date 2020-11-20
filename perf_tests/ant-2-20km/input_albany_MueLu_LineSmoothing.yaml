@@ -237,7 +237,7 @@ ANONYMOUS:
                   Solver Type: Block GMRES
                   Solver Types:
                     Block GMRES:
-                      Output Frequency: 0
+                      Output Frequency: 20
                       Output Style: 1
                       Verbosity: 33
                       Maximum Iterations: 200
@@ -246,7 +246,7 @@ ANONYMOUS:
                       Flexible Gmres: false
                   VerboseObject:
                     Output File: none
-                    Verbosity Level: none
+                    Verbosity Level: low
 
 #             Preconditioner Information
               Preconditioner Type: MueLu

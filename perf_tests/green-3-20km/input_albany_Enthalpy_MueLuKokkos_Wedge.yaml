@@ -325,7 +325,7 @@ ANONYMOUS:
                       ParameterList: 
                         'relaxation: type': MT Gauss-Seidel
                         'relaxation: sweeps': 1
-                        'relaxation: damping factor': 1.00000000000000000e+00
+                        'relaxation: damping factor': 0.95
                     mySmoother3: 
                       factory: TrilinosSmoother
                       type: RELAXATION

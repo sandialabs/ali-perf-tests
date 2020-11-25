@@ -67,7 +67,7 @@ ANONYMOUS:
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -8.033641155463e+00
+    Test Value: -7.540479841331e+00
     Relative Tolerance: 1.00000000000000008e-05
     Absolute Tolerance: 1.00000000000000002e-03
 
@@ -77,8 +77,8 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Element Shape: Wedge
-    Cubature Degree: 4
+    Element Shape: Tetrahedron
+    Cubature Degree: 1
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -124,7 +124,7 @@ ANONYMOUS:
         Method: Ioss
         Cubature Degree: 4
         Restart Index: 1
-        Exodus Input File Name: mesh-ent-wdg/gis_basal_populated.exo
+        Exodus Input File Name: mesh-ent-tet/gis_basal_populated.exo
         Required Fields Info:
           Number Of Fields: 7
           Field 0:
@@ -238,26 +238,26 @@ ANONYMOUS:
                       factory: SemiCoarsenPFactory
                       'semicoarsen: coarsen rate': 14
                     UncoupledAggregationFact2: 
-                      factory: UncoupledAggregationFactory
+                      factory: UncoupledAggregationFactory_kokkos
                       'aggregation: ordering': graph
                       'aggregation: max selected neighbors': 0
                       'aggregation: min agg size': 3
                       'aggregation: phase3 avoid singletons': true
                     MyCoarseMap2: 
-                      factory: CoarseMapFactory
+                      factory: CoarseMapFactory_kokkos
                       Aggregates: UncoupledAggregationFact2
                     myTentativePFact2: 
                       'tentative: calculate qr': true
-                      factory: TentativePFactory
+                      factory: TentativePFactory_kokkos
                       Aggregates: UncoupledAggregationFact2
                       CoarseMap: MyCoarseMap2
                     mySaPFact2: 
                       'sa: eigenvalue estimate num iterations': 10
                       'sa: damping factor': 1.33332999999999990e+00
-                      factory: SaPFactory
+                      factory: SaPFactory_kokkos
                       P: myTentativePFact2
                     myTransferCoordinatesFact: 
-                      factory: CoordinatesTransferFactory
+                      factory: CoordinatesTransferFactory_kokkos
                       CoarseMap: MyCoarseMap2
                       Aggregates: UncoupledAggregationFact2
                     myTogglePFact: 
@@ -285,6 +285,7 @@ ANONYMOUS:
                       R: myRestrictorFact
                       TransferFactories: 
                         For Coordinates: myToggleTransferCoordinatesFact
+                      'rap: fix zero diagonals': true
                     myRepartitionHeuristicFact: 
                       factory: RepartitionHeuristicFactory
                       A: myRAPFact
@@ -318,10 +319,11 @@ ANONYMOUS:
                       TransferFactories: { }
                     mySmoother1: 
                       factory: TrilinosSmoother
-                      type: LINESMOOTHING_BANDEDRELAXATION
+                      type: RELAXATION
+#                      type: LINESMOOTHING_BANDEDRELAXATION
                       'smoother: pre or post': both
                       ParameterList: 
-                        'relaxation: type': Gauss-Seidel
+                        'relaxation: type': MT Gauss-Seidel
                         'relaxation: sweeps': 1
                         'relaxation: damping factor': 1.00000000000000000e+00
                     mySmoother3: 
@@ -329,7 +331,7 @@ ANONYMOUS:
                       type: RELAXATION
                       'smoother: pre or post': both
                       ParameterList: 
-                        'relaxation: type': Gauss-Seidel
+                        'relaxation: type': MT Gauss-Seidel
                         'relaxation: sweeps': 1
                         'relaxation: damping factor': 1.00000000000000000e+00
                     mySmoother4: 
@@ -337,13 +339,14 @@ ANONYMOUS:
                       type: RELAXATION
                       'smoother: pre or post': pre
                       ParameterList: 
-                        'relaxation: type': Gauss-Seidel
+                        'relaxation: type': MT Gauss-Seidel
                         'relaxation: sweeps': 4
                         'relaxation: damping factor': 1.00000000000000000e+00
                   Hierarchy: 
-                    max levels: 7
+                    max levels: 3
                     'coarse: max size': 2000
                     verbosity: None
+                    use kokkos refactor: true
                     Finest: 
                       Smoother: mySmoother1
                       CoarseSolver: mySmoother4

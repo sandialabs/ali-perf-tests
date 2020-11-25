@@ -3,18 +3,20 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_PopulateMesh.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_PopulateMesh.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_FiniteElementAssembly_SingleWorkset.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_FiniteElementAssembly_SingleWorkset.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_DecoupledLineSmoothing_SingleWorkset.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_albany_MueLu_DecoupledLineSmoothing_SingleWorkset.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_FiniteElementAssembly_Memoization.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_FiniteElementAssembly_Memoization.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_ML_LineSmoothing_Memoization.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_albany_ML_LineSmoothing_Memoization.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_LineSmoothing_Memoization.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_albany_MueLu_LineSmoothing_Memoization.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLuKokkos_LineSmoothing_Memoization.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_MueLuKokkos_LineSmoothing_Memoization.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_DecoupledLineSmoothing_Memoization.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_albany_MueLu_DecoupledLineSmoothing_Memoization.yaml COPYONLY)
+IF (NOT ALBANY_ENABLE_CUDA)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_DecoupledLineSmoothing_SingleWorkset.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_MueLu_DecoupledLineSmoothing_SingleWorkset.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_ML_LineSmoothing_Memoization.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_ML_LineSmoothing_Memoization.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_LineSmoothing_Memoization.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_MueLu_LineSmoothing_Memoization.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_MueLu_DecoupledLineSmoothing_Memoization.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_MueLu_DecoupledLineSmoothing_Memoization.yaml COPYONLY)
+ENDIF()
 
 # Create symlink for mesh directory
 SET(MESH_PATH "${MESH_FILE_DIR}/green-1-7km")

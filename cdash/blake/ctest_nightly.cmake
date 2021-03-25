@@ -41,9 +41,7 @@ configure_file (${CTEST_SCRIPT_DIRECTORY}/CTestConfig.cmake
 set (CTEST_NIGHTLY_START_TIME "00:00:00 UTC")
 set (CTEST_CMAKE_COMMAND "cmake")
 set (CTEST_COMMAND "ctest -D ${CTEST_TEST_TYPE}")
-set (CTEST_FLAGS "-j8")
-SET (CTEST_BUILD_FLAGS "-j8")
-
+set (CTEST_BUILD_FLAGS "-j48")
 
 find_program (CTEST_GIT_COMMAND NAMES git)
 
@@ -51,12 +49,12 @@ set (ALIPerfTests_REPOSITORY_LOCATION git@github.com:ikalash/ali-perf-tests.git)
 set (GithubIO_REPOSITORY_LOCATION git@github.com:ikalash/ikalash.github.io.git)
 set (MPI_PATH $ENV{MPI_ROOT})  
 set (MKL_PATH $ENV{MKL_ROOT})  
+set (SUPERLU_PATH $ENV{SUPERLU_ROOT})  
 set (BOOST_PATH $ENV{BOOST_ROOT}) 
 set (NETCDF_PATH $ENV{NETCDF_ROOT}) 
 set (PNETCDF_PATH $ENV{PNETCDF_ROOT}) 
 set (HDF5_PATH $ENV{HDF5_ROOT})
 set (ZLIB_PATH $ENV{ZLIB_ROOT})  
-set (YAMLCPP_PATH $ENV{YAMLCPP_ROOT})
 
 if (CLEAN_BUILD)
   # Initial cache info
@@ -166,6 +164,7 @@ if (BUILD_ALI_PERF_TESTS)
     "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad6"
     "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad"
     "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad12"
+    "-DSFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad24"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"

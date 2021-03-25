@@ -42,8 +42,7 @@ configure_file (${CTEST_SCRIPT_DIRECTORY}/CTestConfig.cmake
 set (CTEST_NIGHTLY_START_TIME "01:00:00 UTC")
 set (CTEST_CMAKE_COMMAND "cmake")
 set (CTEST_COMMAND "ctest -D ${CTEST_TEST_TYPE}")
-set (CTEST_FLAGS "-j8")
-SET (CTEST_BUILD_FLAGS "-j8")
+set (CTEST_BUILD_FLAGS "-j40")
 
 set (CTEST_DROP_METHOD "https")
 
@@ -66,7 +65,6 @@ set (NETCDF_PATH $ENV{NETCDF_ROOT})
 set (PNETCDF_PATH $ENV{PNETCDF_ROOT}) 
 set (HDF5_PATH $ENV{HDF5_ROOT})
 set (ZLIB_PATH $ENV{ZLIB_ROOT})  
-set (YAMLCPP_PATH $ENV{YAMLCPP_ROOT})
 
 if (CLEAN_BUILD)
   # Initial cache info
@@ -176,6 +174,7 @@ if (BUILD_ALI_PERF_TESTS)
     "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6"
     "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad"
     "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12"
+    "-DSFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad24"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"

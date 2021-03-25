@@ -29,10 +29,10 @@ ANONYMOUS:
         Number Of Time Derivatives: 0
         Method: Ioss
         Cubature Degree: 4
-        Exodus Input File Name: mesh-decomp/gis_1k_2d.exo
-        Exodus Output File Name: mesh-vel-tet/gis_basal_populated.exo
+        Exodus Input File Name: mesh-decomp/gis_2d.exo
+        Exodus Output File Name: mesh-pop-tet/gis_basal_populated.exo
         Required Fields Info: 
-          Number Of Fields: 9
+          Number Of Fields: 14
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
@@ -79,11 +79,39 @@ ANONYMOUS:
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/surface_mass_balance_uncertainty.ascii
+          Field 9:
+            Field Name: basal_friction
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/basal_friction_zeroed.ascii
+          Field 10:
+            Field Name: surface_air_temperature
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/surface_air_temperature.ascii
+          Field 11:
+            Field Name: heat_flux
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/basal_heat_flux.ascii
+          Field 12: 
+            Number Of Layers: 11 
+            Vector Dim: 2
+            Field Name: velocity
+            Field Type: Node Layered Vector
+            Field Origin: File
+            File Name: mesh/horizontal_velocity.ascii
+          Field 13:
+            Number Of Layers: 11 
+            Field Name: vertical_velocity
+            Field Type: Node Layered Scalar
+            Field Origin: File
+            File Name: mesh/vertical_velocity.ascii
       upperside:
         Number Of Time Derivatives: 0
         Method: SideSetSTK
         Cubature Degree: 4
-        Exodus Output File Name: mesh-vel-tet/gis_upper_populated.exo
+        Exodus Output File Name: mesh-pop-tet/gis_upper_populated.exo
         Required Fields Info: 
           Number Of Fields: 2
           Field 0:

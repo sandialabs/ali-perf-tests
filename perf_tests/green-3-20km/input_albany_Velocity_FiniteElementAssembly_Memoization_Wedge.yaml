@@ -146,7 +146,7 @@ ANONYMOUS:
         Method: Ioss
         Cubature Degree: 4
         Restart Index: 1
-        Exodus Input File Name: mesh-vel-wdg/gis_basal_populated.exo
+        Exodus Input File Name: mesh-pop-wdg/gis_basal_populated.exo
         Required Fields Info:
           Number Of Fields: 9
           Field 0:
@@ -191,7 +191,7 @@ ANONYMOUS:
         Method: Ioss
         Cubature Degree: 4
         Restart Index: 1
-        Exodus Input File Name: mesh-vel-wdg/gis_upper_populated.exo
+        Exodus Input File Name: mesh-pop-wdg/gis_upper_populated.exo
         Required Fields Info:
           Number Of Fields: 2
           Field 0:

@@ -169,6 +169,7 @@ if (BUILD_ALI_PERF_TESTS)
 
   set (CONFIGURE_OPTIONS
     "-Wno-dev"
+    "-DALIPT_BUILD_WEAVER:BOOL=ON"
     "-DTRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/TrilinosInstall"
     "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad4"
     "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6"

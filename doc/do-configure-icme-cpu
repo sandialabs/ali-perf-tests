@@ -1,6 +1,6 @@
 #!/bin/bash
 # 
-#Script for invoking CMake using the above CMakeLists.txt.  Invoke
+# Script for invoking CMake using the above CMakeLists.txt.  Invoke
 # this script in the source directory containing CMakeLists.txt:
 #
 # $ ./do-configure
@@ -19,18 +19,18 @@
 # CMAKE_VERBOSE_MAKEFILE: Set to ON if you prefer verbose Make output.
 #
 
+CMAKE_PATH=
 rm -rf CMake*
 
-cmake \
+${CMAKE_PATH}/bin/cmake \
   -Wno-dev \
-  -D ALIPT_BUILD_WEAVER:BOOL=ON \
-  -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/TrilinosInstall \
-  -D SFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad4 \
-  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6 \
-  -D SFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad \
-  -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12 \
-  -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad24 \
-  -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
+  -D ALIPT_BUILD_ICME_CPU:BOOL=ON \
+  -D TRILINOS_DIR:FILEPATH= \
+  -D SFAD4_EXE_DIR:FILEPATH= \
+  -D SFAD6_EXE_DIR:FILEPATH= \
+  -D SFAD8_EXE_DIR:FILEPATH= \
+  -D SFAD12_EXE_DIR:FILEPATH= \
+  -D MESH_FILE_DIR:FILEPATH= \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \
   -D BUILD_SHARED_LIBS:BOOL=ON \
   -D CMAKE_VERBOSE_MAKEFILE:BOOL=OFF \

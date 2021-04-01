@@ -19,7 +19,7 @@
 # CMAKE_VERBOSE_MAKEFILE: Set to ON if you prefer verbose Make output.
 #
 
-CMAKE_PATH=
+CMAKE_PATH=../tpls/cmake/3.20.0/gnu
 rm -rf CMake*
 
 ${CMAKE_PATH}/bin/cmake \
@@ -30,7 +30,7 @@ ${CMAKE_PATH}/bin/cmake \
   -D SFAD6_EXE_DIR:FILEPATH= \
   -D SFAD8_EXE_DIR:FILEPATH= \
   -D SFAD12_EXE_DIR:FILEPATH= \
-  -D MESH_FILE_DIR:FILEPATH= \
+  -D MESH_FILE_DIR:FILEPATH=../meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \
   -D BUILD_SHARED_LIBS:BOOL=ON \
   -D CMAKE_VERBOSE_MAKEFILE:BOOL=OFF \

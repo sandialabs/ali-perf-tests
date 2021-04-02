@@ -10,5 +10,6 @@ ELSEIF(ALIPT_BUILD_WEAVER)
   add_subdirectory(green-3-20km)
 ELSEIF(ALIPT_BUILD_ICME_CPU)
   add_subdirectory(green-3-20km)
+  add_subdirectory(humboldt-3-20km)
 ENDIF()
 

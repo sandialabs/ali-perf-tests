@@ -15,7 +15,7 @@
                                       #           priority: High priority jobs (special request)
 #SBATCH --mail-type=ALL
 ##SBATCH --mail-user=ikalash@sandia.gov
-#SBATCH --exclude=node03,node06,node10,node27
+##SBATCH --exclude=node03,node06,node10,node27
 #SBATCH --exclusive
 #SBATCH --dependency=afterok:1011268
 

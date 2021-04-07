@@ -7,6 +7,8 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_FiniteElementAs
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_FiniteElementAssembly_Memoization_Tetrahedron.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_FiniteElementAssembly_Memoization_Wedge.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_FiniteElementAssembly_Memoization_Wedge.yaml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu_Wedge.yaml
+               ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu_Wedge.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLuKokkos_Wedge.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLuKokkos_Wedge.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Enthalpy_FiniteElementAssembly_Memoization_Tetrahedron.yaml
@@ -45,6 +47,7 @@ add_test(${testName}_pop_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_al
 # Add tests for performance
 add_test(${testName}_vel_fea_mem_tet_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD8_EXE} input_albany_Velocity_FiniteElementAssembly_Memoization_Tetrahedron.yaml ${ALBANY_EXTRA_ARGS})
 add_test(${testName}_vel_fea_mem_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_FiniteElementAssembly_Memoization_Wedge.yaml ${ALBANY_EXTRA_ARGS})
+add_test(${testName}_vel_mu_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Wedge.yaml ${ALBANY_EXTRA_ARGS})
 add_test(${testName}_vel_muk_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLuKokkos_Wedge.yaml ${ALBANY_EXTRA_ARGS})
 add_test(${testName}_ent_fea_mem_tet_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD4_EXE} input_albany_Enthalpy_FiniteElementAssembly_Memoization_Tetrahedron.yaml ${ALBANY_EXTRA_ARGS})
 add_test(${testName}_ent_fea_mem_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_FiniteElementAssembly_Memoization_Wedge.yaml ${ALBANY_EXTRA_ARGS})
@@ -66,6 +69,7 @@ set_tests_properties(${testName}_vel_fea_mem_tet_np${ALBANY_NUM_PROCS}
 set_tests_properties(${testName}_pop_wdg_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_SETUP ${testName}_pop_wdg)
 set_tests_properties(${testName}_vel_fea_mem_wdg_np${ALBANY_NUM_PROCS}
+                     ${testName}_vel_mu_wdg_np${ALBANY_NUM_PROCS}
                      ${testName}_vel_muk_wdg_np${ALBANY_NUM_PROCS}
                      ${testName}_ent_fea_mem_wdg_np${ALBANY_NUM_PROCS}
                      ${testName}_ent_muk_wdg_np${ALBANY_NUM_PROCS}

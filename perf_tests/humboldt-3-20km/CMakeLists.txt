@@ -5,6 +5,14 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu_Wedge.yam
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu_Wedge.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLuKokkos_Wedge.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLuKokkos_Wedge.yaml COPYONLY)
+IF(ALIPT_TUNE)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu_Wedge_Tune.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu_Wedge_Tune.yaml COPYONLY)
+  configure_file(${CMAKE_SOURCE_DIR}/jupyter_nb/scripts/autotune.py
+                 ${CMAKE_CURRENT_BINARY_DIR}/autotune.py COPYONLY)
+  configure_file(${CMAKE_SOURCE_DIR}/jupyter_nb/scripts/ctest2json.py
+                 ${CMAKE_CURRENT_BINARY_DIR}/ctest2json.py COPYONLY)
+ENDIF()
 
 # Create symlink for mesh directory
 SET(MESH_PATH "${MESH_FILE_DIR}/humboldt-3-20km")
@@ -24,12 +32,21 @@ add_test(${testName}_pop_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_al
 # Add tests for performance
 add_test(${testName}_vel_mu_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Wedge.yaml ${ALBANY_EXTRA_ARGS})
 add_test(${testName}_vel_muk_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLuKokkos_Wedge.yaml ${ALBANY_EXTRA_ARGS})
-
+IF(ALIPT_TUNE)
+  add_test(${testName}_vel_mu_wdg_tune_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Wedge_Tune.yaml ${ALBANY_EXTRA_ARGS})
+ENDIF()
 
 # Add dependencies
 set_tests_properties(${testName}_pop_wdg_np${ALBANY_NUM_PROCS}
-                     PROPERTIES FIXTURES_SETUP ${testName}_pop_wdg)
+                     PROPERTIES
+                     FIXTURES_SETUP ${testName}_pop_wdg
+                     LABELS "pop")
 set_tests_properties(${testName}_vel_mu_wdg_np${ALBANY_NUM_PROCS}
                      ${testName}_vel_muk_wdg_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop_wdg)
+IF(ALIPT_TUNE)
+  set_tests_properties(${testName}_vel_mu_wdg_tune_np${ALBANY_NUM_PROCS}
+                       PROPERTIES
+                       LABELS "tune")
+ENDIF()
 

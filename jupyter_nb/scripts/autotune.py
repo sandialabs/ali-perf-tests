@@ -41,6 +41,10 @@ def run_sim(iter, inFile):
     # Run simulation
     run_bash('ctest -L "tune"')
 
+    # Generate input file
+    newInFile = inFile.split('.')[0] + '_' + str(iter) + '.' + inFile.split('.')[1]
+    run_bash('cp ' + inFile + ' ' + newInFile)
+
     # Generate output file
     run_bash('cp Testing/Temporary/LastTest.log LastTest_'+str(iter)+'-0.log')
 

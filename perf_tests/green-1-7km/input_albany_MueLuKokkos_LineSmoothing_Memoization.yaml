@@ -285,9 +285,9 @@ ANONYMOUS:
 #                      type: LINESMOOTHING_BANDEDRELAXATION
                       'smoother: pre or post': both
                       ParameterList: 
-                        'relaxation: type': MT Gauss-Seidel
+                        'relaxation: type': Two-stage Gauss-Seidel
                         'relaxation: sweeps': 1
-                        'relaxation: damping factor': 1.00000000000000000e+00
+                        'relaxation: inner damping factor': 0.25
                     mySmoother3: 
                       factory: TrilinosSmoother
                       type: RELAXATION
@@ -301,9 +301,8 @@ ANONYMOUS:
                       type: RELAXATION
                       'smoother: pre or post': pre
                       ParameterList: 
-                        'relaxation: type': MT Gauss-Seidel
+                        'relaxation: type': Two-stage Gauss-Seidel
                         'relaxation: sweeps': 4
-                        'relaxation: damping factor': 1.00000000000000000e+00
                   Hierarchy: 
                     max levels: 3
                     'coarse: max size': 2000

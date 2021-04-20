@@ -25,7 +25,7 @@ def run_bash(command):
     '''
     Run a bash command
     '''
-    return subprocess.run(command, check=True, shell=True, text=True, executable='/bin/bash')
+    return subprocess.run(command, shell=True, executable='/bin/bash')
 
 ###################################################################################################
 def run_sim(iter, inFile):
@@ -39,7 +39,7 @@ def run_sim(iter, inFile):
       run_bash('ctest -L "pop"')
 
     # Run simulation
-    run_bash('ctest -L "tune"')
+    run_bash('ctest -L "tune" --timeout 60')
 
     # Generate input file
     newInFile = inFile.split('.')[0] + '_' + str(iter) + '.' + inFile.split('.')[1]

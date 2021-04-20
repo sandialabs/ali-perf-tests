@@ -316,13 +316,13 @@ ANONYMOUS:
               Preconditioner Type: FROSch
               Preconditioner Types:
                 FROSch:
-                  FROSch Preconditioner Type: TwoLevelPreconditioner        # FROSch preconditioner type. Options: OneLevelPreconditioner, TwoLevelPreconditioner
+                  FROSch Preconditioner Type: OneLevelPreconditioner        # FROSch preconditioner type. Options: OneLevelPreconditioner, TwoLevelPreconditioner
                   OverlappingOperator Type: AlgebraicOverlappingOperator    # First Level: AlgebrAlgebraicOverlappingOperator determines the overlap based on the graph of the matrix
                   CoarseOperator Type: IPOUHarmonicCoarseOperator           # Second Level: IPOUHarmonicCoarseOperator work for all kinds of GDSW type coarse spaces
                   Recycling: true                                           # This enables the possibility to re-use parts of the preconditioner in a Newton or time iteration
                   Dimension : 3                                             # Spatial dimension of the problem
                   DofsPerNode : 4                                           # Number of degrees of freedom per node
-                  Overlap: 1                                                # Number of layers of elements in the overlap
+                  Overlap: 0                                                # Number of layers of elements in the overlap
                   Null Space Type: Input                                    # Null space is provided by Albany
                   AlgebraicOverlappingOperator:
                     'Reuse: Symbolic Factorization': true                   # Reuse of the symbolic factorization

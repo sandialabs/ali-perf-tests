@@ -28,6 +28,15 @@ IF (NOT ALBANY_ENABLE_CUDA)
                  ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Enthalpy_FiniteElementAssembly_Memoization_Wedge.yaml COPYONLY)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Enthalpy_MueLu_Wedge.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Enthalpy_MueLu_Wedge.yaml COPYONLY)
+
+  IF(ALIPT_TUNE)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu_Wedge_Tune.yaml
+                   ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu_Wedge_Tune.yaml COPYONLY)
+    configure_file(${CMAKE_SOURCE_DIR}/ext/Autotuning/autotune.py
+                   ${CMAKE_CURRENT_BINARY_DIR}/autotune.py COPYONLY)
+    configure_file(${CMAKE_SOURCE_DIR}/jupyter_nb/scripts/ctest2json.py
+                   ${CMAKE_CURRENT_BINARY_DIR}/ctest2json.py COPYONLY)
+  ENDIF()
 ENDIF()
 
 # Create symlink for mesh directory
@@ -64,11 +73,17 @@ IF (NOT ALBANY_ENABLE_CUDA)
   add_test(${testName}_ent_fea_1ws_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_FiniteElementAssembly_SingleWorkset_Wedge.yaml ${ALBANY_EXTRA_ARGS})
   add_test(${testName}_ent_fea_mem_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_FiniteElementAssembly_Memoization_Wedge.yaml ${ALBANY_EXTRA_ARGS})
   add_test(${testName}_ent_mu_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_MueLu_Wedge.yaml ${ALBANY_EXTRA_ARGS})
+
+  IF(ALIPT_TUNE)
+    add_test(${testName}_vel_mu_wdg_tune_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Wedge_Tune.yaml ${ALBANY_EXTRA_ARGS})
+  ENDIF()
 ENDIF()
 
 # Add dependencies
 set_tests_properties(${testName}_pop_tet_np${ALBANY_NUM_PROCS}
-                     PROPERTIES FIXTURES_SETUP ${testName}_pop_tet)
+                     PROPERTIES
+                     FIXTURES_SETUP ${testName}_pop_tet
+                     LABELS "pop")
 set_tests_properties(${testName}_ent_fea_1ws_tet_np${ALBANY_NUM_PROCS}
                      ${testName}_ent_fea_mem_tet_np${ALBANY_NUM_PROCS}
                      ${testName}_ent_muk_tet_np${ALBANY_NUM_PROCS}
@@ -81,11 +96,19 @@ IF (NOT ALBANY_ENABLE_CUDA)
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop_tet)
 
   set_tests_properties(${testName}_pop_wdg_np${ALBANY_NUM_PROCS}
-                       PROPERTIES FIXTURES_SETUP ${testName}_pop_wdg)
+                       PROPERTIES
+                       FIXTURES_SETUP ${testName}_pop_wdg
+                       LABELS "pop")
   set_tests_properties(${testName}_vel_mu_wdg_np${ALBANY_NUM_PROCS}
                        ${testName}_ent_fea_1ws_wdg_np${ALBANY_NUM_PROCS}
                        ${testName}_ent_fea_mem_wdg_np${ALBANY_NUM_PROCS}
                        ${testName}_ent_mu_wdg_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop_wdg)
+
+  IF(ALIPT_TUNE)
+    set_tests_properties(${testName}_vel_mu_wdg_tune_np${ALBANY_NUM_PROCS}
+                         PROPERTIES
+                         LABELS "tune")
+  ENDIF()
 ENDIF()
 

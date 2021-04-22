@@ -6,10 +6,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLuKokkos_Wed
 IF(NOT ALBANY_ENABLE_CUDA)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu_Wedge.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu_Wedge.yaml COPYONLY)
+
   IF(ALIPT_TUNE)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu_Wedge_Tune.yaml
                    ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu_Wedge_Tune.yaml COPYONLY)
-    configure_file(${CMAKE_SOURCE_DIR}/jupyter_nb/scripts/autotune.py
+    configure_file(${CMAKE_SOURCE_DIR}/ext/Autotuning/autotune.py
                    ${CMAKE_CURRENT_BINARY_DIR}/autotune.py COPYONLY)
     configure_file(${CMAKE_SOURCE_DIR}/jupyter_nb/scripts/ctest2json.py
                    ${CMAKE_CURRENT_BINARY_DIR}/ctest2json.py COPYONLY)
@@ -35,6 +36,7 @@ add_test(${testName}_pop_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_al
 add_test(${testName}_vel_muk_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLuKokkos_Wedge.yaml ${ALBANY_EXTRA_ARGS})
 IF(NOT ALBANY_ENABLE_CUDA)
   add_test(${testName}_vel_mu_wdg_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Wedge.yaml ${ALBANY_EXTRA_ARGS})
+
   IF(ALIPT_TUNE)
     add_test(${testName}_vel_mu_wdg_tune_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Wedge_Tune.yaml ${ALBANY_EXTRA_ARGS})
   ENDIF()
@@ -50,6 +52,7 @@ set_tests_properties(${testName}_vel_muk_wdg_np${ALBANY_NUM_PROCS}
 IF(NOT ALBANY_ENABLE_CUDA)
   set_tests_properties(${testName}_vel_mu_wdg_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop_wdg)
+
   IF(ALIPT_TUNE)
     set_tests_properties(${testName}_vel_mu_wdg_tune_np${ALBANY_NUM_PROCS}
                          PROPERTIES

@@ -80,10 +80,10 @@ set_tests_properties(${testName}_pop_wdg_np${ALBANY_NUM_PROCS}
                      LABELS "pop")
 set_tests_properties(${testName}_vel_fea_mem_wdg_np${ALBANY_NUM_PROCS}
                      ${testName}_vel_muk_wdg_np${ALBANY_NUM_PROCS}
-                     ${testName}_vel_muk_tune_wdg_np${ALBANY_NUM_PROCS}
+                     ${testName}_vel_muk_wdg_tune_np${ALBANY_NUM_PROCS}
                      ${testName}_ent_fea_mem_wdg_np${ALBANY_NUM_PROCS}
                      ${testName}_ent_muk_wdg_np${ALBANY_NUM_PROCS}
-                     ${testName}_ent_muk_tune_wdg_np${ALBANY_NUM_PROCS}
+                     ${testName}_ent_muk_wdg_tune_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop_wdg)
 
 IF (NOT ALBANY_ENABLE_CUDA)

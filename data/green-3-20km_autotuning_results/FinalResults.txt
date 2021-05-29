@@ -1,0 +1,27 @@
+mySmoother1
+type: Two-stage Gauss-Seidel
+sweeps: 1
+inner damping factor: 0.25
+
+mySmoother4
+type: Two-stage Gauss-Seidel
+sweeps: 4
+inner damping factor: 1.0
+
+Original hand tuned:
+blake_vel: 3.533972
+blake_ent: 3.07725
+weaver_vel: 19.13084
+weaver_ent: 19.76345
+
+After tuning:
+blake_vel: 2.658731
+blake_ent: 2.036044
+weaver_vel: 16.30672
+weaver_ent: 15.00014
+
+Speedup:
+blake_vel: 1.33x
+blake_ent: 1.51x
+weaver_vel: 1.17x
+weaver_ent: 1.32x

@@ -1,0 +1,101 @@
+iter_id,1::relaxation: type,1::relaxation: sweeps,1::relaxation: damping factor,1::relaxation: inner damping factor,1::chebyshev: degree,1::chebyshev: ratio eigenvalue,1::chebyshev: eigenvalue max iterations,4::relaxation: type,4::relaxation: sweeps,4::relaxation: damping factor,4::relaxation: inner damping factor,4::chebyshev: degree,4::chebyshev: ratio eigenvalue,4::chebyshev: eigenvalue max iterations,time_NOX,time_AlbanyTotal,passed
+57,MT Gauss-Seidel,2,0.8191,,,,,Two-stage Gauss-Seidel,2,,0.8642,,,,2.036044,5.00067,TRUE
+52,MT Gauss-Seidel,2,0.9838,,,,,MT Gauss-Seidel,1,1.0271,,,,,2.167346,5.00439,TRUE
+21,MT Gauss-Seidel,1,0.8879,,,,,MT Gauss-Seidel,2,1.1412,,,,,2.265782,5.26364,TRUE
+83,MT Gauss-Seidel,2,0.8851,,,,,Two-stage Gauss-Seidel,1,,0.8722,,,,2.330718,5.26272,TRUE
+31,MT Gauss-Seidel,2,0.9152,,,,,MT Gauss-Seidel,3,1.1027,,,,,2.360903,5.41704,TRUE
+58,MT Gauss-Seidel,2,0.9053,,,,,Two-stage Gauss-Seidel,4,,0.9597,,,,2.360936,5.40768,TRUE
+44,MT Gauss-Seidel,1,0.9592,,,,,MT Gauss-Seidel,3,1.0661,,,,,2.433321,5.38546,TRUE
+61,MT Gauss-Seidel,1,0.9402,,,,,Two-stage Gauss-Seidel,4,,1.0064,,,,2.451202,5.28291,TRUE
+60,MT Gauss-Seidel,1,0.943,,,,,Two-stage Gauss-Seidel,3,,0.9064,,,,2.458732,5.47952,TRUE
+53,MT Gauss-Seidel,2,0.9857,,,,,Two-stage Gauss-Seidel,2,,1.004,,,,2.470051,5.74546,TRUE
+89,MT Gauss-Seidel,2,1.0205,,,,,Two-stage Gauss-Seidel,2,,1.0179,,,,2.493947,5.69891,TRUE
+37,MT Gauss-Seidel,1,0.9597,,,,,MT Gauss-Seidel,2,0.8905,,,,,2.499166,5.74189,TRUE
+70,MT Gauss-Seidel,2,0.9395,,,,,Two-stage Gauss-Seidel,1,,0.9301,,,,2.503408,5.87823,TRUE
+68,MT Gauss-Seidel,2,1.0179,,,,,MT Gauss-Seidel,1,0.9663,,,,,2.513174,5.99625,TRUE
+15,MT Gauss-Seidel,1,0.8036,,,,,Two-stage Gauss-Seidel,3,,0.9708,,,,2.527875,5.85156,TRUE
+56,MT Gauss-Seidel,1,0.8579,,,,,,,,,2,17.1942,118,2.531818,5.62011,TRUE
+82,MT Gauss-Seidel,2,0.8365,,,,,MT Gauss-Seidel,4,1.0152,,,,,2.545667,5.85695,TRUE
+65,MT Gauss-Seidel,1,0.9552,,,,,Two-stage Gauss-Seidel,3,,1.0513,,,,2.550943,5.66707,TRUE
+47,MT Gauss-Seidel,2,0.9869,,,,,,,,,2,26.339,112,2.614772,5.53477,TRUE
+2,MT Gauss-Seidel,2,0.821,,,,,,,,,1,20.5499,93,2.626469,6.00364,TRUE
+49,MT Gauss-Seidel,1,0.9853,,,,,Two-stage Gauss-Seidel,2,,1.0015,,,,2.671277,6.20664,TRUE
+8,MT Gauss-Seidel,1,0.888,,,,,Two-stage Gauss-Seidel,4,,0.9097,,,,2.686321,5.9357,TRUE
+28,MT Gauss-Seidel,2,1.1373,,,,,MT Gauss-Seidel,2,1.0458,,,,,3.97097,6.88494,TRUE
+71,MT Gauss-Seidel,1,1.1524,,,,,Two-stage Gauss-Seidel,1,,0.8071,,,,4.208098,8.02855,TRUE
+92,MT Gauss-Seidel,2,1.0994,,,,,MT Gauss-Seidel,2,1.1254,,,,,4.49373,8.48589,TRUE
+85,MT Gauss-Seidel,1,1.0361,,,,,,,,,3,11.2004,118,5.20541,9.32742,TRUE
+75,,,,,2,28.8365,93,MT Gauss-Seidel,4,1.0205,,,,,5.75835,9.36436,TRUE
+98,,,,,1,29.8361,93,MT Gauss-Seidel,2,0.9176,,,,,6.121586,9.68027,TRUE
+73,MT Gauss-Seidel,1,1.0518,,,,,Two-stage Gauss-Seidel,1,,1.141,,,,7.413956,11.9316,TRUE
+96,,,,,2,12.463,86,MT Gauss-Seidel,1,0.9207,,,,,8.16161,12.2779,TRUE
+26,,,,,2,29.091,113,Two-stage Gauss-Seidel,1,,1.1247,,,,10.02373,13.7515,TRUE
+63,,,,,1,22.2006,101,MT Gauss-Seidel,1,1.0556,,,,,10.85199,15.5844,TRUE
+42,,,,,1,18.4088,104,Two-stage Gauss-Seidel,4,,0.8095,,,,12.05823,16.6956,TRUE
+6,,,,,1,27.7108,99,MT Gauss-Seidel,1,0.9922,,,,,12.34277,17.9291,TRUE
+36,,,,,2,28.2737,95,MT Gauss-Seidel,3,0.8797,,,,,12.67419,17.7741,TRUE
+76,,,,,2,13.5153,101,MT Gauss-Seidel,2,1.0469,,,,,12.70605,17.9365,TRUE
+20,,,,,1,11.7248,102,MT Gauss-Seidel,2,1.1923,,,,,14.21751,20.1349,TRUE
+0,MT Gauss-Seidel,1,1.0538,,,,,,,,,1,24.1153,80,inf,inf,FALSE
+1,Two-stage Gauss-Seidel,2,,0.8956,,,,,,,,2,23.1638,104,inf,inf,FALSE
+3,Two-stage Gauss-Seidel,2,,0.9478,,,,,,,,4,17.1531,103,inf,inf,FALSE
+4,Two-stage Gauss-Seidel,2,,0.8837,,,,,,,,2,17.3046,84,inf,inf,FALSE
+5,MT Gauss-Seidel,1,0.9782,,,,,,,,,4,25.2435,87,inf,inf,FALSE
+7,MT Gauss-Seidel,1,1.0479,,,,,,,,,3,20.4996,80,inf,inf,FALSE
+9,,,,,1,13.7613,90,,,,,2,15.6649,91,inf,inf,FALSE
+10,Two-stage Gauss-Seidel,1,,0.8788,,,,Two-stage Gauss-Seidel,1,,1.0859,,,,inf,inf,FALSE
+11,Two-stage Gauss-Seidel,1,,1.0602,,,,MT Gauss-Seidel,4,0.8838,,,,,inf,inf,FALSE
+12,MT Gauss-Seidel,2,1.1162,,,,,Two-stage Gauss-Seidel,1,,1.1516,,,,inf,inf,FALSE
+13,,,,,1,19.6794,104,,,,,4,16.8529,118,inf,inf,FALSE
+14,,,,,1,21.8952,115,MT Gauss-Seidel,4,1.0599,,,,,inf,inf,FALSE
+16,,,,,1,23.5084,117,,,,,1,13.1752,92,inf,inf,FALSE
+17,MT Gauss-Seidel,1,1.1032,,,,,MT Gauss-Seidel,4,1.0617,,,,,inf,inf,FALSE
+18,Two-stage Gauss-Seidel,1,,1.0192,,,,,,,,4,20.3433,95,inf,inf,FALSE
+19,Two-stage Gauss-Seidel,2,,0.8302,,,,MT Gauss-Seidel,3,1.0245,,,,,inf,inf,FALSE
+22,Two-stage Gauss-Seidel,1,,1.063,,,,Two-stage Gauss-Seidel,3,,0.9392,,,,inf,inf,FALSE
+23,,,,,2,12.5018,109,MT Gauss-Seidel,4,1.0105,,,,,inf,inf,FALSE
+24,MT Gauss-Seidel,1,1.0263,,,,,MT Gauss-Seidel,4,0.9214,,,,,inf,inf,FALSE
+25,,,,,1,21.6053,97,,,,,4,26.7784,103,inf,inf,FALSE
+27,Two-stage Gauss-Seidel,2,,1.0808,,,,MT Gauss-Seidel,2,1.0094,,,,,inf,inf,FALSE
+29,Two-stage Gauss-Seidel,1,,1.0369,,,,,,,,1,10.2599,86,inf,inf,FALSE
+30,Two-stage Gauss-Seidel,1,,1.0875,,,,,,,,3,13.0626,108,inf,inf,FALSE
+32,MT Gauss-Seidel,2,1.1423,,,,,Two-stage Gauss-Seidel,1,,1.0177,,,,inf,inf,FALSE
+33,Two-stage Gauss-Seidel,2,,0.9037,,,,,,,,2,15.7691,98,inf,inf,FALSE
+34,Two-stage Gauss-Seidel,1,,0.8752,,,,,,,,4,13.0152,88,inf,inf,FALSE
+35,Two-stage Gauss-Seidel,1,,0.8881,,,,Two-stage Gauss-Seidel,1,,1.0756,,,,inf,inf,FALSE
+38,Two-stage Gauss-Seidel,1,,0.981,,,,,,,,1,14.9405,94,inf,inf,FALSE
+39,,,,,1,25.6214,120,,,,,1,21.7659,116,inf,inf,FALSE
+40,,,,,1,29.3114,84,,,,,2,22.0013,95,inf,inf,FALSE
+41,Two-stage Gauss-Seidel,1,,1.1007,,,,Two-stage Gauss-Seidel,1,,1.0579,,,,inf,inf,FALSE
+43,Two-stage Gauss-Seidel,2,,0.9649,,,,MT Gauss-Seidel,3,0.8559,,,,,inf,inf,FALSE
+45,,,,,1,21.174,100,,,,,3,28.3375,95,inf,inf,FALSE
+46,Two-stage Gauss-Seidel,2,,0.926,,,,Two-stage Gauss-Seidel,4,,1.0884,,,,inf,inf,FALSE
+48,,,,,1,11.8148,107,Two-stage Gauss-Seidel,1,,0.9861,,,,inf,inf,FALSE
+50,MT Gauss-Seidel,1,1.0444,,,,,Two-stage Gauss-Seidel,3,,1.1732,,,,inf,inf,FALSE
+51,Two-stage Gauss-Seidel,2,,0.9561,,,,,,,,2,26.7479,115,inf,inf,FALSE
+54,Two-stage Gauss-Seidel,1,,1.0067,,,,MT Gauss-Seidel,1,0.9885,,,,,inf,inf,FALSE
+55,Two-stage Gauss-Seidel,2,,1.0741,,,,Two-stage Gauss-Seidel,1,,1.1038,,,,inf,inf,FALSE
+59,,,,,1,12.7268,108,Two-stage Gauss-Seidel,1,,0.9424,,,,inf,inf,FALSE
+62,MT Gauss-Seidel,2,1.0259,,,,,Two-stage Gauss-Seidel,2,,0.9415,,,,inf,inf,FALSE
+64,Two-stage Gauss-Seidel,2,,1.1419,,,,Two-stage Gauss-Seidel,3,,0.9486,,,,inf,inf,FALSE
+66,,,,,2,13.1436,85,,,,,3,18.2029,107,inf,inf,FALSE
+67,,,,,1,24.0521,110,,,,,3,14.8927,105,inf,inf,FALSE
+69,Two-stage Gauss-Seidel,2,,0.8391,,,,MT Gauss-Seidel,2,1.1526,,,,,inf,inf,FALSE
+72,,,,,1,16.0345,114,,,,,3,11.8725,113,inf,inf,FALSE
+74,Two-stage Gauss-Seidel,1,,1.034,,,,,,,,4,11.9384,98,inf,inf,FALSE
+77,,,,,1,14.667,95,,,,,4,18.5008,99,inf,inf,FALSE
+78,Two-stage Gauss-Seidel,1,,0.9574,,,,MT Gauss-Seidel,1,0.9817,,,,,inf,inf,FALSE
+79,Two-stage Gauss-Seidel,1,,1.1818,,,,Two-stage Gauss-Seidel,1,,0.9335,,,,inf,inf,FALSE
+80,,,,,1,22.7614,117,Two-stage Gauss-Seidel,4,,0.9542,,,,inf,inf,FALSE
+81,,,,,1,20.1319,106,,,,,3,14.891,82,inf,inf,FALSE
+84,Two-stage Gauss-Seidel,2,,1.1341,,,,,,,,1,22.4944,90,inf,inf,FALSE
+86,,,,,2,29.8179,83,MT Gauss-Seidel,4,0.9904,,,,,inf,inf,FALSE
+87,,,,,1,24.5648,102,MT Gauss-Seidel,4,0.9554,,,,,inf,inf,FALSE
+88,Two-stage Gauss-Seidel,1,,1.0413,,,,Two-stage Gauss-Seidel,4,,0.8933,,,,inf,inf,FALSE
+90,Two-stage Gauss-Seidel,2,,1.0209,,,,MT Gauss-Seidel,3,0.9262,,,,,inf,inf,FALSE
+91,Two-stage Gauss-Seidel,2,,0.9873,,,,MT Gauss-Seidel,1,1.0924,,,,,inf,inf,FALSE
+93,Two-stage Gauss-Seidel,2,,1.05,,,,MT Gauss-Seidel,3,1.1279,,,,,inf,inf,FALSE
+94,,,,,2,24.3089,108,MT Gauss-Seidel,3,0.8032,,,,,inf,inf,FALSE
+95,,,,,1,17.7758,106,,,,,3,13.5566,85,inf,inf,FALSE
+97,Two-stage Gauss-Seidel,1,,0.8972,,,,,,,,3,19.3402,115,inf,inf,FALSE
+99,Two-stage Gauss-Seidel,2,,1.0088,,,,MT Gauss-Seidel,2,0.9195,,,,,inf,inf,FALSE

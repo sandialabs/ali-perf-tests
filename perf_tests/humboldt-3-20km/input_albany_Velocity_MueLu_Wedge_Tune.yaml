@@ -46,8 +46,12 @@ ANONYMOUS:
         Side Set Name: basalside
         Cubature Degree: 4
         Basal Friction Coefficient:
-          Type: Exponent Of Given Field
-          Given Field Variable Name: basal_friction_log
+          Type: Power Law
+          Mu Type: Exponent Of Field
+          Mu Field Name: basal_friction_log
+          Power Exponent: 1.0
+          Effective Pressure Type: Constant
+          Effective Pressure: 1.0
           Zero Beta On Floating Ice: true
       BC 1:
         Type: Lateral

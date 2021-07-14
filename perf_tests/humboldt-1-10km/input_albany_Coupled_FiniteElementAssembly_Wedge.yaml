@@ -93,31 +93,14 @@ ANONYMOUS:
 #   Output
     Phalanx Graph Visualization Detail: 0
     Response Functions:
-      Number Of Responses: 2
+      Number Of Responses: 1
       Response 0:
         Name: Solution Average
         Type: Scalar Response
-      Response 1:
-        Name: Surface Velocity Mismatch
-        Regularization Coefficient: 1.0e+03
-        Asinh Scaling: 1.0e+01
-        Scaling Coefficient: 4.540693e-06
-        Cubature Degree: 4
-      Response 2:
-        Name: Surface Mass Balance Mismatch
-        Regularization Coefficient: 1.0e+03
-        H Coefficient: 100.0
-        SMB Coefficient: 1.0
-        Scaling Coefficient: 4.540693e-06
-        Cubature Degree: 4
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -2.17235918493
-    Relative Tolerance: 1.0e-05
-    Absolute Tolerance: 1.0e-03
-  Regression For Response 1:
-    Test Value: 1.300372856412e+01
+    Test Value: 0.000212681587102
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -257,38 +240,21 @@ ANONYMOUS:
       Solver Options: 
         Status Test Check Type: Minimal
       Status Tests: 
-        Test Type: Combo
-        Combo Type: OR
-        Number of Tests: 2
-        Test 0: 
-          Test Type: Combo
-          Combo Type: AND
-          Number of Tests: 2
-          Test 0: 
-            Test Type: NormF
-            Norm Type: Two Norm
-            Scale Type: Scaled
-            Tolerance: 1.0e-06
-          Test 1:
-            Test Type: RelativeNormF
-            Norm Type: Two Norm
-            Tolerance: 0.9999
-        Test 1: 
-          Test Type: MaxIters
-          Maximum Iterations: 50
+        Test Type: MaxIters
+        Maximum Iterations: 20
       Printing: 
         Output Precision: 3
         Output Processor: 0
         Output Information: 
-          Error: true
-          Warning: true
-          Outer Iteration: true
+          Error: false
+          Warning: false
+          Outer Iteration: false
           Parameters: false
           Details: false
           Linear Solver Details: false
-          Stepper Iteration: true
-          Stepper Details: true
-          Stepper Parameters: true
+          Stepper Iteration: false
+          Stepper Details: false
+          Stepper Parameters: false
 
       Direction: 
         Method: Newton
@@ -308,61 +274,24 @@ ANONYMOUS:
                   Solver Type: Block GMRES
                   Solver Types:
                     Block GMRES:
-                      Output Frequency: 20
+                      Output Frequency: 0
                       Output Style: 1
                       Verbosity: 33
-                      Maximum Iterations: 200
+                      Maximum Iterations: 1
                       Block Size: 1
                       Num Blocks: 200
                       Flexible Gmres: false
                   VerboseObject:
                     Output File: none
-                    Verbosity Level: low
+                    Verbosity Level: none
 
 #             Preconditioner Information
-              Preconditioner Type: FROSch
+              Preconditioner Type: None
               Preconditioner Types:
-                FROSch:
-                  FROSch Preconditioner Type: OneLevelPreconditioner        # FROSch preconditioner type. Options: OneLevelPreconditioner, TwoLevelPreconditioner
-                  OverlappingOperator Type: AlgebraicOverlappingOperator    # First Level: AlgebrAlgebraicOverlappingOperator determines the overlap based on the graph of the matrix
-                  CoarseOperator Type: IPOUHarmonicCoarseOperator           # Second Level: IPOUHarmonicCoarseOperator work for all kinds of GDSW type coarse spaces
-                  Recycling: true                                           # This enables the possibility to re-use parts of the preconditioner in a Newton or time iteration
-                  Dimension : 3                                             # Spatial dimension of the problem
-                  DofsPerNode : 4                                           # Number of degrees of freedom per node
-                  Overlap: 0                                                # Number of layers of elements in the overlap
-                  Null Space Type: Input                                    # Null space is provided by Albany
-                  AlgebraicOverlappingOperator:
-                    'Reuse: Symbolic Factorization': true                   # Reuse of the symbolic factorization
-                    Adding Layers Strategy: CrsGraph
-                    Combine Values in Overlap: Averaging
-                    Solver:                                                 # Solver on the first level
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
-                  IPOUHarmonicCoarseOperator:
-                    'Reuse: Coarse Basis': true                            # Reuse of the coarse basis functions
-                    'Reuse: Coarse Matrix': false                           # Reuse of the coarse matrix
-                    'Reuse: Coarse Matrix Symbolic Factorization': false     # Reuse of the symbolic factorization of the coarse matrix
-                    Test Unconnected Interface: false
-                    'Extensions: Remove Coupling': true
-                    'Extensions: Coupling IDs to Remove': [[0, 0, 0, 3],[0, 1, 0, 3],[0, 2, 0, 3],[0, 3, 0, 0],[0, 3, 0, 1],[0, 3, 0, 2]]
-                    Blocks:
-                      1:                                                    # For a multiphysics problem, the coarse space may be decomposed into several blocks. Here, we only need one block.
-                        InterfacePartitionOfUnity:                          # The interface partition of unity defines the specific GDSW type coarse space
-                          Type: RGDSW                                       # Possible types: GDSW, RGDSW
-                          GDSW:
-                            Type: Full                                      # Here, we could select subspaces of the GDSW coarse. Generally, we use "Full".
-                          RGDSW:
-                            Type: Full                                      # Here, we could select subspaces of the RGDSW coarse. Generally, we use "Full".
-                            Distance Function: Constant            # Options 1 and 2.2 differ in the distance function used to compute the interface values: "Constant" (Option 1) and "Inverse Euclidean" (Option 2.2)
-                    Interface Communication Strategy: CreateOneToOneMap
-                    ExtensionSolver:                                        # Solver for the energy-minimizing extensions
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
-                    Distribution:                                           # Parallel distribution of the coarse problem
-                      Type: linear                                          # Specifies the parallel distribution strategy. For now, we use "linear"
-                      NumProcs: 1                                           # Number of ranks used for the coarse problem
-                      GatheringSteps: 2
-                    CoarseSolver:                                           # Solver for the coarse problem
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
+                Ifpack2:
+                  Overlap: 0
+                  Prec Type: Amesos2
+                  Ifpack2 Settings:
+                    Amesos2: {}
+                    Amesos2 solver name: superlu
 ...

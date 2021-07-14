@@ -5,13 +5,11 @@ ANONYMOUS:
 
 # Problem Description
   Problem: 
-    Name: LandIce Stokes FO Thermo Coupled 3D
+    Name: LandIce Stokes First Order 3D
     Solution Method: Steady
-    Required Fields: [basal_friction_log, surface_air_temperature]
+    Required Fields: [temperature]
     Basal Side Name: basalside
     Surface Side Name: upperside
-    Needs Dissipation: true
-    Needs Basal Friction: true
 
 #   LandIce parameters
     LandIce Physical Parameters:
@@ -37,18 +35,6 @@ ANONYMOUS:
       'Glen''s Law A': 7.5696e-05
       'Glen''s Law n': 3.0
       Flow Rate Type: Temperature Based
-    LandIce Enthalpy:
-      Regularization: 
-        Flux Regularization: 
-          alpha: 4.0
-          beta: 0.0
-        Basal Melting Regularization: 
-          alpha: 4.0
-          beta: 0.0
-      Stabilization: 
-        Type: Upwind
-        Parameter Delta: 0.5
-      Bed Lubrication: Dry
     Body Force: 
       Type: FO INTERP SURF GRAD
 
@@ -71,11 +57,7 @@ ANONYMOUS:
         Type: Lateral
         Cubature Degree: 4
         Side Set Name: extruded_boundary_side_set_2
-        #Melange Force: 3.0e+07 #[N/m]
-        #Melange Submerged Thickness Threshold: 0.1 #[km]
-        #Immersed Ratio: 0.893
-    Dirichlet BCs:  
-      DBC on NS top for DOF Enth prescribe Field: surface_enthalpy
+    Dirichlet BCs:
       DBC on NS extruded_boundary_node_set_3 for DOF U0 prescribe Field: velocity
       DBC on NS extruded_boundary_node_set_3 for DOF U1 prescribe Field: velocity
     LandIce Field Norm:
@@ -88,7 +70,7 @@ ANONYMOUS:
     Use MDField Memoization: true
     LandIce Rigid Body Modes For Preconditioner:
       Compute Constant Modes: true
-      Compute Rotation Modes: false
+      Compute Rotation Modes: true
 
 #   Output
     Phalanx Graph Visualization Detail: 0
@@ -103,21 +85,14 @@ ANONYMOUS:
         Asinh Scaling: 1.0e+01
         Scaling Coefficient: 4.540693e-06
         Cubature Degree: 4
-      Response 2:
-        Name: Surface Mass Balance Mismatch
-        Regularization Coefficient: 1.0e+03
-        H Coefficient: 100.0
-        SMB Coefficient: 1.0
-        Scaling Coefficient: 4.540693e-06
-        Cubature Degree: 4
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -2.17235918493
+    Test Value: -8.644636747943e-01
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
   Regression For Response 1:
-    Test Value: 1.300372856412e+01
+    Test Value: 1.300374437725e+01
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -135,12 +110,12 @@ ANONYMOUS:
 #   Field Information
     Thickness Field Name: ice_thickness
     Surface Height Field Name: surface_height
-    Basal Node Fields Ranks: [1, 1, 1, 1, 1]
-    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction_log, bed_topography, surface_air_temperature]
-    Basal Node Layered Fields Ranks: [2]
-    Interpolate Basal Node Layered Fields: [velocity]
+    Basal Node Fields Ranks: [1, 1, 1, 1]
+    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction_log, bed_topography]
+    Basal Node Layered Fields Ranks: [1, 2]
+    Interpolate Basal Node Layered Fields: [temperature, velocity]
     Required Fields Info:
-      Number Of Fields: 7
+      Number Of Fields: 6
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -154,21 +129,17 @@ ANONYMOUS:
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 3:
-        Field Name: surface_air_temperature
+        Field Name: bed_topography
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 4:
-        Field Name: bed_topography
+        Field Name: temperature
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 5:
         Field Name: velocity
         Field Type: Node Vector
         Field Origin: Mesh
-      Field 6:
-        Field Name: surface_enthalpy
-        Field Type: Node Scalar
-        Field Usage: Output # Required by problem
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
@@ -180,51 +151,34 @@ ANONYMOUS:
         Restart Index: 1
         Exodus Input File Name: mesh-pop-wdg/humboldt_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 7
+          Number Of Fields: 6
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
             Field Origin: Mesh
-            #Field Origin: File
-            #File Name: mesh/thickness.ascii
           Field 1:
             Field Name: surface_height
             Field Type: Node Scalar
             Field Origin: Mesh
-            #Field Origin: File
-            #File Name: mesh/surface_height.ascii
           Field 2:
-            Field Name: bed_topography
-            Field Type: Node Scalar
-            Field Origin: Mesh
-            #Field Origin: File
-            #File Name: mesh/bed_topography.ascii
-          Field 3:
             Field Name: basal_friction_log
             Field Type: Node Scalar
             Field Origin: Mesh
-            #Field Origin: File
-            #File Name: mesh/basal_friction_log.ascii
+          Field 3:
+            Field Name: bed_topography
+            Field Type: Node Scalar
+            Field Origin: Mesh
           Field 4:
-            Field Name: surface_air_temperature
-            Field Type: Node Scalar
+            Field Name: temperature
+            Field Type: Node Layered Scalar
             Field Origin: Mesh
-            #Field Origin: File
-            #File Name: mesh/surface_air_temperature.ascii
+            Number Of Layers: 11
           Field 5:
-            Field Name: heat_flux
-            Field Type: Node Scalar
-            Field Origin: Mesh
-            #Field Origin: File
-            #File Name: mesh/basal_heat_flux.ascii
-          Field 6:
             Field Name: velocity
             Field Type: Node Layered Vector
             Field Origin: Mesh
             Number Of Layers: 2
             Vector Dim: 2
-            #Field Origin: File
-            #File Name: mesh/velocity.ascii
       upperside:
         Number Of Time Derivatives: 0
         Method: Ioss
@@ -320,49 +274,141 @@ ANONYMOUS:
                     Verbosity Level: low
 
 #             Preconditioner Information
-              Preconditioner Type: FROSch
+              Preconditioner Type: MueLu
               Preconditioner Types:
-                FROSch:
-                  FROSch Preconditioner Type: OneLevelPreconditioner        # FROSch preconditioner type. Options: OneLevelPreconditioner, TwoLevelPreconditioner
-                  OverlappingOperator Type: AlgebraicOverlappingOperator    # First Level: AlgebrAlgebraicOverlappingOperator determines the overlap based on the graph of the matrix
-                  CoarseOperator Type: IPOUHarmonicCoarseOperator           # Second Level: IPOUHarmonicCoarseOperator work for all kinds of GDSW type coarse spaces
-                  Recycling: true                                           # This enables the possibility to re-use parts of the preconditioner in a Newton or time iteration
-                  Dimension : 3                                             # Spatial dimension of the problem
-                  DofsPerNode : 4                                           # Number of degrees of freedom per node
-                  Overlap: 0                                                # Number of layers of elements in the overlap
-                  Null Space Type: Input                                    # Null space is provided by Albany
-                  AlgebraicOverlappingOperator:
-                    'Reuse: Symbolic Factorization': true                   # Reuse of the symbolic factorization
-                    Adding Layers Strategy: CrsGraph
-                    Combine Values in Overlap: Averaging
-                    Solver:                                                 # Solver on the first level
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
-                  IPOUHarmonicCoarseOperator:
-                    'Reuse: Coarse Basis': true                            # Reuse of the coarse basis functions
-                    'Reuse: Coarse Matrix': false                           # Reuse of the coarse matrix
-                    'Reuse: Coarse Matrix Symbolic Factorization': false     # Reuse of the symbolic factorization of the coarse matrix
-                    Test Unconnected Interface: false
-                    'Extensions: Remove Coupling': true
-                    'Extensions: Coupling IDs to Remove': [[0, 0, 0, 3],[0, 1, 0, 3],[0, 2, 0, 3],[0, 3, 0, 0],[0, 3, 0, 1],[0, 3, 0, 2]]
-                    Blocks:
-                      1:                                                    # For a multiphysics problem, the coarse space may be decomposed into several blocks. Here, we only need one block.
-                        InterfacePartitionOfUnity:                          # The interface partition of unity defines the specific GDSW type coarse space
-                          Type: RGDSW                                       # Possible types: GDSW, RGDSW
-                          GDSW:
-                            Type: Full                                      # Here, we could select subspaces of the GDSW coarse. Generally, we use "Full".
-                          RGDSW:
-                            Type: Full                                      # Here, we could select subspaces of the RGDSW coarse. Generally, we use "Full".
-                            Distance Function: Constant            # Options 1 and 2.2 differ in the distance function used to compute the interface values: "Constant" (Option 1) and "Inverse Euclidean" (Option 2.2)
-                    Interface Communication Strategy: CreateOneToOneMap
-                    ExtensionSolver:                                        # Solver for the energy-minimizing extensions
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
-                    Distribution:                                           # Parallel distribution of the coarse problem
-                      Type: linear                                          # Specifies the parallel distribution strategy. For now, we use "linear"
-                      NumProcs: 1                                           # Number of ranks used for the coarse problem
-                      GatheringSteps: 2
-                    CoarseSolver:                                           # Solver for the coarse problem
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
+                MueLu: 
+                  Matrix: 
+                    PDE equations: 2
+                  Factories: 
+                    myLineDetectionFact: 
+                      factory: LineDetectionFactory
+                      'linedetection: orientation': coordinates
+                    mySemiCoarsenPFact1: 
+                      factory: SemiCoarsenPFactory
+                      'semicoarsen: coarsen rate': 14
+                    UncoupledAggregationFact2: 
+                      factory: UncoupledAggregationFactory
+                      'aggregation: ordering': graph
+                      'aggregation: max selected neighbors': 0
+                      'aggregation: min agg size': 3
+                      'aggregation: phase3 avoid singletons': true
+                    MyCoarseMap2: 
+                      factory: CoarseMapFactory
+                      Aggregates: UncoupledAggregationFact2
+                    myTentativePFact2: 
+                      'tentative: calculate qr': true
+                      factory: TentativePFactory
+                      Aggregates: UncoupledAggregationFact2
+                      CoarseMap: MyCoarseMap2
+                    mySaPFact2: 
+                      'sa: eigenvalue estimate num iterations': 10
+                      'sa: damping factor': 1.33333
+                      factory: SaPFactory
+                      P: myTentativePFact2
+                    myTransferCoordinatesFact: 
+                      factory: CoordinatesTransferFactory
+                      CoarseMap: MyCoarseMap2
+                      Aggregates: UncoupledAggregationFact2
+                    myTogglePFact: 
+                      factory: TogglePFactory
+                      'semicoarsen: number of levels': 2
+                      TransferFactories: 
+                        P1: mySemiCoarsenPFact1
+                        P2: mySaPFact2
+                        Ptent1: mySemiCoarsenPFact1
+                        Ptent2: myTentativePFact2
+                        Nullspace1: mySemiCoarsenPFact1
+                        Nullspace2: myTentativePFact2
+                    myRestrictorFact: 
+                      factory: TransPFactory
+                      P: myTogglePFact
+                    myToggleTransferCoordinatesFact: 
+                      factory: ToggleCoordinatesTransferFactory
+                      Chosen P: myTogglePFact
+                      TransferFactories: 
+                        Coordinates1: mySemiCoarsenPFact1
+                        Coordinates2: myTransferCoordinatesFact
+                    myRAPFact: 
+                      factory: RAPFactory
+                      P: myTogglePFact
+                      R: myRestrictorFact
+                      TransferFactories: 
+                        For Coordinates: myToggleTransferCoordinatesFact
+                    myRepartitionHeuristicFact: 
+                      factory: RepartitionHeuristicFactory
+                      A: myRAPFact
+                      'repartition: min rows per proc': 3000
+                      'repartition: max imbalance': 1.327
+                      'repartition: start level': 3
+                    myZoltanInterface: 
+                      factory: ZoltanInterface
+                      A: myRAPFact
+                      Coordinates: myToggleTransferCoordinatesFact
+                      number of partitions: myRepartitionHeuristicFact
+                    myRepartitionFact: 
+                      factory: RepartitionFactory
+                      A: myRAPFact
+                      Partition: myZoltanInterface
+                      'repartition: remap parts': true
+                      number of partitions: myRepartitionHeuristicFact
+                    myRebalanceProlongatorFact: 
+                      factory: RebalanceTransferFactory
+                      type: Interpolation
+                      P: myTogglePFact
+                      Coordinates: myToggleTransferCoordinatesFact
+                      Nullspace: myTogglePFact
+                    myRebalanceRestrictionFact: 
+                      factory: RebalanceTransferFactory
+                      type: Restriction
+                      R: myRestrictorFact
+                    myRebalanceAFact: 
+                      factory: RebalanceAcFactory
+                      A: myRAPFact
+                      TransferFactories: { }
+                    mySmoother1: 
+                      factory: TrilinosSmoother
+                      type: LINESMOOTHING_TRIDIRELAXATION
+                      'smoother: pre or post': both
+                      ParameterList: 
+                        'relaxation: type': Gauss-Seidel
+                        'relaxation: sweeps': 1
+                        'relaxation: damping factor': 1.0
+                        'block relaxation: decouple dofs': true
+                        'partitioner: PDE equations': 2
+                        #'partitioner: decouple lines': true
+                    mySmoother4: 
+                      factory: TrilinosSmoother
+                      type: RELAXATION
+                      'smoother: pre or post': pre
+                      ParameterList: 
+                        'relaxation: type': Gauss-Seidel
+                        'relaxation: sweeps': 4
+                        'relaxation: damping factor': 1.0
+                  Hierarchy: 
+                    max levels: 7
+                    'coarse: max size': 2000
+                    verbosity: None
+                    Finest: 
+                      Smoother: mySmoother1
+                      CoarseSolver: mySmoother4
+                      P: myRebalanceProlongatorFact
+                      Nullspace: myRebalanceProlongatorFact
+                      CoarseNumZLayers: myLineDetectionFact
+                      LineDetection_Layers: myLineDetectionFact
+                      LineDetection_VertLineIds: myLineDetectionFact
+                      A: myRebalanceAFact
+                      Coordinates: myRebalanceProlongatorFact
+                      Importer: myRepartitionFact
+                    All: 
+                      startLevel: 1
+                      Smoother: mySmoother4
+                      CoarseSolver: mySmoother4
+                      P: myRebalanceProlongatorFact
+                      Nullspace: myRebalanceProlongatorFact
+                      CoarseNumZLayers: myLineDetectionFact
+                      LineDetection_Layers: myLineDetectionFact
+                      LineDetection_VertLineIds: myLineDetectionFact
+                      A: myRebalanceAFact
+                      Coordinates: myRebalanceProlongatorFact
+                      Importer: myRepartitionFact
 ...

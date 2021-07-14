@@ -70,30 +70,40 @@ ANONYMOUS:
       BC 1:
         Type: Lateral
         Cubature Degree: 4
-        Side Set Name: lateralside
+        Side Set Name: extruded_boundary_side_set_2
         #Melange Force: 3.0e+07 #[N/m]
         #Melange Submerged Thickness Threshold: 0.1 #[km]
         #Immersed Ratio: 0.893
-    LandIce Field Norm:
-      sliding_velocity_basalside:
-        Regularization Type: Given Value
-        Regularization Value: 1.0e-06
     Dirichlet BCs:  
       DBC on NS top for DOF Enth prescribe Field: surface_enthalpy
       DBC on NS extruded_boundary_node_set_3 for DOF U0 prescribe Field: velocity
       DBC on NS extruded_boundary_node_set_3 for DOF U1 prescribe Field: velocity
+    LandIce Field Norm:
+      sliding_velocity_basalside:
+        #Type: Exponent Of Given Field
+        Regularization Type: Given Value
+        Regularization Value: 1.0e-06
+
+#   Performance parameters
+    Use MDField Memoization: true
+    LandIce Rigid Body Modes For Preconditioner:
+      Compute Constant Modes: true
+      Compute Rotation Modes: false
 
 #   Output
     Phalanx Graph Visualization Detail: 0
     Response Functions:
-      Number Of Responses: 0
+      Number Of Responses: 2
       Response 0:
+        Name: Solution Average
+        Type: Scalar Response
+      Response 1:
         Name: Surface Velocity Mismatch
         Regularization Coefficient: 1.0e+03
         Asinh Scaling: 1.0e+01
         Scaling Coefficient: 4.540693e-06
         Cubature Degree: 4
-      Response 1: 
+      Response 2:
         Name: Surface Mass Balance Mismatch
         Regularization Coefficient: 1.0e+03
         H Coefficient: 100.0
@@ -101,11 +111,15 @@ ANONYMOUS:
         Scaling Coefficient: 4.540693e-06
         Cubature Degree: 4
 
-#   Performance parameters
-    Use MDField Memoization: true
-    LandIce Rigid Body Modes For Preconditioner:
-      Compute Constant Modes: true
-      Compute Rotation Modes: false
+# Final solution comparison
+  Regression For Response 0:
+    Test Value: -2.17235918493
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 1:
+    Test Value: 1.300372856412e+01
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
 
 # Discretization Description
   Discretization: 
@@ -154,13 +168,12 @@ ANONYMOUS:
       Field 6:
         Field Name: surface_enthalpy
         Field Type: Node Scalar
-        Field Usage: Output
+        Field Usage: Output # Required by problem
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
       Side Sets: [basalside, upperside]
       basalside:
-        Workset Size: -1
         Number Of Time Derivatives: 0
         Method: Ioss
         Cubature Degree: 4
@@ -207,25 +220,24 @@ ANONYMOUS:
           Field 6:
             Field Name: velocity
             Field Type: Node Layered Vector
+            Field Origin: Mesh
             Number Of Layers: 2
             Vector Dim: 2
-            Field Origin: Mesh
             #Field Origin: File
             #File Name: mesh/velocity.ascii
       upperside:
-        Workset Size: -1
         Number Of Time Derivatives: 0
         Method: Ioss
+        Cubature Degree: 4
         Restart Index: 1
         Exodus Input File Name: mesh-pop-wdg/humboldt_upper_populated.exo
-        Cubature Degree: 4
         Required Fields Info:
           Number Of Fields: 2
           Field 0:
             Field Name: observed_surface_velocity
             Field Type: Node Vector
-            Vector Dim: 2
             Field Origin: Mesh
+            Vector Dim: 2
           Field 1:
             Field Name: observed_surface_velocity_RMS
             Field Type: Node Scalar
@@ -263,7 +275,7 @@ ANONYMOUS:
             Tolerance: 0.9999
         Test 1: 
           Test Type: MaxIters
-          Maximum Iterations: 70
+          Maximum Iterations: 50
       Printing: 
         Output Precision: 3
         Output Processor: 0
@@ -290,30 +302,16 @@ ANONYMOUS:
             Stratimikos: 
 
 #             Linear Solver Information
-              Linear Solver Type: AztecOO
+              Linear Solver Type: AztecOO # Belos/Ifpack2/Amesos2 broken
               Linear Solver Types: 
-                AztecOO: 
-                  Forward Solve: 
-                    AztecOO Settings: 
+                AztecOO:
+                  Forward Solve:
+                    AztecOO Settings:
                       Aztec Solver: GMRES
                       Convergence Test: r0
                       Size of Krylov Subspace: 200
                       Output Frequency: 20
                     Max Iterations: 500
-                Belos:
-                  Solver Type: Block GMRES
-                  Solver Types:
-                    Block GMRES:
-                      Output Frequency: 20
-                      Output Style: 1
-                      Verbosity: 33
-                      Maximum Iterations: 200
-                      Block Size: 1
-                      Num Blocks: 200
-                      Flexible Gmres: false
-                  VerboseObject:
-                    Output File: none
-                    Verbosity Level: low
 
 #             Preconditioner Information
               Preconditioner Type: Ifpack2
@@ -324,189 +322,4 @@ ANONYMOUS:
                   Ifpack2 Settings:
                     Amesos2: {}
                     Amesos2 solver name: superlu
-                FROSch:
-                  FROSch Preconditioner Type: TwoLevelPreconditioner        # FROSch preconditioner type. Options: OneLevelPreconditioner, TwoLevelPreconditioner
-                  OverlappingOperator Type: AlgebraicOverlappingOperator    # First Level: AlgebrAlgebraicOverlappingOperator determines the overlap based on the graph of the matrix
-                  CoarseOperator Type: IPOUHarmonicCoarseOperator           # Second Level: IPOUHarmonicCoarseOperator work for all kinds of GDSW type coarse spaces
-                  Recycling: true                                           # This enables the possibility to re-use parts of the preconditioner in a Newton or time iteration
-                  Dimension : 3                                             # Spatial dimension of the problem
-                  DofsPerNode : 4                                           # Number of degrees of freedom per node
-                  Overlap: 1                                                # Number of layers of elements in the overlap
-                  Null Space Type: Input                                    # Null space is provided by Albany
-                  AlgebraicOverlappingOperator:
-                    'Reuse: Symbolic Factorization': true                   # Reuse of the symbolic factorization
-                    Adding Layers Strategy: CrsGraph
-                    Combine Values in Overlap: Averaging
-                    Solver:                                                 # Solver on the first level
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
-                  IPOUHarmonicCoarseOperator:
-                    'Reuse: Coarse Basis': true                            # Reuse of the coarse basis functions
-                    'Reuse: Coarse Matrix': false                           # Reuse of the coarse matrix
-                    'Reuse: Coarse Matrix Symbolic Factorization': false     # Reuse of the symbolic factorization of the coarse matrix
-                    Test Unconnected Interface: false
-                    'Extensions: Remove Coupling': true
-                    'Extensions: Coupling IDs to Remove': [[0, 0, 0, 3],[0, 1, 0, 3],[0, 2, 0, 3],[0, 3, 0, 0],[0, 3, 0, 1],[0, 3, 0, 2]]
-                    Blocks:
-                      1:                                                    # For a multiphysics problem, the coarse space may be decomposed into several blocks. Here, we only need one block.
-                        InterfacePartitionOfUnity:                          # The interface partition of unity defines the specific GDSW type coarse space
-                          Type: RGDSW                                       # Possible types: GDSW, RGDSW
-                          GDSW:
-                            Type: Full                                      # Here, we could select subspaces of the GDSW coarse. Generally, we use "Full".
-                          RGDSW:
-                            Type: Full                                      # Here, we could select subspaces of the RGDSW coarse. Generally, we use "Full".
-                            Distance Function: Constant            # Options 1 and 2.2 differ in the distance function used to compute the interface values: "Constant" (Option 1) and "Inverse Euclidean" (Option 2.2)
-                    Interface Communication Strategy: CreateOneToOneMap
-                    ExtensionSolver:                                        # Solver for the energy-minimizing extensions
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
-                    Distribution:                                           # Parallel distribution of the coarse problem
-                      Type: linear                                          # Specifies the parallel distribution strategy. For now, we use "linear"
-                      NumProcs: 1                                           # Number of ranks used for the coarse problem
-                      GatheringSteps: 2
-                    CoarseSolver:                                           # Solver for the coarse problem
-                      SolverType: Amesos2                                   # Solver package: Amesos2 or Ifpack2
-                      Solver: superlu                                           # Solver name (depends on the solver package): klu, RILUK, ...
-                MueLu: 
-                  Matrix: 
-                    PDE equations: 4
-                  Factories: 
-                    myLineDetectionFact: 
-                      factory: LineDetectionFactory
-                      'linedetection: orientation': coordinates
-                    mySemiCoarsenPFact1: 
-                      factory: SemiCoarsenPFactory
-                      'semicoarsen: coarsen rate': 14
-                    UncoupledAggregationFact2: 
-                      factory: UncoupledAggregationFactory_kokkos
-                      'aggregation: ordering': graph
-                      'aggregation: max selected neighbors': 0
-                      'aggregation: min agg size': 3
-                      'aggregation: phase3 avoid singletons': true
-                    MyCoarseMap2: 
-                      factory: CoarseMapFactory_kokkos
-                      Aggregates: UncoupledAggregationFact2
-                    myTentativePFact2: 
-                      'tentative: calculate qr': true
-                      factory: TentativePFactory_kokkos
-                      Aggregates: UncoupledAggregationFact2
-                      CoarseMap: MyCoarseMap2
-                    mySaPFact2: 
-                      'sa: eigenvalue estimate num iterations': 10
-                      'sa: damping factor': 1.33332999999999990e+00
-                      factory: SaPFactory_kokkos
-                      P: myTentativePFact2
-                    myTransferCoordinatesFact: 
-                      factory: CoordinatesTransferFactory_kokkos
-                      CoarseMap: MyCoarseMap2
-                      Aggregates: UncoupledAggregationFact2
-                    myTogglePFact: 
-                      factory: TogglePFactory
-                      'semicoarsen: number of levels': 2
-                      TransferFactories: 
-                        P1: mySemiCoarsenPFact1
-                        P2: mySaPFact2
-                        Ptent1: mySemiCoarsenPFact1
-                        Ptent2: myTentativePFact2
-                        Nullspace1: mySemiCoarsenPFact1
-                        Nullspace2: myTentativePFact2
-                    myRestrictorFact: 
-                      factory: TransPFactory
-                      P: myTogglePFact
-                    myToggleTransferCoordinatesFact: 
-                      factory: ToggleCoordinatesTransferFactory
-                      Chosen P: myTogglePFact
-                      TransferFactories: 
-                        Coordinates1: mySemiCoarsenPFact1
-                        Coordinates2: myTransferCoordinatesFact
-                    myRAPFact: 
-                      factory: RAPFactory
-                      P: myTogglePFact
-                      R: myRestrictorFact
-                      TransferFactories: 
-                        For Coordinates: myToggleTransferCoordinatesFact
-                      'rap: fix zero diagonals': true
-                    myRepartitionHeuristicFact: 
-                      factory: RepartitionHeuristicFactory
-                      A: myRAPFact
-                      'repartition: min rows per proc': 3000
-                      'repartition: max imbalance': 1.32699999999999996e+00
-                      'repartition: start level': 3
-                    myZoltanInterface: 
-                      factory: ZoltanInterface
-                      A: myRAPFact
-                      Coordinates: myToggleTransferCoordinatesFact
-                      number of partitions: myRepartitionHeuristicFact
-                    myRepartitionFact: 
-                      factory: RepartitionFactory
-                      A: myRAPFact
-                      Partition: myZoltanInterface
-                      'repartition: remap parts': true
-                      number of partitions: myRepartitionHeuristicFact
-                    myRebalanceProlongatorFact: 
-                      factory: RebalanceTransferFactory
-                      type: Interpolation
-                      P: myTogglePFact
-                      Coordinates: myToggleTransferCoordinatesFact
-                      Nullspace: myTogglePFact
-                    myRebalanceRestrictionFact: 
-                      factory: RebalanceTransferFactory
-                      type: Restriction
-                      R: myRestrictorFact
-                    myRebalanceAFact: 
-                      factory: RebalanceAcFactory
-                      A: myRAPFact
-                      TransferFactories: { }
-                    mySmoother1: 
-                      factory: TrilinosSmoother
-                      type: RELAXATION
-                      'smoother: pre or post': both
-                      ParameterList: 
-                        'relaxation: type': MT Gauss-Seidel
-                        'relaxation: sweeps': 1
-                        'relaxation: damping factor': 1.00000000000000000e+00
-                    mySmoother3: 
-                      factory: TrilinosSmoother
-                      type: RELAXATION
-                      'smoother: pre or post': both
-                      ParameterList: 
-                        'relaxation: type': MT Gauss-Seidel
-                        'relaxation: sweeps': 1
-                        'relaxation: damping factor': 1.00000000000000000e+00
-                    mySmoother4: 
-                      factory: TrilinosSmoother
-                      type: RELAXATION
-                      'smoother: pre or post': pre
-                      ParameterList: 
-                        'relaxation: type': MT Gauss-Seidel
-                        'relaxation: sweeps': 4
-                        'relaxation: damping factor': 1.00000000000000000e+00
-                  Hierarchy: 
-                    max levels: 3
-                    'coarse: max size': 2000
-                    verbosity: None
-                    use kokkos refactor: true
-                    Finest: 
-                      Smoother: mySmoother1
-                      CoarseSolver: mySmoother4
-                      P: myRebalanceProlongatorFact
-                      Nullspace: myRebalanceProlongatorFact
-                      CoarseNumZLayers: myLineDetectionFact
-                      LineDetection_Layers: myLineDetectionFact
-                      LineDetection_VertLineIds: myLineDetectionFact
-                      A: myRebalanceAFact
-                      Coordinates: myRebalanceProlongatorFact
-                      Importer: myRepartitionFact
-                    All: 
-                      startLevel: 1
-                      Smoother: mySmoother4
-                      CoarseSolver: mySmoother4
-                      P: myRebalanceProlongatorFact
-                      Nullspace: myRebalanceProlongatorFact
-                      CoarseNumZLayers: myLineDetectionFact
-                      LineDetection_Layers: myLineDetectionFact
-                      LineDetection_VertLineIds: myLineDetectionFact
-                      A: myRebalanceAFact
-                      Coordinates: myRebalanceProlongatorFact
-                      Importer: myRepartitionFact
 ...

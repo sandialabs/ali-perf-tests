@@ -494,7 +494,7 @@ ANONYMOUS:
                   Hierarchy: 
                     max levels: 7
                     'coarse: max size': 2000
-                    verbosity: None
+                    verbosity: medium
                     Finest: 
                       Smoother: mySmoother1
                       CoarseSolver: mySmoother4

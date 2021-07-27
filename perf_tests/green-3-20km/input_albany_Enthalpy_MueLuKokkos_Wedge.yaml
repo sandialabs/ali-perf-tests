@@ -344,7 +344,7 @@ ANONYMOUS:
                   Hierarchy: 
                     max levels: 3
                     'coarse: max size': 2000
-                    verbosity: None
+                    verbosity: medium
                     use kokkos refactor: true
                     Finest: 
                       Smoother: mySmoother1

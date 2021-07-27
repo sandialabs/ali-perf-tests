@@ -27,70 +27,61 @@ ANONYMOUS:
     Side Set Discretizations: 
       Side Sets: [basalside, upperside]
       basalside:
+        Workset Size: -1
         Number Of Time Derivatives: 0
         Method: Ioss
         Cubature Degree: 4
         Exodus Input File Name: mesh-decomp/humboldt_2d.exo
         Exodus Output File Name: mesh-pop-wdg/humboldt_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 12
+          Number Of Fields: 10
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/thickness.ascii
           Field 1:
-            Field Name: observed_ice_thickness
-            Field Type: Node Scalar
-            Field Origin: File
-            File Name: mesh/thickness.ascii
-          Field 2:
-            Field Name: observed_ice_thickness_RMS
-            Field Type: Node Scalar
-            Field Origin: File
-            File Name: mesh/thickness_uncertainty.ascii
-          Field 3:
             Field Name: surface_height
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/surface_height.ascii
-          Field 4:
+          Field 2:
             Field Name: bed_topography
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/bed_topography.ascii
-          Field 5:
+          Field 3:
             Field Name: basal_friction_log
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/basal_friction_log.ascii
-          Field 6:
+          Field 4:
             Field Name: temperature
             Field Type: Elem Layered Scalar
             Number Of Layers: 10
             Field Origin: File
             File Name: mesh/temperature.ascii
-          Field 7:
+          Field 5:
             Field Name: surface_air_temperature
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/surface_air_temperature.ascii
-          Field 8:
+          Field 6:
             Field Name: heat_flux
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/basal_heat_flux.ascii
-          Field 9:
+          Field 7:
             Field Name: apparent_mass_balance
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/apparent_mass_balance.ascii
-          Field 10:
+          Field 8:
             Field Name: apparent_mass_balance_RMS
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/apparent_mass_balance_uncertainty.ascii
-          Field 11:
+          Field 9:
             Field Name: velocity
             Field Type: Node Layered Vector
             Number Of Layers: 2
@@ -107,8 +98,8 @@ ANONYMOUS:
           Field 0:
             Field Name: observed_surface_velocity
             Field Type: Node Vector
-            Vector Dim: 2
             Field Origin: File
+            Vector Dim: 2
             File Name: mesh/surface_velocity.ascii
           Field 1:
             Field Name: observed_surface_velocity_RMS

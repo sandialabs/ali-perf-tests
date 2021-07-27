@@ -371,7 +371,7 @@ ANONYMOUS:
                   Hierarchy: 
                     max levels: 7
                     'coarse: max size': 2000
-                    verbosity: None
+                    verbosity: medium
                     #DataToWrite: 
                     #  Matrices: '{12}'
                     #  Prolongators: '{12}'

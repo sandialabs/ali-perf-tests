@@ -302,16 +302,22 @@ ANONYMOUS:
             Stratimikos: 
 
 #             Linear Solver Information
-              Linear Solver Type: AztecOO # Belos/Ifpack2/Amesos2 broken
+              Linear Solver Type: Belos
               Linear Solver Types: 
-                AztecOO:
-                  Forward Solve:
-                    AztecOO Settings:
-                      Aztec Solver: GMRES
-                      Convergence Test: r0
-                      Size of Krylov Subspace: 200
+                Belos:
+                  Solver Type: Block GMRES
+                  Solver Types:
+                    Block GMRES:
                       Output Frequency: 20
-                    Max Iterations: 500
+                      Output Style: 1
+                      Verbosity: 33
+                      Maximum Iterations: 200
+                      Block Size: 1
+                      Num Blocks: 200
+                      Flexible Gmres: false
+                  VerboseObject:
+                    Output File: none
+                    Verbosity Level: low
 
 #             Preconditioner Information
               Preconditioner Type: Ifpack2

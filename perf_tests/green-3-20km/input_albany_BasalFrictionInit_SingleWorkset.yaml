@@ -224,6 +224,7 @@ ANONYMOUS:
   Piro:
 #   Optimization Information
     Sensitivity Method: Adjoint
+    Enable Explicit Matrix Transpose: true
     Analysis:
       Output Final Parameters: false
       Analysis Package: ROL

@@ -284,7 +284,7 @@ ANONYMOUS:
                       factory: LineDetectionFactory
                       'linedetection: orientation': coordinates
                     mySemiCoarsenPFact1: 
-                      factory: SemiCoarsenPFactory
+                      factory: SemiCoarsenPFactory_kokkos
                       'semicoarsen: coarsen rate': 14
                     UncoupledAggregationFact2: 
                       factory: UncoupledAggregationFactory_kokkos

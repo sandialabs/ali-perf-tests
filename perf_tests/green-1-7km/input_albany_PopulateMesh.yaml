@@ -53,9 +53,12 @@ ANONYMOUS:
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/basal_friction.ascii
-  Piro: 
-    NOX: 
-      Printing: 
-        Output Information: 
+  Piro:
+    NOX:
+      Status Tests:
+        Test Type: NormF
+        Tolerance: 1.0
+      Printing:
+        Output Information:
           Details: false
 ...

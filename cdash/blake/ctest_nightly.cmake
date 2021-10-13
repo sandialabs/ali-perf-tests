@@ -45,8 +45,8 @@ set (CTEST_BUILD_FLAGS "-j48")
 
 find_program (CTEST_GIT_COMMAND NAMES git)
 
-set (ALIPerfTests_REPOSITORY_LOCATION git@github.com:ikalash/ali-perf-tests.git)
-set (GithubIO_REPOSITORY_LOCATION git@github.com:ikalash/ikalash.github.io.git)
+set (ALIPerfTests_REPOSITORY_LOCATION git@github.com:sandialabs/ali-perf-tests.git)
+set (GithubIO_REPOSITORY_LOCATION git@github.com:sandialabs/ikalash.github.io.git)
 set (MPI_PATH $ENV{MPI_ROOT})  
 set (MKL_PATH $ENV{MKL_ROOT})  
 set (SUPERLU_PATH $ENV{SUPERLU_ROOT})  

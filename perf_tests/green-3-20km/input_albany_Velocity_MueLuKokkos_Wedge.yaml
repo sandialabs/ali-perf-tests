@@ -366,30 +366,22 @@ ANONYMOUS:
                       factory: RebalanceAcFactory
                       A: myRAPFact
                       TransferFactories: { }
-                    mySmoother1: 
+                    mySmoother1:
                       factory: TrilinosSmoother
-                      type: RELAXATION
-#                      type: LINESMOOTHING_BANDEDRELAXATION
+                      type: CHEBYSHEV
                       'smoother: pre or post': both
-                      ParameterList: 
-                        'relaxation: type': Two-stage Gauss-Seidel
-                        'relaxation: sweeps': 1
-                        'relaxation: inner damping factor': 0.25
-                    mySmoother3: 
+                      ParameterList:
+                        'chebyshev: degree': 2
+                        'chebyshev: eigenvalue max iterations': 91
+                        'chebyshev: ratio eigenvalue': 27.572
+                    mySmoother4:
                       factory: TrilinosSmoother
-                      type: RELAXATION
-                      'smoother: pre or post': both
-                      ParameterList: 
-                        'relaxation: type': MT Gauss-Seidel
-                        'relaxation: sweeps': 1
-                        'relaxation: damping factor': 1.00000000000000000e+00
-                    mySmoother4: 
-                      factory: TrilinosSmoother
-                      type: RELAXATION
+                      type: CHEBYSHEV
                       'smoother: pre or post': pre
-                      ParameterList: 
-                        'relaxation: type': Two-stage Gauss-Seidel
-                        'relaxation: sweeps': 4
+                      ParameterList:
+                        'chebyshev: degree': 4
+                        'chebyshev: eigenvalue max iterations': 94
+                        'chebyshev: ratio eigenvalue': 25.6539
                   Hierarchy: 
                     max levels: 3
                     'coarse: max size': 2000

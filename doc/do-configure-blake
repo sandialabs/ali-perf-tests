@@ -28,12 +28,12 @@ rm -rf CMake*
 cmake \
   -Wno-dev \
   -D ALIPT_BUILD_BLAKE:BOOL=ON \
-  -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build/TrilinosSerialInstall \
-  -D SFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad4 \
-  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad6 \
-  -D SFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad \
-  -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad12 \
-  -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build/AlbBuildSerialSFad24 \
+  -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build-intel/TrilinosSerialInstall \
+  -D SFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad4 \
+  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad6 \
+  -D SFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad \
+  -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad12 \
+  -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad24 \
   -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \
   -D BUILD_SHARED_LIBS:BOOL=ON \

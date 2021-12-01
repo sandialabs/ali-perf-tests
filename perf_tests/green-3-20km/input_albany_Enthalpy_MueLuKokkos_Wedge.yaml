@@ -317,30 +317,22 @@ ANONYMOUS:
                       factory: RebalanceAcFactory
                       A: myRAPFact
                       TransferFactories: { }
-                    mySmoother1: 
-                      factory: TrilinosSmoother
-                      type: RELAXATION
-#                      type: LINESMOOTHING_BANDEDRELAXATION
-                      'smoother: pre or post': both
-                      ParameterList: 
-                        'relaxation: type': Two-stage Gauss-Seidel
-                        'relaxation: sweeps': 1
-                        'relaxation: inner damping factor': 0.25
-                    mySmoother3: 
+                    mySmoother1:
                       factory: TrilinosSmoother
                       type: RELAXATION
                       'smoother: pre or post': both
-                      ParameterList: 
+                      ParameterList:
+                        'relaxation: damping factor': 0.8191
+                        'relaxation: sweeps': 2
                         'relaxation: type': MT Gauss-Seidel
-                        'relaxation: sweeps': 1
-                        'relaxation: damping factor': 1.00000000000000000e+00
-                    mySmoother4: 
+                    mySmoother4:
                       factory: TrilinosSmoother
                       type: RELAXATION
                       'smoother: pre or post': pre
-                      ParameterList: 
+                      ParameterList:
+                        'relaxation: inner damping factor': 0.8642
+                        'relaxation: sweeps': 2
                         'relaxation: type': Two-stage Gauss-Seidel
-                        'relaxation: sweeps': 4
                   Hierarchy: 
                     max levels: 3
                     'coarse: max size': 2000

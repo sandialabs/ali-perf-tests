@@ -57,7 +57,7 @@ endif()
 find_program (CTEST_GIT_COMMAND NAMES git)
 
 set (ALIPerfTests_REPOSITORY_LOCATION git@github.com:sandialabs/ali-perf-tests.git)
-set (GithubIO_REPOSITORY_LOCATION git@github.com:sandialabs/ikalash.github.io.git)
+set (GithubIO_REPOSITORY_LOCATION git@github.com:sandialabs/ali-perf-data.git)
 set (MPI_PATH $ENV{MPI_ROOT})  
 set (MKL_PATH $ENV{MKL_ROOT})  
 set (BOOST_PATH $ENV{BOOST_ROOT}) 
@@ -120,12 +120,12 @@ if (DOWNLOAD_ALI_PERF_TESTS)
     message(FATAL_ERROR "Cannot pull ali-perf-tests!")
   endif ()
   #
-  # Get ikalash.github.io repo
+  # Get ali-perf-data repo
   #
 
-  if (NOT EXISTS "${CTEST_SOURCE_DIRECTORY}/ikalash.github.io")
+  if (NOT EXISTS "${CTEST_SOURCE_DIRECTORY}/ali-perf-data")
     execute_process (COMMAND "${CTEST_GIT_COMMAND}"
-      clone ${GithubIO_REPOSITORY_LOCATION} -b master ${CTEST_SOURCE_DIRECTORY}/ikalash.github.io
+      clone ${GithubIO_REPOSITORY_LOCATION} -b master ${CTEST_SOURCE_DIRECTORY}/ali-perf-data
       OUTPUT_VARIABLE _out
       ERROR_VARIABLE _err
       RESULT_VARIABLE HAD_ERROR)
@@ -134,24 +134,24 @@ if (DOWNLOAD_ALI_PERF_TESTS)
     message(STATUS "err: ${_err}")
     message(STATUS "res: ${HAD_ERROR}")
     if (HAD_ERROR)
-      message(FATAL_ERROR "Cannot clone ikalash.github.io repository!")
+      message(FATAL_ERROR "Cannot clone ali-perf-data repository!")
     endif ()
   endif ()
 
   set (CTEST_UPDATE_COMMAND "${CTEST_GIT_COMMAND}")
 
-  # Pull the ikalash.github.io repo
+  # Pull the ali-perf-data repo
 
   execute_process (COMMAND "${CTEST_GIT_COMMAND}" pull
-      WORKING_DIRECTORY ${CTEST_SOURCE_DIRECTORY}/ikalash.github.io
+      WORKING_DIRECTORY ${CTEST_SOURCE_DIRECTORY}/ali-perf-data
       OUTPUT_VARIABLE _out
       ERROR_VARIABLE _err
       RESULT_VARIABLE HAD_ERROR)
-  message(STATUS "Output of ikalash.github.io pull: ${_out}")
+  message(STATUS "Output of ali-perf-data pull: ${_out}")
   message(STATUS "Text sent to standard error stream: ${_err}")
   message(STATUS "command result status: ${HAD_ERROR}")
   if (HAD_ERROR)
-    message(FATAL_ERROR "Cannot pull ikalash.github.io!")
+    message(FATAL_ERROR "Cannot pull ali-perf-data!")
   endif ()
 
 

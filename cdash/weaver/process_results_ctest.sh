@@ -17,7 +17,7 @@ cat results7 results8 >& results
 echo "" >> results 
 echo "The Albany CDash site can be accessed here: https://sems-cdash-son.sandia.gov/cdash/index.php?project=Albany" >> results
 echo "" >> results
-echo "The Jupyter notebooks containing Waterman ALI performance data can be accessed here: https://ikalash.github.io/ali/index_weaver.html" >> results
+echo "The Jupyter notebooks containing Waterman ALI performance data can be accessed here: https://sandialabs.github.io/ali-perf-data/ali/index_weaver.html" >> results
 echo "" >> results
 rm results0 results1 results11 results2 results3 results4 results5 results6 results7 results8
 #bash send_email.sh

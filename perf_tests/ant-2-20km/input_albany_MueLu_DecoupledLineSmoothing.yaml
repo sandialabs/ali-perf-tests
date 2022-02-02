@@ -28,11 +28,6 @@ ANONYMOUS:
       'Glen''s Law A': 5.00000000000000024e-05
       'Glen''s Law n': 3.00000000000000000e+00
       Flow Rate Type: Temperature Based
-    LandIce L2 Projected Boundary Laplacian: 
-      Mass Coefficient: 5.00000000000000010e-03
-      Laplacian Coefficient: 2.00000000000000000e+00
-      Robin Coefficient: 5.00000000000000028e-02
-      Boundary Edges Set Name: lateralside
     Body Force: 
       Type: FO INTERP SURF GRAD
 

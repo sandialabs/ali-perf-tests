@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 2.6.4)
+cmake_minimum_required(VERSION 3.17.0)
 
 PROJECT(ALI_PERF_TESTS NONE)
 

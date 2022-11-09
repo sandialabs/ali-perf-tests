@@ -48,7 +48,8 @@ ANONYMOUS:
       Stabilization:
         Type: Upwind
         Parameter Delta: 0.5
-      Bed Lubrication: Dry
+      Bed Lubrication:
+        Type: Dry
 
 #   Boundary Conditions
     Dirichlet BCs:

@@ -32,14 +32,15 @@ ANONYMOUS:
       Regularization:
         Flux Regularization:
           alpha: 4.0
-          beta: 0.0000000000000000e+00
+          beta: 0.0
         Basal Melting Regularization:
           alpha: 4.0
-          beta: 0.0000000000000000e+00
+          beta: 0.0
       Stabilization:
         Type: Upwind
         Parameter Delta: 0.5
-      Bed Lubrication: Dry
+      Bed Lubrication: 
+        Type: Dry
     LandIce Viscosity:
       Extract Strain Rate Sq: true
       Type: 'Glen''s Law'

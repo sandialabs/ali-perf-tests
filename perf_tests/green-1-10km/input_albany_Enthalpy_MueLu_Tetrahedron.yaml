@@ -39,7 +39,8 @@ ANONYMOUS:
       Stabilization:
         Type: Upwind
         Parameter Delta: 0.5
-      Bed Lubrication: Dry
+      Bed Lubrication:
+        Type: Dry
     LandIce Viscosity:
       Extract Strain Rate Sq: true
       Type: 'Glen''s Law'

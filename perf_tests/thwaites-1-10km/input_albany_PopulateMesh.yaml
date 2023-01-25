@@ -1,0 +1,118 @@
+%YAML 1.1
+---
+ANONYMOUS:
+  Build Type: Tpetra
+
+# Problem Description
+  Problem: 
+    Solution Method: Steady
+    Name: Populate Mesh
+
+# Discretization Description
+  Discretization: 
+    Workset Size: -1
+    Number Of Time Derivatives: 0
+    Method: Extruded
+    NumLayers: 10
+    Element Shape: Wedge
+    Cubature Degree: 4
+    Columnwise Ordering: true
+    Use Glimmer Spacing: true
+
+#   Field Information
+    Thickness Field Name: ice_thickness
+    Surface Height Field Name: surface_height
+
+#   Sideset Discretizations descriptions
+    Side Set Discretizations: 
+      Side Sets: [basalside, upperside]
+      basalside:
+        Workset Size: -1
+        Number Of Time Derivatives: 0
+        Method: Ioss
+        Cubature Degree: 4
+        Exodus Input File Name: mesh-decomp/thwaites_2d.exo
+        Exodus Output File Name: mesh-pop/thwaites_basal_populated.exo
+        Required Fields Info:
+          Number Of Fields: 10
+          Field 0:
+            Field Name: ice_thickness
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/thickness.ascii
+          Field 1:
+            Field Name: surface_height
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/surface_height.ascii
+          Field 2:
+            Field Name: bed_topography
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/bed_topography.ascii
+          Field 3:
+            Field Name: basal_friction
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/basal_friction_zeroed.ascii
+          Field 4:
+            Field Name: basal_friction_log
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/basal_friction_log.ascii
+          Field 5:
+            Field Name: surface_air_temperature
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/surface_air_temperature.ascii
+          Field 6: 
+            Field Name: heat_flux
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/basal_heat_flux.ascii
+          Field 7:
+            Field Name: velocity
+            Field Type: Node Layered Vector
+            Field Origin: File
+            Number Of Layers: 2
+            Vector Dim: 2
+            File Name: mesh/extruded_surface_velocity.ascii
+          Field 8:
+            Field Name: vertical_velocity
+            Field Type: Node Layered Scalar
+            Field Origin: File
+            Number Of Layers: 11 
+            File Name: mesh/vertical_velocity.ascii
+          Field 9: 
+            Field Name: temperature
+            Field Type: Node Layered Scalar
+            Field Origin: File
+            Number Of Layers: 11
+            File Name: mesh/temperature.ascii
+      upperside:
+        Number Of Time Derivatives: 0
+        Method: SideSetSTK
+        Cubature Degree: 4
+        Exodus Output File Name: mesh-pop/thwaites_upper_populated.exo
+        Required Fields Info:
+          Number Of Fields: 2
+          Field 0:
+            Field Name: observed_surface_velocity
+            Field Type: Node Vector
+            Field Origin: File
+            Vector Dim: 2
+            File Name: mesh/surface_velocity.ascii
+          Field 1:
+            Field Name: observed_surface_velocity_RMS
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/surface_velocity_uncertainty.ascii
+  Piro:
+    NOX:
+      Status Tests:
+        Test Type: NormF
+        Tolerance: 1.0
+      Printing:
+        Output Information:
+          Details: false
+...

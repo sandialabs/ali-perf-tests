@@ -7,7 +7,6 @@ ANONYMOUS:
   Problem: 
     Name: LandIce Stokes First Order 3D
     Solution Method: Steady
-    Required Fields: [temperature]
     Basal Side Name: basalside
     Surface Side Name: upperside
 

@@ -101,8 +101,8 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Element Shape: Tetrahedron
-    Cubature Degree: 1
+    Element Shape: Wedge
+    Cubature Degree: 4
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -162,7 +162,7 @@ ANONYMOUS:
         Method: Ioss
         Cubature Degree: 4
         Restart Index: 1
-        Exodus Input File Name: mesh-pop-tet/gis_basal_populated.exo
+        Exodus Input File Name: mesh-pop/gis_basal_populated.exo
         Required Fields Info:
           Number Of Fields: 9
           Field 0:
@@ -207,7 +207,7 @@ ANONYMOUS:
         Method: Ioss
         Cubature Degree: 4
         Restart Index: 1
-        Exodus Input File Name: mesh-pop-tet/gis_upper_populated.exo
+        Exodus Input File Name: mesh-pop/gis_upper_populated.exo
         Required Fields Info:
           Number Of Fields: 2
           Field 0:

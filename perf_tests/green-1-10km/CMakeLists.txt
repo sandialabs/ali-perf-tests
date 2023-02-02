@@ -11,8 +11,6 @@ IF (NOT ALBANY_ENABLE_CUDA)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu.yaml COPYONLY)
 
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Enthalpy_FiniteElementAssembly_Memoization.yaml
-                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Enthalpy_FiniteElementAssembly_Memoization.yaml COPYONLY)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Enthalpy_MueLu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Enthalpy_MueLu.yaml COPYONLY)
 
@@ -48,7 +46,6 @@ IF (NOT ALBANY_ENABLE_CUDA)
   add_test(${testName}_vel_muk_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLuKokkos.yaml ${ALBANY_EXTRA_ARGS})
   add_test(${testName}_vel_mu_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu.yaml ${ALBANY_EXTRA_ARGS})
 
-  add_test(${testName}_ent_fea_mem_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_FiniteElementAssembly_Memoization.yaml ${ALBANY_EXTRA_ARGS})
   add_test(${testName}_ent_mu_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_MueLu.yaml ${ALBANY_EXTRA_ARGS})
 
   IF(ALIPT_TUNE)
@@ -66,8 +63,6 @@ set_tests_properties(${testName}_ent_muk_np${ALBANY_NUM_PROCS}
 IF (NOT ALBANY_ENABLE_CUDA)
   set_tests_properties(${testName}_vel_mu_np${ALBANY_NUM_PROCS}
                        ${testName}_vel_muk_np${ALBANY_NUM_PROCS}
-                       ${testName}_ent_fea_1ws_np${ALBANY_NUM_PROCS}
-                       ${testName}_ent_fea_mem_np${ALBANY_NUM_PROCS}
                        ${testName}_ent_mu_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 

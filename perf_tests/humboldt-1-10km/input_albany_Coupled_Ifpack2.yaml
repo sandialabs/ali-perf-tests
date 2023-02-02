@@ -127,7 +127,6 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Element Shape: Wedge
     Cubature Degree: 4
     Columnwise Ordering: true
     Use Glimmer Spacing: true

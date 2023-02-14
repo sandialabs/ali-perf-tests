@@ -13,7 +13,7 @@ rm -rf intel_modules.out
 export OMP_NUM_THREADS=1
 
 export INTEL_LICENSE_FILE=/home/projects/x86-64/intel/licenses/USE_SERVER-ohpc.lic
-export KOKKOS_PROFILE_LIBRARY=/home/projects/albany/nightlyCDashAlbanyBlake/kokkos-tools/profiling/space-time-stack-mem-only/kp_space_time_stack.so
+export KOKKOS_TOOLS_LIBS=/home/projects/albany/nightlyCDashAlbanyBlake/kokkos-tools/profiling/space-time-stack-mem-only/kp_space_time_stack.so
 source blake_intel_modules.sh >& intel_modules.out  
 
 printenv |& tee out-env.txt

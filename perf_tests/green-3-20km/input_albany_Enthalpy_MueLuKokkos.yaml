@@ -242,7 +242,7 @@ ANONYMOUS:
                       'aggregation: min agg size': 3
                       'aggregation: phase3 avoid singletons': true
                     MyCoarseMap2: 
-                      factory: CoarseMapFactory_kokkos
+                      factory: CoarseMapFactory
                       Aggregates: UncoupledAggregationFact2
                     myTentativePFact2: 
                       'tentative: calculate qr': true

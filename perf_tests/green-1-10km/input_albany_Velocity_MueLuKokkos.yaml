@@ -304,7 +304,7 @@ ANONYMOUS:
                       factory: SaPFactory_kokkos
                       P: myTentativePFact2
                     myTransferCoordinatesFact: 
-                      factory: CoordinatesTransferFactory_kokkos
+                      factory: CoordinatesTransferFactory
                       CoarseMap: MyCoarseMap2
                       Aggregates: UncoupledAggregationFact2
                     myTogglePFact: 

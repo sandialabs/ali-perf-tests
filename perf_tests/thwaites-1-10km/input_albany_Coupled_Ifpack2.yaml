@@ -47,7 +47,7 @@ ANONYMOUS:
       Stabilization: 
         Type: Upwind
         Parameter Delta: 0.5
-      Bed Lubrication: 
+      Bed Lubrication:
         Type: Dry
     Body Force: 
       Type: FO INTERP SURF GRAD
@@ -58,7 +58,6 @@ ANONYMOUS:
       BC 0:
         Type: Basal Friction
         Side Set Name: basalside
-        Cubature Degree: 4
         Basal Friction Coefficient:
           Type: Power Law
           Mu Type: Exponent Of Field At Nodes
@@ -102,14 +101,17 @@ ANONYMOUS:
         Regularization Coefficient: 1.0e+03
         Asinh Scaling: 1.0e+01
         Scaling Coefficient: 4.540693e-06
-        Cubature Degree: 4
       Response 2:
         Name: Surface Mass Balance Mismatch
         Regularization Coefficient: 1.0e+03
         H Coefficient: 100.0
         SMB Coefficient: 1.0
         Scaling Coefficient: 4.540693e-06
-        Cubature Degree: 4
+
+#   Degrees of Cubature Rules
+    Cubature Degree: 4
+    Basal Cubature Degree: 4
+    Surface Cubature Degree: 4
 
 # Final solution comparison
   Regression For Response 0:
@@ -127,7 +129,6 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Cubature Degree: 4
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -175,7 +176,6 @@ ANONYMOUS:
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Cubature Degree: 4
         Restart Index: 1
         Exodus Input File Name: mesh-pop/thwaites_basal_populated.exo
         Required Fields Info:
@@ -227,7 +227,6 @@ ANONYMOUS:
       upperside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Cubature Degree: 4
         Restart Index: 1
         Exodus Input File Name: mesh-pop/thwaites_upper_populated.exo
         Required Fields Info:

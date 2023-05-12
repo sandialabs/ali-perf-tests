@@ -13,7 +13,6 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Cubature Degree: 4
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -27,7 +26,6 @@ ANONYMOUS:
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Cubature Degree: 4
         Exodus Input File Name: mesh-decomp/gis_2d.exo
         Exodus Output File Name: mesh-pop/gis_basal_populated.exo
         Required Fields Info: 
@@ -109,7 +107,6 @@ ANONYMOUS:
       upperside:
         Number Of Time Derivatives: 0
         Method: SideSetSTK
-        Cubature Degree: 4
         Exodus Output File Name: mesh-pop/gis_upper_populated.exo
         Required Fields Info: 
           Number Of Fields: 2

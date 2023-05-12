@@ -20,7 +20,7 @@ ANONYMOUS:
       Ice Density: 9.10e+02
       Gravity Acceleration: 9.80616
       Reference Temperature: 2.65e+02
-      Clausius-Clapeyron Coefficient: 7.9e-08
+      Clausius-Clapeyron Coefficient: 0.0 #7.9e-08
       Ice Latent Heat Of Fusion: 3.34e+05
       Permeability factor: 1.0e-12 #1e-12
       Viscosity of water: 1.8e-03
@@ -64,6 +64,10 @@ ANONYMOUS:
         Name: Solution Average
         Type: Scalar Response
 
+#   Degrees of Cubature Rules
+    Cubature Degree: 4
+    Basal Cubature Degree: 4
+
 # Final solution comparison
   Regression For Response 0:
     Test Value: -5.291207356861e+00
@@ -76,7 +80,6 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Cubature Degree: 4
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -112,7 +115,6 @@ ANONYMOUS:
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Cubature Degree: 4
         Restart Index: 1
         Exodus Input File Name: mesh-pop/humboldt_basal_populated.exo
         Required Fields Info:

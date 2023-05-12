@@ -58,7 +58,6 @@ ANONYMOUS:
       BC 0:
         Type: Basal Friction
         Side Set Name: basalside
-        Cubature Degree: 4
         Basal Friction Coefficient:
           Type: Power Law
           Mu Type: Exponent Of Field At Nodes
@@ -98,6 +97,11 @@ ANONYMOUS:
         Name: Solution Average
         Type: Scalar Response
 
+#   Degrees of Cubature Rules
+    Cubature Degree: 4
+    Basal Cubature Degree: 4
+    Surface Cubature Degree: 4
+
 # Final solution comparison
   Regression For Response 0:
     Test Value: 0.000212681587102
@@ -110,7 +114,6 @@ ANONYMOUS:
     Number Of Time Derivatives: 0
     Method: Extruded
     NumLayers: 10
-    Cubature Degree: 4
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
@@ -158,7 +161,6 @@ ANONYMOUS:
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Cubature Degree: 4
         Restart Index: 1
         Exodus Input File Name: mesh-pop/humboldt_basal_populated.exo
         Required Fields Info:
@@ -210,7 +212,6 @@ ANONYMOUS:
       upperside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Cubature Degree: 4
         Restart Index: 1
         Exodus Input File Name: mesh-pop/humboldt_upper_populated.exo
         Required Fields Info:

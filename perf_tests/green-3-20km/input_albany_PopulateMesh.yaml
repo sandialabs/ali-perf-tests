@@ -26,7 +26,7 @@ ANONYMOUS:
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Exodus Input File Name: mesh-decomp/gis_2d.exo
+        Exodus Input File Name: mesh-decomp/gis_1k_2d.exo
         Exodus Output File Name: mesh-pop/gis_basal_populated.exo
         Required Fields Info: 
           Number Of Fields: 14

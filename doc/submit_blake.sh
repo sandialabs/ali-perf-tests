@@ -11,7 +11,7 @@
 ## SBATCH --exclude=node03,node06,node10,node27,node15
 
 # Load modules
-source ${HOME}/bin/blake_intel_modules.sh
+source ${HOME}/bin/blake_gcc_modules.sh
 
 # Env variables
 export KOKKOS_TOOLS_LIBS=/home/projects/albany/nightlyCDashAlbanyBlake/kokkos-tools/profiling/space-time-stack-mem-only/kp_space_time_stack.so

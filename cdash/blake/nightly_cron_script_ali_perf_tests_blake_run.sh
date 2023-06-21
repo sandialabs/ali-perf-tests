@@ -8,13 +8,12 @@ unset https_proxy
 
 rm -rf *slurm*
 rm -rf *.txt
-rm -rf intel_modules.out
+rm -rf gcc_modules.out
 
 export OMP_NUM_THREADS=1
 
-export INTEL_LICENSE_FILE=/home/projects/x86-64/intel/licenses/USE_SERVER-ohpc.lic
 export KOKKOS_TOOLS_LIBS=/home/projects/albany/nightlyCDashAlbanyBlake/kokkos-tools/profiling/space-time-stack-mem-only/kp_space_time_stack.so
-source blake_intel_modules.sh >& intel_modules.out  
+source blake_gcc_modules.sh >& gcc_modules.out  
 
 printenv |& tee out-env.txt
 

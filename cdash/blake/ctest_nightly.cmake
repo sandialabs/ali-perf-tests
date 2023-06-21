@@ -40,7 +40,7 @@ configure_file (${CTEST_SCRIPT_DIRECTORY}/CTestConfig.cmake
 
 execute_process(COMMAND bash delete_txt_files.sh 
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-set (TRILINSTALLDIR "/home/projects/albany/nightlyCDashTrilinosBlake/build-intel/TrilinosSerialInstall")
+set (TRILINSTALLDIR "/home/projects/albany/nightlyCDashTrilinosBlake/build-gcc/TrilinosReleaseInstallGcc")
 execute_process(COMMAND grep "Trilinos_C_COMPILER " ${TRILINSTALLDIR}/lib/cmake/Trilinos/TrilinosConfig.cmake
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 		RESULT_VARIABLE MPICC_RESULT
@@ -85,7 +85,7 @@ getuname(cpu    -m)
 #message("IKT osrel = " ${osrel}) 
 #message("IKT cpu = " ${cpu}) 
 
-set (CTEST_BUILD_NAME "AlbanyPerfTests-${osname}-${osrel}-${COMPILER}-${COMPILER_VERSION}-${CTEST_CONFIGURATION}-Serial-sfad")
+set (CTEST_BUILD_NAME "AlbanyPerfTests-${osname}-${osrel}-${COMPILER}-${COMPILER_VERSION}-${CTEST_CONFIGURATION}-sfad")
 
 set (CTEST_NIGHTLY_START_TIME "00:00:00 UTC")
 set (CTEST_CMAKE_COMMAND "cmake")
@@ -210,9 +210,9 @@ if (BUILD_ALI_PERF_TESTS)
     "-Wno-dev"
     "-DALIPT_BUILD_BLAKE:BOOL=ON"
     "-DTRILINOS_DIR:FILEPATH=${TRILINSTALLDIR}"
-    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad6"
-    "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad12"
-    "-DSFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-intel/AlbBuildSerialSFad24"
+    "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad6"
+    "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad12"
+    "-DSFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad24"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"

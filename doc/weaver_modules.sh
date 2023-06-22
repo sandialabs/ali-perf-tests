@@ -14,6 +14,7 @@ module load parmetis/4.0.3/gcc/8.3.1/openmpi/4.1.1
 module load boost/1.70.0/gcc/8.3.1
 module load superlu/5.3.0/gcc/8.3.1
 module load ucx/1.12.1/gcc/8.3.1
+module load python
 module list
 
 export CUDA_MANAGED_FORCE_DEVICE_ALLOC=1

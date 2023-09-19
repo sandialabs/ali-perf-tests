@@ -11,6 +11,7 @@ ANONYMOUS:
     Surface Side Name: upperside
     Needs Dissipation: true
     Needs Basal Friction: true
+    Flat Bed Approximation: true
 
 #   LandIce parameters
     LandIce Physical Parameters:

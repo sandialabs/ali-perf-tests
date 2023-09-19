@@ -9,6 +9,7 @@ ANONYMOUS:
     Solution Method: Steady
     Basal Side Name: basalside
     Surface Side Name: upperside
+    Flat Bed Approximation: true
 
 #   LandIce parameters
     LandIce Physical Parameters:

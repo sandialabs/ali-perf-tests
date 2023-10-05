@@ -49,7 +49,7 @@ set (CTEST_DROP_METHOD "https")
 execute_process(COMMAND bash delete_txt_files.sh 
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 set (TRILINSTALLDIR "/home/projects/albany/nightlyCDashWeaver/build/TrilinosInstall") 
-execute_process(COMMAND grep "Trilinos_C_COMPILER " ${TRILINSTALLDIR}/lib/cmake/Trilinos/TrilinosConfig.cmake
+execute_process(COMMAND grep "Trilinos_C_COMPILER " ${TRILINSTALLDIR}/lib64/cmake/Trilinos/TrilinosConfig.cmake
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 		RESULT_VARIABLE MPICC_RESULT
 		OUTPUT_FILE "mpicc.txt")
@@ -244,7 +244,9 @@ if (BUILD_ALI_PERF_TESTS)
     "-Wno-dev"
     "-DALIPT_BUILD_WEAVER:BOOL=ON"
     "-DTRILINOS_DIR:FILEPATH=${TRILINSTALLDIR}"
+    "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad4"
     "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6"
+    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad"
     "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12"
     "-DSFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad24"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"

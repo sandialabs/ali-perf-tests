@@ -78,7 +78,7 @@ execute_process(COMMAND bash process_compiler.sh
 		OUTPUT_VARIABLE COMPILER
 		OUTPUT_STRIP_TRAILING_WHITESPACE)
 #message("IKT compiler = " ${COMPILER})
-execute_process(COMMAND grep "Trilinos_CXX_COMPILER " ${TRILINSTALLDIR}/lib/cmake/Trilinos/TrilinosConfig.cmake
+execute_process(COMMAND grep "Trilinos_CXX_COMPILER " ${TRILINSTALLDIR}/lib64/cmake/Trilinos/TrilinosConfig.cmake
                 WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 		RESULT_VARIABLE MPICXX_RESULT
 		OUTPUT_FILE "mpicxx.txt")

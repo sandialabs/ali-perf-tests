@@ -90,7 +90,7 @@ set (CTEST_BUILD_NAME "AlbanyPerfTests-${osname}-${osrel}-${COMPILER}-${COMPILER
 set (CTEST_NIGHTLY_START_TIME "00:00:00 UTC")
 set (CTEST_CMAKE_COMMAND "cmake")
 set (CTEST_COMMAND "ctest -D ${CTEST_TEST_TYPE}")
-set (CTEST_BUILD_FLAGS "-j48")
+set (CTEST_BUILD_FLAGS "-j96")
 
 find_program (CTEST_GIT_COMMAND NAMES git)
 

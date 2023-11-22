@@ -1,6 +1,6 @@
 #!/bin/bash
 ## Do not put any commands or blank lines before the #SBATCH lines
-#SBATCH --nodes=8                    # Number of nodes - all cores per node are allocated to the job
+#SBATCH --nodes=4                    # Number of nodes - all cores per node are allocated to the job
 #SBATCH --time=0:59:00               # Wall clock time (HH:MM:SS) - once the job exceeds this time, the job will be terminated (default is 5 minutes)
 #SBATCH --job-name=ali-perf          # Name of job
 ##SBATCH --partition=batch       # partition/queue name: short or batch
@@ -20,7 +20,7 @@
 #SBATCH --dependency=afterok:XXX
 
 nodes=$SLURM_JOB_NUM_NODES           # Number of nodes - the number of nodes you have requested (for a list of SLURM environment variables see "man sbatch")
-cores=48                             # Number MPI processes to run on each node (a.k.a. PPN)
+cores=96                             # Number MPI processes to run on each node (a.k.a. PPN)
                                      # tlcc2 has 16 cores per node
 
 unset http_proxy

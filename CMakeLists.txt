@@ -24,7 +24,7 @@ if (TRILINOS_DIR)
 endif()
 message ("-- Looking for trilinos installation ...")
 message ("     TRILINOS_DIR: ${TRILINOS_DIR}") 
-find_package(Trilinos 14.1 REQUIRED)
+find_package(Trilinos 15.1 REQUIRED)
 message("-- Looking for trilinos installation ... Found.\n")
 
 # Trilinos_BIN_DIRS probably should be defined in the Trilinos config. Until it is, set it here.

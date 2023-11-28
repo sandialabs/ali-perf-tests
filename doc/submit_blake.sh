@@ -3,9 +3,10 @@
 #SBATCH --job-name=ALIPT
 #SBATCH --output=ALIPT.%j.out
 #SBATCH --error=ALIPT.%j.err
-#SBATCH --nodes=8
+#SBATCH --nodes=4
 #SBATCH --ntasks=384
-#SBATCH --ntasks-per-node=48
+#SBATCH --ntasks-per-node=96
+#SBATCH --ntasks-per-socket=48
 #SBATCH --time=04:00:00
 #SBATCH --exclusive
 ## SBATCH --exclude=node03,node06,node10,node27,node15

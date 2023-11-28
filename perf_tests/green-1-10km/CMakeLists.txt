@@ -37,19 +37,19 @@ execute_process(COMMAND ${ALBANY_SEACAS_DECOMP} --processors ${ALBANY_NUM_PROCS}
 get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
 # Add tests to populate mesh with ascii inputs
-add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_PopulateMesh.yaml ${ALBANY_EXTRA_ARGS})
+add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_albany_PopulateMesh.yaml ${ALBANY_EXTRA_ARGS}")
 
 # Add tests for performance
-add_test(${testName}_ent_muk_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_MueLuKokkos.yaml ${ALBANY_EXTRA_ARGS})
+add_test(${testName}_ent_muk_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_albany_Enthalpy_MueLuKokkos.yaml ${ALBANY_EXTRA_ARGS}")
 
 IF (NOT ALBANY_ENABLE_CUDA)
-  add_test(${testName}_vel_muk_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLuKokkos.yaml ${ALBANY_EXTRA_ARGS})
-  add_test(${testName}_vel_mu_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_vel_muk_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLuKokkos.yaml ${ALBANY_EXTRA_ARGS}")
+  add_test(${testName}_vel_mu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu.yaml ${ALBANY_EXTRA_ARGS}")
 
-  add_test(${testName}_ent_mu_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD6_EXE} input_albany_Enthalpy_MueLu.yaml ${ALBANY_EXTRA_ARGS})
+  add_test(${testName}_ent_mu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_albany_Enthalpy_MueLu.yaml ${ALBANY_EXTRA_ARGS}")
 
   IF(ALIPT_TUNE)
-    add_test(${testName}_vel_mu_tune_np${ALBANY_NUM_PROCS} ${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Tune.yaml ${ALBANY_EXTRA_ARGS})
+    add_test(${testName}_vel_mu_tune_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu_Tune.yaml ${ALBANY_EXTRA_ARGS}")
   ENDIF()
 ENDIF()
 

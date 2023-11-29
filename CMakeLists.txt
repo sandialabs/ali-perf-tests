@@ -121,7 +121,7 @@ ENDIF()
 IF(ALIPT_BUILD_BLAKE)
   SET(ALBANY_NUM_PROCS 384)
   # A delay between tests is needed to allow all ranks to unbind
-  SET(ALBANY_MPI_CONFIG "sleep 30 && mpirun -n ${ALBANY_NUM_PROCS} --map-by core")
+  SET(ALBANY_MPI_CONFIG "sleep 60 && mpirun -n ${ALBANY_NUM_PROCS} --map-by core")
 ELSEIF(ALIPT_BUILD_WEAVER)
   #SET(ALBANY_NUM_PROCS 8) # TempFix: cannot launch multiple nodes on weaver
   SET(ALBANY_NUM_PROCS 4)

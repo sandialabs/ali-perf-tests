@@ -28,6 +28,7 @@ ANONYMOUS:
         Workset Size: -1
         Number Of Time Derivatives: 0
         Method: Ioss
+        Save Solution Field: false
         Exodus Input File Name: mesh-decomp/thwaites_2d.exo
         Exodus Output File Name: mesh-pop/thwaites_basal_populated.exo
         Required Fields Info:
@@ -89,6 +90,7 @@ ANONYMOUS:
       upperside:
         Number Of Time Derivatives: 0
         Method: SideSetSTK
+        Save Solution Field: false
         Exodus Output File Name: mesh-pop/thwaites_upper_populated.exo
         Required Fields Info:
           Number Of Fields: 2

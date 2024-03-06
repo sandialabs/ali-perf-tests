@@ -28,6 +28,7 @@ ANONYMOUS:
         Workset Size: -1
         Number Of Time Derivatives: 0
         Method: Ioss
+        Save Solution Field: false
         Exodus Input File Name: mesh-decomp/humboldt_2d.exo
         Exodus Output File Name: mesh-pop/humboldt_basal_populated.exo
         Required Fields Info:
@@ -90,6 +91,7 @@ ANONYMOUS:
         Number Of Time Derivatives: 0
         Method: SideSetSTK
         Exodus Output File Name: mesh-pop/humboldt_upper_populated.exo
+        Save Solution Field: false
         Required Fields Info:
           Number Of Fields: 2
           Field 0:

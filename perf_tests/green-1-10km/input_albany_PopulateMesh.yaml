@@ -10,7 +10,7 @@ ANONYMOUS:
 # Discretization Description
   Discretization: 
     Number Of Time Derivatives: 0
-    Method: Extruded
+    Method: STKExtruded
     NumLayers: 10
     Columnwise Ordering: true
     Use Glimmer Spacing: true

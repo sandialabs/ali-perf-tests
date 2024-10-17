@@ -1,14 +1,8 @@
 # Copy files to build directory
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_pop.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_pop.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_fea.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_vel_fea.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_cheby.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_vel_cheby.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_fea.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_ent_fea.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_gs.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_ent_gs.yaml COPYONLY)
 
 IF (NOT ALBANY_ENABLE_CUDA)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_lsgs.yaml
@@ -16,13 +10,13 @@ IF (NOT ALBANY_ENABLE_CUDA)
 ENDIF()
 
 # Create symlink for mesh directory
-SET(MESH_PATH "${MESH_FILE_DIR}/green-3-20km")
+SET(MESH_PATH "${MESH_FILE_DIR}/ant-struct/ant-4km")
 execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink
                 ${MESH_PATH} ${CMAKE_CURRENT_BINARY_DIR}/mesh)
 
 # Decompose the mesh
 execute_process(COMMAND ${ALBANY_SEACAS_DECOMP} --processors ${ALBANY_NUM_PROCS} --root ${CMAKE_CURRENT_BINARY_DIR}/ --subdir mesh-decomp
-                ${MESH_PATH}/gis_1k_2d.exo)
+                ${MESH_PATH}/antarctica_2d.exo)
 
 # Name the test with the directory name
 get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
@@ -31,10 +25,7 @@ get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_pop.yaml ${ALBANY_EXTRA_ARGS}")
 
 # Add tests for performance
-add_test(${testName}_vel_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_fea.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_vel_cheby_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_cheby.yaml ${ALBANY_EXTRA_ARGS}")
-add_test(${testName}_ent_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_fea.yaml ${ALBANY_EXTRA_ARGS}")
-add_test(${testName}_ent_gs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_gs.yaml ${ALBANY_EXTRA_ARGS}")
 
 IF (NOT ALBANY_ENABLE_CUDA)
   add_test(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_lsgs.yaml ${ALBANY_EXTRA_ARGS}")
@@ -45,10 +36,7 @@ set_tests_properties(${testName}_pop_np${ALBANY_NUM_PROCS}
                      PROPERTIES
                      FIXTURES_SETUP ${testName}_pop
                      LABELS "pop")
-set_tests_properties(${testName}_vel_fea_np${ALBANY_NUM_PROCS}
-                     ${testName}_vel_cheby_np${ALBANY_NUM_PROCS}
-                     ${testName}_ent_fea_np${ALBANY_NUM_PROCS}
-                     ${testName}_ent_gs_np${ALBANY_NUM_PROCS}
+set_tests_properties(${testName}_vel_cheby_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 
 IF (NOT ALBANY_ENABLE_CUDA)

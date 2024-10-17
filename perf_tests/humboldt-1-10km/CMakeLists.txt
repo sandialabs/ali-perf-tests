@@ -1,17 +1,18 @@
 # Copy files to build directory
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_PopulateMesh.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_albany_PopulateMesh.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Coupled_FiniteElementAssembly.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Coupled_FiniteElementAssembly.yaml COPYONLY)
-IF(NOT ALBANY_ENABLE_CUDA)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Velocity_MueLu.yaml
-                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Velocity_MueLu.yaml COPYONLY)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Enthalpy_MueLu.yaml
-                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Enthalpy_MueLu.yaml COPYONLY)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Coupled_Ifpack2.yaml
-                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Coupled_Ifpack2.yaml COPYONLY)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_albany_Coupled_FROSch.yaml
-                 ${CMAKE_CURRENT_BINARY_DIR}/input_albany_Coupled_FROSch.yaml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_pop.yaml
+               ${CMAKE_CURRENT_BINARY_DIR}/input_pop.yaml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fea.yaml
+               ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fea.yaml COPYONLY)
+
+IF (NOT ALBANY_ENABLE_CUDA)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_lsgs.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_vel_lsgs.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_lsgs.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_ent_lsgs.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_if2.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_if2.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fro.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fro.yaml COPYONLY)
 ENDIF()
 
 # Create symlink for mesh directory
@@ -26,26 +27,30 @@ execute_process(COMMAND ${ALBANY_SEACAS_DECOMP} --processors ${ALBANY_NUM_PROCS}
 # Name the test with the directory name
 get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
-# Add tests to populate mesh with ascii inputs
-add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_albany_PopulateMesh.yaml ${ALBANY_EXTRA_ARGS}")
+# Add test to populate mesh with ascii inputs
+add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_pop.yaml ${ALBANY_EXTRA_ARGS}")
 
 # Add tests for performance
-add_test(${testName}_cop_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_albany_Coupled_FiniteElementAssembly.yaml ${ALBANY_EXTRA_ARGS}")
-IF(NOT ALBANY_ENABLE_CUDA)
-  add_test(${testName}_vel_mu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_albany_Velocity_MueLu.yaml ${ALBANY_EXTRA_ARGS}")
-  add_test(${testName}_ent_mu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_albany_Enthalpy_MueLu.yaml ${ALBANY_EXTRA_ARGS}")
-  add_test(${testName}_cop_if2_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_albany_Coupled_Ifpack2.yaml ${ALBANY_EXTRA_ARGS}")
-  add_test(${testName}_cop_fro_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_albany_Coupled_FROSch.yaml ${ALBANY_EXTRA_ARGS}")
+add_test(${testName}_cop_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_fea.yaml ${ALBANY_EXTRA_ARGS}")
+
+IF (NOT ALBANY_ENABLE_CUDA)
+  add_test(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_lsgs.yaml ${ALBANY_EXTRA_ARGS}")
+  add_test(${testName}_ent_lsgs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_lsgs.yaml ${ALBANY_EXTRA_ARGS}")
+  add_test(${testName}_cop_if2_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_if2.yaml ${ALBANY_EXTRA_ARGS}")
+  add_test(${testName}_cop_fro_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_fro.yaml ${ALBANY_EXTRA_ARGS}")
 ENDIF()
 
 # Add dependencies
 set_tests_properties(${testName}_pop_np${ALBANY_NUM_PROCS}
-                     PROPERTIES FIXTURES_SETUP ${testName}_pop)
+                     PROPERTIES
+                     FIXTURES_SETUP ${testName}_pop
+                     LABELS "pop")
 set_tests_properties(${testName}_cop_fea_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
-IF(NOT ALBANY_ENABLE_CUDA)
-  set_tests_properties(${testName}_vel_mu_np${ALBANY_NUM_PROCS}
-                       ${testName}_ent_mu_np${ALBANY_NUM_PROCS}
+
+IF (NOT ALBANY_ENABLE_CUDA)
+  set_tests_properties(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS}
+                       ${testName}_ent_lsgs_np${ALBANY_NUM_PROCS}
                        ${testName}_cop_if2_np${ALBANY_NUM_PROCS}
                        ${testName}_cop_fro_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)

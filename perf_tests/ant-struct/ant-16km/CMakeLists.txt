@@ -22,13 +22,13 @@ execute_process(COMMAND ${ALBANY_SEACAS_DECOMP} --processors ${ALBANY_NUM_PROCS}
 get_filename_component(testName ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
 # Add test to populate mesh with ascii inputs
-add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_pop.yaml ${ALBANY_EXTRA_ARGS}")
+add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD16_EXE} input_pop.yaml ${ALBANY_EXTRA_ARGS}")
 
 # Add tests for performance
-add_test(${testName}_vel_cheby_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_cheby.yaml ${ALBANY_EXTRA_ARGS}")
+add_test(${testName}_vel_cheby_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD16_EXE} input_vel_cheby.yaml ${ALBANY_EXTRA_ARGS}")
 
 IF (NOT ALBANY_ENABLE_CUDA)
-  add_test(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_lsgs.yaml ${ALBANY_EXTRA_ARGS}")
+  add_test(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD16_EXE} input_vel_lsgs.yaml ${ALBANY_EXTRA_ARGS}")
 ENDIF()
 
 # Add dependencies

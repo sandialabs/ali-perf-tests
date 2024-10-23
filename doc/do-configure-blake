@@ -27,6 +27,7 @@ cmake \
   -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build-gcc/TrilinosReleaseInstallGcc \
   -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad6 \
   -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad12 \
+  -D SFAD16_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad16 \
   -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad24 \
   -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \

@@ -325,5 +325,6 @@ ANONYMOUS:
                   Prec Type: Amesos2
                   Ifpack2 Settings:
                     Amesos2: {}
+                    #Amesos2 solver name: klu # does not converge
                     Amesos2 solver name: superlu
 ...

@@ -17,7 +17,8 @@
 ##SBATCH --mail-user=ikalash@sandia.gov
 ##SBATCH --exclude=node03,node06,node10,node27
 #SBATCH --exclusive
-#SBATCH --dependency=afterok:XXX
+#SBATCH --output=log-batch.out
+#SBATCH --error=log-batch.err
 
 nodes=$SLURM_JOB_NUM_NODES           # Number of nodes - the number of nodes you have requested (for a list of SLURM environment variables see "man sbatch")
 cores=96                             # Number MPI processes to run on each node (a.k.a. PPN)
@@ -25,6 +26,7 @@ cores=96                             # Number MPI processes to run on each node 
 
 unset http_proxy
 unset https_proxy
+cd /home/projects/albany/nightlyCDashAlbanyBlake/aliPerfTests/nightlyCDash
 bash nightly_cron_script_ali_perf_tests_blake_run.sh
 bash process_results_ctest.sh 
 bash nightly_cron_script_ali_perf_tests_blake_bzip2_save.sh >& nightly_log_blakeALIPerfTests_saveResults.txt

@@ -27,6 +27,7 @@ cmake \
   -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/TrilinosInstall \
   -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6 \
   -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12 \
+  -D SFAD16_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad16 \
   -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad24 \
   -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \

@@ -55,6 +55,7 @@ ANONYMOUS:
         Type: Lateral
         Cubature Degree: 4
         Side Set Name: extruded_boundary_side_set_1
+    Dirichlet BCs: {}
     LandIce Field Norm:
       sliding_velocity_basalside:
         Regularization Type: Given Value

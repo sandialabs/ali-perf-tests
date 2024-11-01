@@ -7,7 +7,6 @@ ANONYMOUS:
     Solution Method: Steady
     Basal Side Name: basalside
     Surface Side Name: upperside
-    Flat Bed Approximation: true
 
 #   LandIce parameters
     LandIce Physical Parameters:
@@ -16,49 +15,47 @@ ANONYMOUS:
       Heat capacity of ice: 2.009e+03
       Water Density: 1.028e+03
       Ice Density: 9.10e+02
-      Gravity Acceleration: 9.81e+00
-      Reference Temperature: 2.65e+02
+      Gravity Acceleration: 9.80616
       Clausius-Clapeyron Coefficient: 7.9e-08
-      Ice Latent Heat Of Fusion: 3.34e+05
-      Permeability factor: 1.0e-12 #1e-12
-      Viscosity of water: 1.8e-03
-      Omega exponent alpha: 2.0
-      Diffusivity homotopy exponent: -1.1
     LandIce Viscosity:
+      Use P0 Temperature: true
       Extract Strain Rate Sq: true
-      Type: 'Glen''s Law'
-      'Glen''s Law Homotopy Parameter': 0.5
-      Continuous Homotopy With Constant Initial Viscosity: true
-      Coefficient For Continuous Homotopy: 8.0
-      'Glen''s Law A': 7.5696e-05
-      'Glen''s Law n': 3.0
+      Type: Glen's Law
+      Glen's Law Homotopy Parameter: 0.3
+      Glen's Law A: 2.400304414e-24     # [ Pa^-3 s^-1 ]
+      Glen's Law n: 3.0
       Flow Rate Type: Temperature Based
     Body Force: 
       Type: FO INTERP SURF GRAD
+    Flat Bed Approximation: false
 
 #   Boundary Conditions
     LandIce BCs:
       Number : 2
       BC 0:
         Type: Basal Friction
+        Cubature Degree: 4
         Side Set Name: basalside
         Basal Friction Coefficient:
           Type: Power Law
-          Mu Type: Exponent Of Field
-          Mu Field Name: log_basal_friction
           Power Exponent: 1.0
-          Effective Pressure Type: Constant
-          Effective Pressure: 1.0
-          Zero Beta On Floating Ice: true
+          Effective Pressure Type: Hydrostatic Computed At Nodes
+          Zero Effective Pressure On Floating Ice At Nodes: true
+          Mu Type: Field
+          Mu Field Name: mu
       BC 1:
         Type: Lateral
-        Cubature Degree: 4
-        Side Set Name: extruded_boundary_side_set_1
+        Cubature Degree: 3
+        Side Set Name: lateralside
     LandIce Field Norm:
       sliding_velocity_basalside:
         Regularization Type: Given Value
-        Type: Exponent Of Given Field
-        Regularization Value: 1.0e-05
+        Regularization Value: 1.0e-04
+
+#   Cubature Rules
+    Cubature Degrees (Horiz Vert): [4, 3]
+    Basal Cubature Degree: 4
+    Surface Cubature Degree: 4
 
 #   Output
     Phalanx Graph Visualization Detail: 0
@@ -74,36 +71,30 @@ ANONYMOUS:
       Compute Constant Modes: true
       Compute Rotation Modes: true
 
-#   Degrees of Cubature Rules
-    Cubature Degree: 4
-    Basal Cubature Degree: 4
-    Surface Cubature Degree: 4
-
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -7.005509894455e+00
+    Test Value: -7.516807281563e+00
     Relative Tolerance: 1.0e-05
-    Absolute Tolerance: 3.0e-03 # see https://github.com/sandialabs/Albany/issues/712
-    #Absolute Tolerance: 1.0e-03
+    Absolute Tolerance: 1.0e-03
 
 # Discretization Description
   Discretization: 
     Workset Size: -1
     Number Of Time Derivatives: 0
     Method: STKExtruded
-    NumLayers: 10
+    NumLayers: 5
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
 #   Field Information
     Thickness Field Name: ice_thickness
     Surface Height Field Name: surface_height
-    Basal Node Fields Ranks: [1, 1, 1, 1, 1, 1]
-    Extrude Basal Node Fields: [ice_thickness, surface_height, log_basal_friction, bed_topography, apparent_mass_balance, apparent_mass_balance_RMS]
-    Basal Node Layered Fields Ranks: [1]
-    Interpolate Basal Node Layered Fields: [temperature]
+    Extrude Basal Node Fields: [ice_thickness, surface_height]
+    Basal Node Fields Ranks: [1, 1]
+    Interpolate Basal Elem Layered Fields: [temperature]
+    Basal Elem Layered Fields Ranks: [1]
     Required Fields Info:
-      Number Of Fields: 9
+      Number Of Fields: 3
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -113,99 +104,45 @@ ANONYMOUS:
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 2:
-        Field Name: log_basal_friction
-        Field Type: Node Scalar
-        Field Origin: Mesh
-      Field 3:
         Field Name: temperature
-        Field Type: Node Scalar
+        Field Type: Elem Scalar
         Field Origin: Mesh
-      Field 4:
-        Field Name: bed_topography
-        Field Type: Node Scalar
-        Field Origin: Mesh
-      Field 5:
-        Field Name: apparent_mass_balance
-        Field Type: Node Scalar
-        Field Origin: Mesh
-      Field 6:
-        Field Name: apparent_mass_balance_RMS
-        Field Type: Node Scalar
-        Field Origin: Mesh
-      Field 7:
-        Field Name: bed_topography
-        Field Type: Node Scalar
-        Field Origin: Mesh
-        Field Usage: Output
-      Field 8:
-        Field Name: surface_height
-        Field Type: Node Scalar
-        Field Origin: Mesh
-        Field Usage: Output
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
-      Side Sets: [basalside, upperside]
+      Side Sets: [basalside]
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
-        Restart Index: 1
-        Exodus Input File Name: mesh-pop/gis_basal_populated.exo
+        Exodus Input File Name: mesh-decomp/ais_2d.exo
         Required Fields Info:
-          Number Of Fields: 9
+          Number Of Fields: 5
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
-            Field Origin: Mesh
+            Field Origin: File
+            File Name: mesh/thickness.ascii
           Field 1:
-            Field Name: observed_ice_thickness
-            Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 2:
-            Field Name: observed_ice_thickness_RMS
-            Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 3:
             Field Name: surface_height
             Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 4:
+            Field Origin: File
+            File Name: mesh/surface_height.ascii
+          Field 2:
             Field Name: bed_topography
             Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 5:
-            Field Name: log_basal_friction
+            Field Origin: File
+            File Name: mesh/bed_topography.ascii
+          Field 3:
+            Field Name: mu
             Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 6:
+            Field Origin: File
+            File Name: mesh/mu.ascii
+          Field 4:
             Field Name: temperature
-            Field Type: Node Layered Scalar
-            Field Origin: Mesh
-            Number Of Layers: 11
-          Field 7:
-            Field Name: apparent_mass_balance
-            Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 8:
-            Field Name: apparent_mass_balance_RMS
-            Field Type: Node Scalar
-            Field Origin: Mesh
-      upperside:
-        Number Of Time Derivatives: 0
-        Method: Ioss
-        Restart Index: 1
-        Exodus Input File Name: mesh-pop/gis_upper_populated.exo
-        Required Fields Info:
-          Number Of Fields: 2
-          Field 0:
-            Field Name: observed_surface_velocity
-            Field Type: Node Vector
-            Vector Dim: 2
-            Field Origin: Mesh
-          Field 1:
-            Field Name: observed_surface_velocity_RMS
-            Field Type: Node Scalar
-            Field Origin: Mesh
+            Field Type: Elem Layered Scalar
+            Number Of Layers: 5
+            Field Origin: File
+            File Name: mesh/temperature.ascii
 
   Piro: 
 #   Nonlinear Solver Information
@@ -215,18 +152,32 @@ ANONYMOUS:
         Full Step: 
           Full Step: 1.0
         Method: Backtrack
+        Backtrack:
+          Minimum Step: 1.0e-4
+          Recovery Step: 1.0e-4
       Solver Options: 
         Status Test Check Type: Minimal
+      Thyra Group Options: 
+        Function Scaling: None
+        Update Row Sum Scaling: Before Each Nonlinear Solve
       Status Tests: 
         Test Type: Combo
         Combo Type: OR
         Number of Tests: 2
         Test 0: 
-          Test Type: NormF
-          Norm Type: Two Norm
-          Scale Type: Scaled
-          Tolerance: 1.0e-05
-        Test 1:
+          Test Type: Combo
+          Combo Type: AND
+          Number of Tests: 2
+          Test 0: 
+            Test Type: NormF
+            Norm Type: Two Norm
+            Scale Type: Unscaled
+            Tolerance: 1.0e-03
+          Test 1:
+            Test Type: RelativeNormF
+            Norm Type: Two Norm
+            Tolerance: 0.9999
+        Test 1: 
           Test Type: MaxIters
           Maximum Iterations: 50
       Printing: 
@@ -371,7 +322,7 @@ ANONYMOUS:
                       'smoother: pre or post': both
                       ParameterList:
                         'chebyshev: degree': 2
-                        'chebyshev: eigenvalue max iterations': 91
+                        'chebyshev: eigenvalue max iterations': 15
                         'chebyshev: ratio eigenvalue': 27.572
                     mySmoother4:
                       factory: TrilinosSmoother
@@ -379,7 +330,7 @@ ANONYMOUS:
                       'smoother: pre or post': pre
                       ParameterList:
                         'chebyshev: degree': 4
-                        'chebyshev: eigenvalue max iterations': 94
+                        'chebyshev: eigenvalue max iterations': 15
                         'chebyshev: ratio eigenvalue': 25.6539
                   Hierarchy:
                     max levels: 3

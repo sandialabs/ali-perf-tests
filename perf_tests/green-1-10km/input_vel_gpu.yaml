@@ -317,17 +317,17 @@ ANONYMOUS:
                       type: CHEBYSHEV
                       'smoother: pre or post': both
                       ParameterList:
-                        'chebyshev: degree': 2
-                        'chebyshev: eigenvalue max iterations': 15
-                        'chebyshev: ratio eigenvalue': 27.572
+                        'gpushev: degree': 2
+                        'gpushev: eigenvalue max iterations': 15
+                        'gpushev: ratio eigenvalue': 27.572
                     mySmoother4:
                       factory: TrilinosSmoother
                       type: CHEBYSHEV
                       'smoother: pre or post': pre
                       ParameterList:
-                        'chebyshev: degree': 4
-                        'chebyshev: eigenvalue max iterations': 15
-                        'chebyshev: ratio eigenvalue': 25.6539
+                        'gpushev: degree': 4
+                        'gpushev: eigenvalue max iterations': 15
+                        'gpushev: ratio eigenvalue': 25.6539
                   Hierarchy:
                     max levels: 3
                     'coarse: max size': 2000

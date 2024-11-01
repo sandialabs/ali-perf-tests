@@ -29,7 +29,7 @@ ANONYMOUS:
         Exodus Input File Name: mesh-decomp/ais_2d.exo
         Exodus Output File Name: mesh-pop/ais_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 12
+          Number Of Fields: 14
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
@@ -61,38 +61,48 @@ ANONYMOUS:
             Field Origin: File
             File Name: mesh/mu.ascii
           Field 6:
+            Field Name: mu_log
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/mu_log.ascii
+          Field 7:
             Field Name: temperature
             Field Type: Elem Layered Scalar
             Number Of Layers: 5
             Field Origin: File
             File Name: mesh/temperature.ascii
-          Field 7:
+          Field 8:
             Field Name: apparent_mass_balance
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/surface_mass_balance.ascii
-          Field 8:
+          Field 9:
             Field Name: apparent_mass_balance_RMS
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/surface_mass_balance_uncertainty.ascii
-          Field 9:
+          Field 10:
             Field Name: surface_air_temperature
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/surface_air_temperature.ascii
-          Field 10:
+          Field 11:
             Field Name: heat_flux
             Field Type: Node Scalar
             Field Origin: File
             File Name: mesh/basal_heat_flux.ascii
-          Field 11:
+          Field 12:
             Field Name: extruded_surface_velocity
             Field Type: Node Layered Vector
             Field Origin: File
             Number Of Layers: 2
             Vector Dim: 2
             File Name: mesh/extruded_surface_velocity.ascii
+          Field 13:
+            Field Name: stiffening_factor_log
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/stiffening_factor_log.ascii
       upperside:
         Number Of Time Derivatives: 0
         Method: SideSetSTK

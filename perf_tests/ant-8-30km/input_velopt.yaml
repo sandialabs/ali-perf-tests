@@ -1,0 +1,642 @@
+%YAML 1.1
+---
+ANONYMOUS:
+# Problem Description
+  Problem:
+    Name: LandIce Stokes First Order 3D
+    Solution Method: Steady
+    Basal Side Name: basalside
+    Surface Side Name: upperside
+
+#   LandIce parameters
+    LandIce Physical Parameters:
+      Conductivity of ice: 2.1
+      Diffusivity temperate ice: 1.1e-08
+      Heat capacity of ice: 2.009e+03
+      Water Density: 1.028e+03
+      Ice Density: 9.10e+02
+      Gravity Acceleration: 9.80616
+      Clausius-Clapeyron Coefficient: 7.9e-08
+    LandIce Viscosity:
+      Use P0 Temperature: true
+      Extract Strain Rate Sq: true
+      Type: Glen's Law
+      Glen's Law Homotopy Parameter: 0.3
+      Glen's Law A: 2.400304414e-24     # [ Pa^-3 s^-1 ]
+      Glen's Law n: 3.0
+      Flow Rate Type: Temperature Based
+    Body Force: 
+      Type: FO INTERP SURF GRAD
+    Flat Bed Approximation: false
+
+#   Boundary Conditions
+    LandIce BCs:
+      Number : 2
+      BC 0:
+        Type: Basal Friction
+        Cubature Degree: 4
+        Side Set Name: basalside
+        Basal Friction Coefficient:
+          Type: Power Law
+          Power Exponent: 1.0
+          Effective Pressure Type: Hydrostatic Computed At Nodes
+          Zero Effective Pressure On Floating Ice At Nodes: true
+          Mu Type: Exponent Of Field At Nodes
+          Mu Field Name: mu_log
+      BC 1:
+        Type: Lateral
+        Cubature Degree: 3
+        Side Set Name: lateralside
+    LandIce Field Norm:
+      sliding_velocity_basalside:
+        Regularization Type: Given Value
+        Regularization Value: 1.0e-04
+
+#   Cubature Rules
+    Cubature Degrees (Horiz Vert): [4, 3]
+    Basal Cubature Degree: 4
+    Surface Cubature Degree: 4
+
+# Optimization parameters
+    Parameters: 
+      Number Of Parameters: 2
+      Parameter 0: 
+        Name: mu_log
+        Type: Distributed
+        Lower Bound: -12.0
+        Upper Bound: 12.0
+        Mesh Part: bottom
+      Parameter 1:
+        Lower Bound: -1.5e+00
+        Name: stiffening_factor_log
+        Extruded: true
+        Mesh Part: bottom
+        Upper Bound: 1.5e+00
+        Type: Distributed
+    Hessian:
+      Response 1:
+        Parameter 0:
+          Reconstruct H_pp using Hessian-vector products: true
+        Parameter 1:
+          Reconstruct H_pp using Hessian-vector products: true
+      Response 2:
+        Parameter 0:
+          Reconstruct H_pp using Hessian-vector products: true
+          H_pp Solver:
+            Linear Solver Type: Belos
+            Linear Solver Types:
+              Belos:
+                Solver Type: Block GMRES
+                Solver Types:
+                  Block GMRES:
+                    Maximum Iterations: 200
+                    Convergence Tolerance: 1e-9
+                    Num Blocks: 200
+                    Output Frequency: 20
+                    Output Style: 1
+                    Verbosity: 33
+                VerboseObject:
+                  Verbosity Level: medium
+            Preconditioner Type: Ifpack2
+            Preconditioner Types:
+              Ifpack2:
+                Overlap: 0
+                Prec Type: RILUK #Amesos2
+                Ifpack2 Settings:
+                  #'fact: iluk level-of-fill': 0 
+                  Amesos2: {}
+                  Amesos2 solver name: superlu
+        Parameter 1:
+          Reconstruct H_pp using Hessian-vector products: true
+          H_pp Solver:
+            Linear Solver Type: Belos
+            Linear Solver Types:
+              Belos:
+                Solver Type: Block GMRES
+                Solver Types:
+                  Block GMRES:
+                    Maximum Iterations: 200
+                    Convergence Tolerance: 1e-9
+                    Num Blocks: 200
+                    Output Frequency: 20
+                    Output Style: 1
+                    Verbosity: 33
+                VerboseObject:
+                  Verbosity Level: medium
+            Preconditioner Type: Ifpack2
+            Preconditioner Types:
+              Ifpack2:
+                Overlap: 0
+                Prec Type: RILUK
+
+#   Output
+    Phalanx Graph Visualization Detail: 0
+    Response Functions:
+      Number Of Responses: 3
+      Response 0:
+        Type: Sum Of Responses
+        Number Of Responses: 3
+        Response 0:
+          Scaling: 2.082e-05
+          Name: Squared L2 Difference Side Source ST Target RT
+          Source Field Name: Velocity_upperside
+          Response Depends On Solution Column: false
+          Side Set Name: upperside
+          Field Rank: Vector
+          Is Side Set Planar: false
+          Root Mean Square Error Field Name: observed_surface_velocity_RMS_upperside
+          Target Field Name: observed_surface_velocity_upperside
+        Response 1:
+          Scaling: 2.082e-02
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: mu_log_gradient_basalside
+          Side Set Name: basalside
+          Field Rank: Gradient
+          Target Value: 0.0
+        Response 2:
+          Scaling: 2.082e-03
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: stiffening_factor_log_basalside
+          Side Set Name: basalside
+          Field Rank: Scalar
+          Target Value: 0.0
+      Response 1:
+        Type: Sum Of Responses
+        Number Of Responses: 2
+        Response 0:
+          Scaling: 2.082e-03
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: mu_log_basalside
+          Side Set Name: basalside
+          Field Rank: Scalar
+          Target Value: 0.0
+        Response 1:
+          Scaling: 2.082e-03
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: stiffening_factor_log_basalside
+          Side Set Name: basalside
+          Field Rank: Scalar
+          Target Value: 0.0
+      Response 2:
+        Type: Sum Of Responses
+        Number Of Responses: 4
+        Response 0:
+          Scaling: 2.082e-03
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: mu_log_basalside
+          Side Set Name: basalside
+          Field Rank: Scalar
+          Target Value: 0.0
+        Response 1:
+          Scaling: 2.082e-02
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: mu_log_gradient_basalside
+          Side Set Name: basalside
+          Field Rank: Gradient
+          Target Value: 0.0
+        Response 2:
+          Scaling: 2.082e-03
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: stiffening_factor_log_basalside
+          Side Set Name: basalside
+          Field Rank: Scalar
+          Target Value: 0.0
+        Response 3:
+          Scaling: 2.082e-02
+          Name: Squared L2 Difference Side Source PST Target MST
+          Source Field Name: stiffening_factor_log_gradient_basalside
+          Side Set Name: basalside
+          Field Rank: Gradient
+          Target Value: 0.0
+
+#   Performance parameters
+    Use MDField Memoization: true
+    LandIce Rigid Body Modes For Preconditioner:
+      Compute Constant Modes: true
+      Compute Rotation Modes: true
+
+# Final solution comparison
+  Regression For Response 0:
+    Test Value: -7.516807281563e+00
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+
+# Discretization Description
+  Discretization: 
+    Workset Size: -1
+    Number Of Time Derivatives: 0
+    Method: STKExtruded
+    NumLayers: 5
+    Columnwise Ordering: true
+    Use Glimmer Spacing: true
+
+#   Field Information
+    Thickness Field Name: ice_thickness
+    Surface Height Field Name: surface_height
+    Extrude Basal Node Fields: [ice_thickness, surface_height, mu_log, stiffening_factor_log]
+    Basal Node Fields Ranks: [1, 1, 1, 1]
+    Interpolate Basal Elem Layered Fields: [temperature]
+    Basal Elem Layered Fields Ranks: [1]
+    Required Fields Info:
+      Number Of Fields: 5
+      Field 0:
+        Field Name: ice_thickness
+        Field Type: Node Scalar
+        Field Origin: Mesh
+      Field 1:
+        Field Name: surface_height
+        Field Type: Node Scalar
+        Field Origin: Mesh
+      Field 2:
+        Field Name: temperature
+        Field Type: Elem Scalar
+        Field Origin: Mesh
+      Field 3:
+        Field Name: mu_log
+        Field Type: Node Scalar
+        Field Origin: Mesh
+      Field 4:
+        Field Name: stiffening_factor_log
+        Field Type: Node Scalar
+        Field Origin: Mesh
+
+#   Sideset Discretizations descriptions
+    Side Set Discretizations: 
+      Side Sets: [basalside, upperside]
+      basalside:
+        Number Of Time Derivatives: 0
+        Method: Ioss
+        Restart Index: 1
+        Exodus Input File Name: mesh-pop/ais_basal_populated.exo
+        Required Fields Info:
+          Number Of Fields: 5
+          Field 0:
+            Field Name: ice_thickness
+            Field Type: Node Scalar
+            Field Origin: Mesh
+          Field 1:
+            Field Name: surface_height
+            Field Type: Node Scalar
+            Field Origin: Mesh
+          Field 2:
+            Field Name: bed_topography
+            Field Type: Node Scalar
+            Field Origin: Mesh
+          Field 3:
+            Field Name: mu_log
+            Field Type: Node Scalar
+            Field Origin: Mesh
+          Field 4:
+            Field Name: temperature
+            Field Type: Elem Layered Scalar
+            Field Origin: Mesh
+            Number Of Layers: 5
+          Field 6: 
+            Field Name: stiffening_factor_log
+            Field Type: Node Scalar
+            Field Origin: Mesh
+      upperside:
+        Number Of Time Derivatives: 0
+        Method: Ioss
+        Restart Index: 1
+        Exodus Input File Name: mesh-pop/ais_upper_populated.exo
+        Required Fields Info:
+          Number Of Fields: 2
+          Field 0:
+            Field Name: observed_surface_velocity
+            Field Type: Node Vector
+            Vector Dim: 2
+            Field Origin: Mesh
+          Field 1:
+            Field Name: observed_surface_velocity_RMS
+            Field Type: Node Scalar
+            Field Origin: Mesh
+
+  Piro: 
+    # Optimization Information
+    Sensitivity Method: Adjoint
+    Write Only Converged Solution: false
+    Enable Explicit Matrix Transpose: true
+    On Failure Solve With Zero Initial Guess: false
+    Analysis:
+      Output Final Parameters: false
+      Analysis Package: ROL
+      ROL:
+        Number Of Parameters: 2
+        Check Derivatives: false
+        Parameter Initial Guess Type: From Model Evaluator
+        Uniform Parameter Guess: -5.7
+        Min And Max Of Random Parameter Guess: [-5.6, -5.8]
+        Bound Constrained: true
+
+        Full Space: false
+        Use NOX Solver: true
+        Matrix Based Dot Product:
+          Matrix Type: Hessian Of Response
+          #Matrix Type: Identity
+          Matrix Types:
+            Hessian Of Response:
+              Response Index: 1
+              Lump Matrix: true
+
+        Custom Secant:
+          Type: Limited-Memory BFGS
+          Maximum Storage: 50
+          Initialization Type: Hessian Of Response
+          Initialization Types:
+            Hessian Of Response:
+              Response Index: 2
+
+        ROL Options: 
+        # ===========  SIMOPT SOLVER PARAMETER SUBLIST  =========== 
+          SimOpt:
+            Solve:
+              Absolute Residual Tolerance:   1.0e-5
+              Relative Residual Tolerance:   1.0e-0
+              Iteration Limit:               20
+              Sufficient Decrease Tolerance: 1.e-4
+              Step Tolerance:                1.e-8
+              Backtracking Factor:           0.5
+              Output Iteration History:      false
+              Zero Initial Guess:            false
+              Solver Type:                   0
+
+          Status Test:
+            Gradient Tolerance: 1.0e-4
+            #Constraint Tolerance: 1.0e-5
+            Step Tolerance: 1.0e-10
+            Iteration Limit: 3
+
+          General:
+            Output Level: 3
+            Variable Objective Function: false
+            Scale for Epsilon Active Sets: 1.0
+            Secant:
+              Type: Limited-Memory BFGS
+              Use as Preconditioner: true
+              Use as Hessian: false
+              Maximum Storage: 50
+              Barzilai-Borwein Type: 1
+            Krylov:
+              Type: Conjugate Gradients
+              Absolute Tolerance: 1.0e-04
+              Relative Tolerance: 1.0e-02
+              Iteration Limit: 40
+
+          Step:
+            Type: "Trust Region"
+
+            Trust Region:
+            #Subproblem Solver: Truncated CG
+              #Subproblem Model: Kelley-Sachs
+              Initial Radius: 0.2
+              #Initial Radius: -1.0
+              Step Acceptance Threshold: 5.0e-02
+              Radius Shrinking Threshold: 5.0e-02
+              Radius Growing Threshold: 9.0e-01
+              Radius Shrinking Rate (Negative rho): 6.25e-02
+              Radius Shrinking Rate (Positive rho): 2.5e-01
+              Radius Growing Rate: 2.0
+              Safeguard Size: 1.0e+01
+
+            Line Search:
+              Function Evaluation Limit: 20
+              Sufficient Decrease Tolerance: 1.0e-6
+              Initial Step Size: 1.0
+              User Defined Initial Step Size: false
+              Accept Linesearch Minimizer: false
+              Accept Last Alpha: false
+              Descent Method:
+                Type: Quasi-Newton Method
+
+              Line-Search Method:
+                Type: Cubic Interpolation
+                Backtracking Rate: 0.5
+                Bracketing Tolerance: 1.0e-08
+                Path-Based Target Level:
+                  Target Relaxation Parameter: 1.0
+                  Upper Bound on Path Length: 1.0
+
+              Quasi-Newton:
+                Method: L-Secant-B
+                L-Secant-B:
+                  Sufficient Decrease Parameter: 1.0e-02
+                  Relative Tolerance Exponent: 1.0
+
+#   Nonlinear Solver Information
+    NOX: 
+      Nonlinear Solver: Line Search Based
+      Line Search: 
+        Full Step: 
+          Full Step: 1.0
+        Method: Backtrack
+        Backtrack:
+          Minimum Step: 1.0e-4
+          Recovery Step: 1.0e-4
+      Solver Options: 
+        Status Test Check Type: Minimal
+      Thyra Group Options: 
+        Function Scaling: None
+        Update Row Sum Scaling: Before Each Nonlinear Solve
+      Status Tests: 
+        Test Type: Combo
+        Combo Type: OR
+        Number of Tests: 2
+        Test 0: 
+          Test Type: Combo
+          Combo Type: AND
+          Number of Tests: 2
+          Test 0: 
+            Test Type: NormF
+            Norm Type: Two Norm
+            Scale Type: Unscaled
+            Tolerance: 1.0e-03
+          Test 1:
+            Test Type: RelativeNormF
+            Norm Type: Two Norm
+            Tolerance: 0.9999
+        Test 1: 
+          Test Type: MaxIters
+          Maximum Iterations: 50
+      Printing: 
+        Output Precision: 3
+        Output Processor: 0
+        Output Information: 
+          Error: true
+          Warning: true
+          Outer Iteration: true
+          Parameters: false
+          Details: false
+          Linear Solver Details: false
+          Stepper Iteration: true
+          Stepper Details: true
+          Stepper Parameters: true
+
+      Direction: 
+        Method: Newton
+        Newton: 
+          Forcing Term Method: Constant
+          Rescue Bad Newton Solve: true
+          Linear Solver:
+            Write Linear System: false
+            Tolerance: 1.0e-8
+          Stratimikos Linear Solver: 
+            Stratimikos: 
+
+#             Linear Solver Information
+              Linear Solver Type: Belos
+              Linear Solver Types: 
+                Belos:
+                  Solver Type: Block GMRES
+                  Solver Types:
+                    Block GMRES:
+                      Convergence Tolerance: 1.0e-08
+                      Output Frequency: 20
+                      Output Style: 1
+                      Verbosity: 33
+                      Maximum Iterations: 200
+                      Block Size: 1
+                      Num Blocks: 200
+                      Flexible Gmres: false
+                  VerboseObject:
+                    Output File: none
+                    Verbosity Level: low
+
+#             Preconditioner Information
+              Preconditioner Type: MueLu
+              Preconditioner Types:
+                MueLu: 
+                  Matrix: 
+                    PDE equations: 2
+                  Factories: 
+                    myLineDetectionFact: 
+                      factory: LineDetectionFactory
+                      'linedetection: orientation': coordinates
+                    mySemiCoarsenPFact1: 
+                      factory: SemiCoarsenPFactory_kokkos
+                      'semicoarsen: coarsen rate': 14
+                    UncoupledAggregationFact2: 
+                      factory: UncoupledAggregationFactory
+                      'aggregation: ordering': graph
+                      'aggregation: max selected neighbors': 0
+                      'aggregation: min agg size': 3
+                      'aggregation: phase3 avoid singletons': true
+                    MyCoarseMap2: 
+                      factory: CoarseMapFactory
+                      Aggregates: UncoupledAggregationFact2
+                    myTentativePFact2: 
+                      'tentative: calculate qr': true
+                      factory: TentativePFactory_kokkos
+                      Aggregates: UncoupledAggregationFact2
+                      CoarseMap: MyCoarseMap2
+                    mySaPFact2: 
+                      'sa: eigenvalue estimate num iterations': 10
+                      'sa: damping factor': 1.33333
+                      factory: SaPFactory
+                      P: myTentativePFact2
+                    myTransferCoordinatesFact: 
+                      factory: CoordinatesTransferFactory
+                      CoarseMap: MyCoarseMap2
+                      Aggregates: UncoupledAggregationFact2
+                    myTogglePFact: 
+                      factory: TogglePFactory
+                      'semicoarsen: number of levels': 2
+                      TransferFactories: 
+                        P1: mySemiCoarsenPFact1
+                        P2: mySaPFact2
+                        Ptent1: mySemiCoarsenPFact1
+                        Ptent2: myTentativePFact2
+                        Nullspace1: mySemiCoarsenPFact1
+                        Nullspace2: myTentativePFact2
+                    myRestrictorFact: 
+                      factory: TransPFactory
+                      P: myTogglePFact
+                    myToggleTransferCoordinatesFact: 
+                      factory: ToggleCoordinatesTransferFactory
+                      Chosen P: myTogglePFact
+                      TransferFactories: 
+                        Coordinates1: mySemiCoarsenPFact1
+                        Coordinates2: myTransferCoordinatesFact
+                    myRAPFact: 
+                      factory: RAPFactory
+                      P: myTogglePFact
+                      R: myRestrictorFact
+                      TransferFactories: 
+                        For Coordinates: myToggleTransferCoordinatesFact
+                      'rap: fix zero diagonals': true
+                    myRepartitionHeuristicFact: 
+                      factory: RepartitionHeuristicFactory
+                      A: myRAPFact
+                      'repartition: min rows per proc': 3000
+                      'repartition: max imbalance': 1.327
+                      'repartition: start level': 3
+                    myZoltanInterface: 
+                      factory: ZoltanInterface
+                      A: myRAPFact
+                      Coordinates: myToggleTransferCoordinatesFact
+                      number of partitions: myRepartitionHeuristicFact
+                    myRepartitionFact: 
+                      factory: RepartitionFactory
+                      A: myRAPFact
+                      Partition: myZoltanInterface
+                      'repartition: remap parts': true
+                      number of partitions: myRepartitionHeuristicFact
+                    myRebalanceProlongatorFact: 
+                      factory: RebalanceTransferFactory
+                      type: Interpolation
+                      P: myTogglePFact
+                      Coordinates: myToggleTransferCoordinatesFact
+                      Nullspace: myTogglePFact
+                    myRebalanceRestrictionFact: 
+                      factory: RebalanceTransferFactory
+                      type: Restriction
+                      R: myRestrictorFact
+                    myRebalanceAFact: 
+                      factory: RebalanceAcFactory
+                      A: myRAPFact
+                      TransferFactories: { }
+                    mySmoother1:
+                      factory: TrilinosSmoother
+                      type: CHEBYSHEV
+                      'smoother: pre or post': both
+                      ParameterList:
+                        'chebyshev: degree': 2
+                        'chebyshev: eigenvalue max iterations': 15
+                        'chebyshev: ratio eigenvalue': 27.572
+                    mySmoother4:
+                      factory: TrilinosSmoother
+                      type: CHEBYSHEV
+                      'smoother: pre or post': pre
+                      ParameterList:
+                        'chebyshev: degree': 4
+                        'chebyshev: eigenvalue max iterations': 15
+                        'chebyshev: ratio eigenvalue': 25.6539
+                  Hierarchy:
+                    max levels: 3
+                    'coarse: max size': 2000
+                    verbosity: medium
+                    use kokkos refactor: true
+                    Finest: 
+                      Smoother: mySmoother1
+                      CoarseSolver: mySmoother4
+                      P: myRebalanceProlongatorFact
+                      Nullspace: myRebalanceProlongatorFact
+                      CoarseNumZLayers: myLineDetectionFact
+                      LineDetection_Layers: myLineDetectionFact
+                      LineDetection_VertLineIds: myLineDetectionFact
+                      A: myRebalanceAFact
+                      Coordinates: myRebalanceProlongatorFact
+                      Importer: myRepartitionFact
+                    All: 
+                      startLevel: 1
+                      Smoother: mySmoother4
+                      CoarseSolver: mySmoother4
+                      P: myRebalanceProlongatorFact
+                      Nullspace: myRebalanceProlongatorFact
+                      CoarseNumZLayers: myLineDetectionFact
+                      LineDetection_Layers: myLineDetectionFact
+                      LineDetection_VertLineIds: myLineDetectionFact
+                      A: myRebalanceAFact
+                      Coordinates: myRebalanceProlongatorFact
+                      Importer: myRepartitionFact
+...

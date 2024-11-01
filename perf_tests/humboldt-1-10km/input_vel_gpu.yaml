@@ -3,11 +3,10 @@
 ANONYMOUS:
 # Problem Description
   Problem:
-    Name: LandIce Enthalpy 3D
+    Name: LandIce Stokes First Order 3D
     Solution Method: Steady
     Basal Side Name: basalside
-    Needs Dissipation: true
-    Needs Basal Friction: true
+    Surface Side Name: upperside
     Flat Bed Approximation: true
 
 #   LandIce parameters
@@ -17,61 +16,86 @@ ANONYMOUS:
       Heat capacity of ice: 2.009e+03
       Water Density: 1.028e+03
       Ice Density: 9.10e+02
-      Gravity Acceleration: 9.81e+00
+      Gravity Acceleration: 9.80616
       Reference Temperature: 2.65e+02
       Clausius-Clapeyron Coefficient: 7.9e-08
       Ice Latent Heat Of Fusion: 3.34e+05
       Permeability factor: 1.0e-12 #1e-12
-      Viscosity of water: 1.79999999999999995e-03
-      Omega exponent alpha: 2.00000000000000000e+00
-      Diffusivity homotopy exponent: -1.10000000000000009e+00
-    LandIce Enthalpy:
-      Regularization:
-        Flux Regularization:
-          alpha: 4.0
-          beta: 0.0
-        Basal Melting Regularization:
-          alpha: 4.0
-          beta: 0.0
-      Stabilization:
-        Type: Upwind
-        Parameter Delta: 0.5
-      Bed Lubrication:
-        Type: Dry
+      Viscosity of water: 1.8e-03
+      Omega exponent alpha: 2.0
+      Diffusivity homotopy exponent: -1.1
     LandIce Viscosity:
       Extract Strain Rate Sq: true
       Type: 'Glen''s Law'
-      'Glen''s Law Homotopy Parameter': 0.5
-      Continuous Homotopy With Constant Initial Viscosity: true
-      Coefficient For Continuous Homotopy: 8.0
+      'Glen''s Law Homotopy Parameter': 0.3
+      #Continuous Homotopy With Constant Initial Viscosity: true
+      #Coefficient For Continuous Homotopy: 8.0
       'Glen''s Law A': 7.5696e-05
       'Glen''s Law n': 3.0
       Flow Rate Type: Temperature Based
+    Body Force: 
+      Type: FO INTERP SURF GRAD
 
 #   Boundary Conditions
+    LandIce BCs:
+      Number : 2
+      BC 0:
+        Type: Basal Friction
+        Side Set Name: basalside
+        Basal Friction Coefficient:
+          Type: Power Law
+          Mu Type: Exponent Of Field At Nodes
+          Mu Field Name: basal_friction_log
+          Power Exponent: 1.0
+          Effective Pressure Type: Constant
+          Effective Pressure: 1.0
+          Zero Beta On Floating Ice: true
+      BC 1:
+        Type: Lateral
+        Cubature Degree: 4
+        Side Set Name: extruded_boundary_side_set_2
     Dirichlet BCs:
-      DBC on NS top for DOF Enth prescribe Field: surface_enthalpy
+      DBC on NS extruded_boundary_node_set_3 for DOF U0 prescribe Field: velocity
+      DBC on NS extruded_boundary_node_set_3 for DOF U1 prescribe Field: velocity
+    LandIce Field Norm:
+      sliding_velocity_basalside:
+        #Type: Exponent Of Given Field
+        Regularization Type: Given Value
+        Regularization Value: 1.0e-06
+
+#   Performance parameters
+    Use MDField Memoization: true
+    LandIce Rigid Body Modes For Preconditioner:
+      Compute Constant Modes: true
+      Compute Rotation Modes: true
 
 #   Output
     Phalanx Graph Visualization Detail: 0
     Response Functions:
-      Number Of Responses: 1
+      Number Of Responses: 2
       Response 0:
         Name: Solution Average
         Type: Scalar Response
-
-#   Performance parameters
-    Use MDField Memoization: true
+      Response 1:
+        Name: Surface Velocity Mismatch
+        Regularization Coefficient: 1.0e+03
+        Asinh Scaling: 1.0e+01
+        Scaling Coefficient: 4.540693e-06
 
 #   Degrees of Cubature Rules
     Cubature Degree: 4
+    Surface Cubature Degree: 4
     Basal Cubature Degree: 4
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -7.183957424818e+00
-    Relative Tolerance: 1.00000000000000008e-05
-    Absolute Tolerance: 1.00000000000000002e-03
+    Test Value: -8.644636747943e-01
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 1:
+    Test Value: 1.300374437725e+01
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
 
 # Discretization Description
   Discretization: 
@@ -86,11 +110,11 @@ ANONYMOUS:
     Thickness Field Name: ice_thickness
     Surface Height Field Name: surface_height
     Basal Node Fields Ranks: [1, 1, 1, 1]
-    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction, surface_air_temperature]
-    Basal Node Layered Fields Ranks: [2, 1]
-    Interpolate Basal Node Layered Fields: [velocity, vertical_velocity]
+    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction_log, bed_topography]
+    Basal Node Layered Fields Ranks: [1, 2]
+    Interpolate Basal Node Layered Fields: [temperature, velocity]
     Required Fields Info:
-      Number Of Fields: 5
+      Number Of Fields: 6
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -100,32 +124,32 @@ ANONYMOUS:
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 2:
-        Field Name: basal_friction
+        Field Name: basal_friction_log
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 3:
-        Field Name: surface_air_temperature
+        Field Name: bed_topography
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 4:
-        Field Name: surface_enthalpy
+        Field Name: temperature
         Field Type: Node Scalar
-        Field Usage: Output
-#      Field 5:
-#        Field Name: temperature
-#        Field Type: Node Scalar
-#        Field Usage: Output
+        Field Origin: Mesh
+      Field 5:
+        Field Name: velocity
+        Field Type: Node Vector
+        Field Origin: Mesh
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
-      Side Sets: [basalside]
+      Side Sets: [basalside, upperside]
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
         Restart Index: 1
-        Exodus Input File Name: mesh-pop/gis_basal_populated.exo
+        Exodus Input File Name: mesh-pop/humboldt_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 7
+          Number Of Fields: 6
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
@@ -135,37 +159,52 @@ ANONYMOUS:
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 2:
-            Field Name: basal_friction
+            Field Name: basal_friction_log
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 3:
-            Field Name: surface_air_temperature
+            Field Name: bed_topography
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 4:
-            Field Name: heat_flux
-            Field Type: Node Scalar
+            Field Name: temperature
+            Field Type: Node Layered Scalar
             Field Origin: Mesh
-          Field 5:
             Number Of Layers: 11
-            Vector Dim: 2
+          Field 5:
             Field Name: velocity
             Field Type: Node Layered Vector
             Field Origin: Mesh
-          Field 6:
-            Number Of Layers: 11
-            Field Name: vertical_velocity
-            Field Type: Node Layered Scalar
+            Number Of Layers: 2
+            Vector Dim: 2
+      upperside:
+        Number Of Time Derivatives: 0
+        Method: Ioss
+        Restart Index: 1
+        Exodus Input File Name: mesh-pop/humboldt_upper_populated.exo
+        Required Fields Info:
+          Number Of Fields: 2
+          Field 0:
+            Field Name: observed_surface_velocity
+            Field Type: Node Vector
+            Field Origin: Mesh
+            Vector Dim: 2
+          Field 1:
+            Field Name: observed_surface_velocity_RMS
+            Field Type: Node Scalar
             Field Origin: Mesh
 
   Piro: 
 #   Nonlinear Solver Information
     NOX: 
       Nonlinear Solver: Line Search Based
-      Line Search: 
+      Line Search:
         Full Step: 
           Full Step: 1.0
         Method: Backtrack
+        Backtrack:
+          Minimum Step: 1.0e-4
+          Recovery Step: 1.0e-4
       Solver Options: 
         Status Test Check Type: Minimal
       Status Tests: 
@@ -173,11 +212,19 @@ ANONYMOUS:
         Combo Type: OR
         Number of Tests: 2
         Test 0: 
-          Test Type: NormF
-          Norm Type: Two Norm
-          Scale Type: Scaled
-          Tolerance: 1.0e-05
-        Test 1:
+          Test Type: Combo
+          Combo Type: AND
+          Number of Tests: 2
+          Test 0: 
+            Test Type: NormF
+            Norm Type: Two Norm
+            Scale Type: Scaled
+            Tolerance: 1.0e-06
+          Test 1:
+            Test Type: RelativeNormF
+            Norm Type: Two Norm
+            Tolerance: 0.9999
+        Test 1: 
           Test Type: MaxIters
           Maximum Iterations: 50
       Printing: 
@@ -201,7 +248,7 @@ ANONYMOUS:
           Rescue Bad Newton Solve: true
           Linear Solver:
             Write Linear System: false
-            Tolerance: 1.0e-8
+            Tolerance: 1.0e-7
           Stratimikos Linear Solver: 
             Stratimikos: 
 
@@ -228,7 +275,7 @@ ANONYMOUS:
               Preconditioner Types:
                 MueLu: 
                   Matrix: 
-                    PDE equations: 1
+                    PDE equations: 2
                   Factories: 
                     myLineDetectionFact: 
                       factory: LineDetectionFactory
@@ -318,21 +365,21 @@ ANONYMOUS:
                       TransferFactories: { }
                     mySmoother1:
                       factory: TrilinosSmoother
-                      type: RELAXATION
+                      type: CHEBYSHEV
                       'smoother: pre or post': both
                       ParameterList:
-                        'relaxation: damping factor': 0.8191
-                        'relaxation: sweeps': 2
-                        'relaxation: type': MT Gauss-Seidel
+                        'gpushev: degree': 2
+                        'gpushev: eigenvalue max iterations': 15
+                        'gpushev: ratio eigenvalue': 27.572
                     mySmoother4:
                       factory: TrilinosSmoother
-                      type: RELAXATION
+                      type: CHEBYSHEV
                       'smoother: pre or post': pre
                       ParameterList:
-                        'relaxation: inner damping factor': 0.8642
-                        'relaxation: sweeps': 2
-                        'relaxation: type': Two-stage Gauss-Seidel
-                  Hierarchy: 
+                        'gpushev: degree': 4
+                        'gpushev: eigenvalue max iterations': 15
+                        'gpushev: ratio eigenvalue': 25.6539
+                  Hierarchy:
                     max levels: 3
                     'coarse: max size': 2000
                     verbosity: medium

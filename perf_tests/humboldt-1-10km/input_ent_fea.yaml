@@ -17,14 +17,23 @@ ANONYMOUS:
       Heat capacity of ice: 2.009e+03
       Water Density: 1.028e+03
       Ice Density: 9.10e+02
-      Gravity Acceleration: 9.81e+00
+      Gravity Acceleration: 9.80616
       Reference Temperature: 2.65e+02
-      Clausius-Clapeyron Coefficient: 0.0 #7.90e-08
+      Clausius-Clapeyron Coefficient: 0.0 #7.9e-08
       Ice Latent Heat Of Fusion: 3.34e+05
       Permeability factor: 1.0e-12 #1e-12
       Viscosity of water: 1.8e-03
-      Omega exponent alpha: 2.0e+00
-      Diffusivity homotopy exponent: -1.1e+00
+      Omega exponent alpha: 2.0
+      Diffusivity homotopy exponent: -1.1
+    LandIce Viscosity:
+      Extract Strain Rate Sq: true
+      Type: 'Glen''s Law'
+      'Glen''s Law Homotopy Parameter': 0.3
+      #Continuous Homotopy With Constant Initial Viscosity: true
+      #Coefficient For Continuous Homotopy: 8.0
+      'Glen''s Law A': 7.5696e-05
+      'Glen''s Law n': 3.0
+      Flow Rate Type: Temperature Based
     LandIce Enthalpy:
       Regularization:
         Flux Regularization:
@@ -38,19 +47,13 @@ ANONYMOUS:
         Parameter Delta: 0.5
       Bed Lubrication:
         Type: Dry
-    LandIce Viscosity:
-      Extract Strain Rate Sq: true
-      Type: 'Glen''s Law'
-      'Glen''s Law Homotopy Parameter': 0.5
-      Continuous Homotopy With Constant Initial Viscosity: true
-      Coefficient For Continuous Homotopy: 8.0
-      'Glen''s Law A': 7.5696e-05
-      'Glen''s Law n': 3.0
-      Flow Rate Type: Temperature Based
 
 #   Boundary Conditions
     Dirichlet BCs:
       DBC on NS top for DOF Enth prescribe Field: surface_enthalpy
+
+#   Performance parameters
+    Use MDField Memoization: true
 
 #   Output
     Phalanx Graph Visualization Detail: 0
@@ -60,16 +63,13 @@ ANONYMOUS:
         Name: Solution Average
         Type: Scalar Response
 
-#   Performance parameters
-    Use MDField Memoization: true
-
 #   Degrees of Cubature Rules
     Cubature Degree: 4
     Basal Cubature Degree: 4
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -1.24971227017
+    Test Value: -5.038193461993e+00
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -90,7 +90,7 @@ ANONYMOUS:
     Basal Node Layered Fields Ranks: [2, 1]
     Interpolate Basal Node Layered Fields: [velocity, vertical_velocity]
     Required Fields Info:
-      Number Of Fields: 5
+      Number Of Fields: 4
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -107,14 +107,6 @@ ANONYMOUS:
         Field Name: surface_air_temperature
         Field Type: Node Scalar
         Field Origin: Mesh
-      Field 4:
-        Field Name: surface_enthalpy
-        Field Type: Node Scalar
-        Field Usage: Output
-#      Field 5:
-#        Field Name: temperature
-#        Field Type: Node Scalar
-#        Field Usage: Output
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
@@ -123,7 +115,7 @@ ANONYMOUS:
         Number Of Time Derivatives: 0
         Method: Ioss
         Restart Index: 1
-        Exodus Input File Name: mesh-pop/gis_basal_populated.exo
+        Exodus Input File Name: mesh-pop/humboldt_basal_populated.exo
         Required Fields Info:
           Number Of Fields: 7
           Field 0:
@@ -147,24 +139,24 @@ ANONYMOUS:
             Field Type: Node Scalar
             Field Origin: Mesh
           Field 5:
-            Number Of Layers: 11
-            Vector Dim: 2
             Field Name: velocity
             Field Type: Node Layered Vector
             Field Origin: Mesh
+            Number Of Layers: 2
+            Vector Dim: 2
           Field 6:
-            Number Of Layers: 11
             Field Name: vertical_velocity
             Field Type: Node Layered Scalar
             Field Origin: Mesh
+            Number Of Layers: 11
 
   Piro: 
 #   Nonlinear Solver Information
     NOX: 
       Nonlinear Solver: Line Search Based
-      Line Search: 
+      Line Search:
         Full Step: 
-          Full Step: 1.00000000000000000e+00
+          Full Step: 1.0
         Method: Backtrack
       Solver Options: 
         Status Test Check Type: Minimal
@@ -192,7 +184,7 @@ ANONYMOUS:
           Rescue Bad Newton Solve: true
           Linear Solver:
             Write Linear System: false
-            Tolerance: 1.0e-8
+            Tolerance: 1.0e-7
           Stratimikos Linear Solver: 
             Stratimikos: 
 

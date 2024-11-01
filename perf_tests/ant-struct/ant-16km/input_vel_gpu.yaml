@@ -60,7 +60,7 @@ ANONYMOUS:
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -3.093248757812
+    Test Value: -2.761392490105
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -299,25 +299,25 @@ ANONYMOUS:
                       type: CHEBYSHEV
                       'smoother: pre or post': both
                       ParameterList:
-                        'chebyshev: degree': 2
-                        'chebyshev: eigenvalue max iterations': 10
-                        'chebyshev: ratio eigenvalue': 10.207024
+                        'gpushev: degree': 2
+                        'gpushev: eigenvalue max iterations': 10
+                        'gpushev: ratio eigenvalue': 10.207024
                     mySmoother4:
                       factory: TrilinosSmoother
                       type: CHEBYSHEV
                       'smoother: pre or post': pre
                       ParameterList:
-                        'chebyshev: degree': 3
-                        'chebyshev: eigenvalue max iterations': 13
-                        'chebyshev: ratio eigenvalue': 19.369063
+                        'gpushev: degree': 3
+                        'gpushev: eigenvalue max iterations': 13
+                        'gpushev: ratio eigenvalue': 19.369063
                     mySmoother6:
                       factory: TrilinosSmoother
                       type: CHEBYSHEV
                       'smoother: pre or post': pre
                       ParameterList:
-                        'chebyshev: degree': 10
-                        'chebyshev: eigenvalue max iterations': 15
-                        'chebyshev: ratio eigenvalue': 28.117751
+                        'gpushev: degree': 10
+                        'gpushev: eigenvalue max iterations': 15
+                        'gpushev: ratio eigenvalue': 28.117751
                   Hierarchy:
                     max levels: 3
                     'coarse: max size': 2000

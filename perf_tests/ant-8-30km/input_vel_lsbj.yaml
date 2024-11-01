@@ -3,27 +3,31 @@
 ANONYMOUS:
 # Problem Description
   Problem:
-    Solution Method: Steady
     Name: LandIce Stokes First Order 3D
+    Solution Method: Steady
     Basal Side Name: basalside
-    Equation Set:
-      Type: LandIce
+    Surface Side Name: upperside
 
 #   LandIce parameters
     LandIce Physical Parameters:
+      Conductivity of ice: 2.1
+      Diffusivity temperate ice: 1.1e-08
+      Heat capacity of ice: 2.009e+03
       Water Density: 1.028e+03
-      Ice Density: 9.1e+02
-      Gravity Acceleration: 9.8
-      Clausius-Clapeyron Coefficient: 0.0
+      Ice Density: 9.10e+02
+      Gravity Acceleration: 9.80616
+      Clausius-Clapeyron Coefficient: 7.9e-08
     LandIce Viscosity:
-      Type: 'Glen''s Law'
-      'Glen''s Law Homotopy Parameter': 0.0
-      'Glen''s Law A': 5.0e-05
-      'Glen''s Law n': 3.0
+      Use P0 Temperature: true
+      Extract Strain Rate Sq: true
+      Type: Glen's Law
+      Glen's Law Homotopy Parameter: 0.3
+      Glen's Law A: 2.400304414e-24     # [ Pa^-3 s^-1 ]
+      Glen's Law n: 3.0
       Flow Rate Type: Temperature Based
     Body Force: 
       Type: FO INTERP SURF GRAD
-    Flat Bed Approximation: true
+    Flat Bed Approximation: false
 
 #   Boundary Conditions
     LandIce BCs:
@@ -33,16 +37,25 @@ ANONYMOUS:
         Cubature Degree: 4
         Side Set Name: basalside
         Basal Friction Coefficient:
-          Type: Field
-          Beta Field Name: basal_friction
+          Type: Power Law
+          Power Exponent: 1.0
+          Effective Pressure Type: Hydrostatic Computed At Nodes
+          Zero Effective Pressure On Floating Ice At Nodes: true
+          Mu Type: Field
+          Mu Field Name: mu
       BC 1:
         Type: Lateral
-        Cubature Degree: 4
+        Cubature Degree: 3
         Side Set Name: lateralside
+    LandIce Field Norm:
+      sliding_velocity_basalside:
+        Regularization Type: Given Value
+        Regularization Value: 1.0e-04
 
 #   Cubature Rules
-    Cubature Degree: 4
+    Cubature Degrees (Horiz Vert): [4, 3]
     Basal Cubature Degree: 4
+    Surface Cubature Degree: 4
 
 #   Output
     Phalanx Graph Visualization Detail: 0
@@ -60,7 +73,7 @@ ANONYMOUS:
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -3.293308397652
+    Test Value: -7.516807281563e+00
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -69,33 +82,30 @@ ANONYMOUS:
     Workset Size: -1
     Number Of Time Derivatives: 0
     Method: STKExtruded
-    NumLayers: 20
+    NumLayers: 5
     Columnwise Ordering: true
     Use Glimmer Spacing: true
 
 #   Field Information
     Thickness Field Name: ice_thickness
-    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction]
-    Basal Node Fields Ranks: [1, 1, 1]
-    Interpolate Basal Node Layered Fields: [temperature]
-    Basal Node Layered Fields Ranks: [1]
+    Surface Height Field Name: surface_height
+    Extrude Basal Node Fields: [ice_thickness, surface_height]
+    Basal Node Fields Ranks: [1, 1]
+    Interpolate Basal Elem Layered Fields: [temperature]
+    Basal Elem Layered Fields Ranks: [1]
     Required Fields Info:
-      Number Of Fields: 4
+      Number Of Fields: 3
       Field 0:
-        Field Name: temperature
-        Field Type: Node Scalar
-        Field Origin: Mesh
-      Field 1:
         Field Name: ice_thickness
         Field Type: Node Scalar
         Field Origin: Mesh
-      Field 2:
+      Field 1:
         Field Name: surface_height
         Field Type: Node Scalar
         Field Origin: Mesh
-      Field 3:
-        Field Name: basal_friction
-        Field Type: Node Scalar
+      Field 2:
+        Field Name: temperature
+        Field Type: Elem Scalar
         Field Origin: Mesh
 
 #   Sideset Discretizations descriptions
@@ -107,52 +117,62 @@ ANONYMOUS:
         Restart Index: 1
         Exodus Input File Name: mesh-pop/ais_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 4
+          Number Of Fields: 5
           Field 0:
-            Field Name: basal_friction
-            Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 1:
             Field Name: ice_thickness
             Field Type: Node Scalar
             Field Origin: Mesh
-          Field 2:
+          Field 1:
             Field Name: surface_height
             Field Type: Node Scalar
             Field Origin: Mesh
-          Field 3:
-            Field Name: temperature
-            Field Type: Node Layered Scalar
+          Field 2:
+            Field Name: bed_topography
+            Field Type: Node Scalar
             Field Origin: Mesh
-            Number Of Layers: 10
+          Field 3:
+            Field Name: mu
+            Field Type: Node Scalar
+            Field Origin: Mesh
+          Field 4:
+            Field Name: temperature
+            Field Type: Elem Layered Scalar
+            Field Origin: Mesh
+            Number Of Layers: 5
 
   Piro: 
 #   Nonlinear Solver Information
     NOX: 
       Nonlinear Solver: Line Search Based
-      Line Search:
+      Line Search: 
         Full Step: 
           Full Step: 1.0
         Method: Backtrack
+        Backtrack:
+          Minimum Step: 1.0e-4
+          Recovery Step: 1.0e-4
       Solver Options: 
         Status Test Check Type: Minimal
+      Thyra Group Options: 
+        Function Scaling: None
+        Update Row Sum Scaling: Before Each Nonlinear Solve
       Status Tests: 
         Test Type: Combo
         Combo Type: OR
         Number of Tests: 2
         Test 0: 
           Test Type: Combo
-          Combo Type: OR
+          Combo Type: AND
           Number of Tests: 2
           Test 0: 
             Test Type: NormF
             Norm Type: Two Norm
-            Scale Type: Scaled
-            Tolerance: 1.0e-05
+            Scale Type: Unscaled
+            Tolerance: 1.0e-03
           Test 1:
-            Test Type: NormWRMS
-            Absolute Tolerance: 1.0e-05
-            Relative Tolerance: 1.0e-03
+            Test Type: RelativeNormF
+            Norm Type: Two Norm
+            Tolerance: 0.9999
         Test 1: 
           Test Type: MaxIters
           Maximum Iterations: 50
@@ -177,7 +197,7 @@ ANONYMOUS:
           Rescue Bad Newton Solve: true
           Linear Solver:
             Write Linear System: false
-            Tolerance: 1.0e-6
+            Tolerance: 1.0e-8
           Stratimikos Linear Solver: 
             Stratimikos: 
 
@@ -284,47 +304,39 @@ ANONYMOUS:
                       P: myTogglePFact
                       Coordinates: myToggleTransferCoordinatesFact
                       Nullspace: myTogglePFact
-                      'repartition: rebalance P and R': true
                     myRebalanceRestrictionFact: 
                       factory: RebalanceTransferFactory
                       type: Restriction
                       R: myRestrictorFact
-                      'repartition: rebalance P and R': true
                     myRebalanceAFact: 
                       factory: RebalanceAcFactory
                       A: myRAPFact
                       TransferFactories: { }
-                    mySmoother1:
+                    mySmootherJacobiBlockTriDi:
                       factory: TrilinosSmoother
-                      type: CHEBYSHEV
+                      type: LINESMOOTHING_TRIDI_RELAXATION
                       'smoother: pre or post': both
                       ParameterList:
-                        'chebyshev: degree': 2
-                        'chebyshev: eigenvalue max iterations': 10
-                        'chebyshev: ratio eigenvalue': 10.207024
+                        'partitioner: block size': 2
+                        'relaxation: container': BlockTriDi
+                        'relaxation: type': MT Split Jacobi
+                        'relaxation: sweeps': 1
+                        'relaxation: damping factor': 0.65
                     mySmoother4:
                       factory: TrilinosSmoother
                       type: CHEBYSHEV
                       'smoother: pre or post': pre
                       ParameterList:
-                        'chebyshev: degree': 3
-                        'chebyshev: eigenvalue max iterations': 13
-                        'chebyshev: ratio eigenvalue': 19.369063
-                    mySmoother6:
-                      factory: TrilinosSmoother
-                      type: CHEBYSHEV
-                      'smoother: pre or post': pre
-                      ParameterList:
-                        'chebyshev: degree': 10
+                        'chebyshev: degree': 4
                         'chebyshev: eigenvalue max iterations': 15
-                        'chebyshev: ratio eigenvalue': 28.117751
+                        'chebyshev: ratio eigenvalue': 25.6539
                   Hierarchy:
                     max levels: 3
                     'coarse: max size': 2000
-                    verbosity: high
+                    verbosity: medium
                     use kokkos refactor: true
                     Finest: 
-                      Smoother: mySmoother1
+                      Smoother: mySmootherJacobiBlockTriDi
                       CoarseSolver: mySmoother4
                       P: myRebalanceProlongatorFact
                       Nullspace: myRebalanceProlongatorFact
@@ -337,7 +349,7 @@ ANONYMOUS:
                     All: 
                       startLevel: 1
                       Smoother: mySmoother4
-                      CoarseSolver: mySmoother6
+                      CoarseSolver: mySmoother4
                       P: myRebalanceProlongatorFact
                       Nullspace: myRebalanceProlongatorFact
                       CoarseNumZLayers: myLineDetectionFact

@@ -3,10 +3,12 @@
 ANONYMOUS:
 # Problem Description
   Problem:
-    Name: LandIce Stokes First Order 3D
+    Name: LandIce Stokes FO Thermo Coupled 3D
     Solution Method: Steady
     Basal Side Name: basalside
     Surface Side Name: upperside
+    Needs Dissipation: true
+    Needs Basal Friction: true
     Flat Bed Approximation: true
 
 #   LandIce parameters
@@ -16,23 +18,36 @@ ANONYMOUS:
       Heat capacity of ice: 2.009e+03
       Water Density: 1.028e+03
       Ice Density: 9.10e+02
-      Gravity Acceleration: 9.81e+00
+      Gravity Acceleration: 9.80616
       Reference Temperature: 2.65e+02
       Clausius-Clapeyron Coefficient: 7.9e-08
       Ice Latent Heat Of Fusion: 3.34e+05
       Permeability factor: 1.0e-12 #1e-12
-      Viscosity of water: 1.78e-03
+      Viscosity of water: 1.8e-03
       Omega exponent alpha: 2.0
       Diffusivity homotopy exponent: -1.1
     LandIce Viscosity:
       Extract Strain Rate Sq: true
       Type: 'Glen''s Law'
-      'Glen''s Law Homotopy Parameter': 0.5
-      Continuous Homotopy With Constant Initial Viscosity: true
-      Coefficient For Continuous Homotopy: 8.0
+      'Glen''s Law Homotopy Parameter': 0.3
+      #Continuous Homotopy With Constant Initial Viscosity: true
+      #Coefficient For Continuous Homotopy: 8.0
       'Glen''s Law A': 7.5696e-05
       'Glen''s Law n': 3.0
       Flow Rate Type: Temperature Based
+    LandIce Enthalpy:
+      Regularization:
+        Flux Regularization:
+          alpha: 4.0
+          beta: 0.0
+        Basal Melting Regularization:
+          alpha: 4.0
+          beta: 0.0
+      Stabilization:
+        Type: Upwind
+        Parameter Delta: 0.5
+      Bed Lubrication:
+        Type: Dry
     Body Force: 
       Type: FO INTERP SURF GRAD
 
@@ -44,8 +59,8 @@ ANONYMOUS:
         Side Set Name: basalside
         Basal Friction Coefficient:
           Type: Power Law
-          Mu Type: Exponent Of Field
-          Mu Field Name: log_basal_friction
+          Mu Type: Exponent Of Field At Nodes
+          Mu Field Name: basal_friction_log
           Power Exponent: 1.0
           Effective Pressure Type: Constant
           Effective Pressure: 1.0
@@ -53,26 +68,44 @@ ANONYMOUS:
       BC 1:
         Type: Lateral
         Cubature Degree: 4
-        Side Set Name: extruded_boundary_side_set_1
+        Side Set Name: extruded_boundary_side_set_2
+        #Melange Force: 3.0e+07 #[N/m]
+        #Melange Submerged Thickness Threshold: 0.1 #[km]
+        #Immersed Ratio: 0.893
+    Dirichlet BCs:  
+      DBC on NS top for DOF Enth prescribe Field: surface_enthalpy
+      DBC on NS extruded_boundary_node_set_3 for DOF U0 prescribe Field: velocity
+      DBC on NS extruded_boundary_node_set_3 for DOF U1 prescribe Field: velocity
     LandIce Field Norm:
       sliding_velocity_basalside:
+        #Type: Exponent Of Given Field
         Regularization Type: Given Value
-        Type: Exponent Of Given Field
-        Regularization Value: 1.0e-05
-
-#   Output
-    Phalanx Graph Visualization Detail: 0
-    Response Functions:
-      Number Of Responses: 1
-      Response 0:
-        Name: Solution Average
-        Type: Scalar Response
+        Regularization Value: 1.0e-06
 
 #   Performance parameters
     Use MDField Memoization: true
     LandIce Rigid Body Modes For Preconditioner:
       Compute Constant Modes: true
-      Compute Rotation Modes: true
+      Compute Rotation Modes: false
+
+#   Output
+    Phalanx Graph Visualization Detail: 0
+    Response Functions:
+      Number Of Responses: 2
+      Response 0:
+        Name: Solution Average
+        Type: Scalar Response
+      Response 1:
+        Name: Surface Velocity Mismatch
+        Regularization Coefficient: 1.0e+03
+        Asinh Scaling: 1.0e+01
+        Scaling Coefficient: 4.540693e-06
+      Response 2:
+        Name: Surface Mass Balance Mismatch
+        Regularization Coefficient: 1.0e+03
+        H Coefficient: 100.0
+        SMB Coefficient: 1.0
+        Scaling Coefficient: 4.540693e-06
 
 #   Degrees of Cubature Rules
     Cubature Degree: 4
@@ -81,7 +114,11 @@ ANONYMOUS:
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -0.000133244901306
+    Test Value: -2.17235918493
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 1:
+    Test Value: 1.300372856412e+01
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -97,12 +134,12 @@ ANONYMOUS:
 #   Field Information
     Thickness Field Name: ice_thickness
     Surface Height Field Name: surface_height
-    Basal Node Fields Ranks: [1, 1, 1, 1, 1, 1]
-    Extrude Basal Node Fields: [ice_thickness, surface_height, log_basal_friction, bed_topography, apparent_mass_balance, apparent_mass_balance_RMS]
-    Basal Node Layered Fields Ranks: [1]
-    Interpolate Basal Node Layered Fields: [temperature]
+    Basal Node Fields Ranks: [1, 1, 1, 1, 1]
+    Extrude Basal Node Fields: [ice_thickness, surface_height, basal_friction_log, bed_topography, surface_air_temperature]
+    Basal Node Layered Fields Ranks: [2]
+    Interpolate Basal Node Layered Fields: [velocity]
     Required Fields Info:
-      Number Of Fields: 9
+      Number Of Fields: 7
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -112,11 +149,11 @@ ANONYMOUS:
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 2:
-        Field Name: log_basal_friction
+        Field Name: basal_friction_log
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 3:
-        Field Name: temperature
+        Field Name: surface_air_temperature
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 4:
@@ -124,23 +161,13 @@ ANONYMOUS:
         Field Type: Node Scalar
         Field Origin: Mesh
       Field 5:
-        Field Name: apparent_mass_balance
-        Field Type: Node Scalar
+        Field Name: velocity
+        Field Type: Node Vector
         Field Origin: Mesh
       Field 6:
-        Field Name: apparent_mass_balance_RMS
+        Field Name: surface_enthalpy
         Field Type: Node Scalar
-        Field Origin: Mesh
-      Field 7:
-        Field Name: bed_topography
-        Field Type: Node Scalar
-        Field Origin: Mesh
-        Field Usage: Output
-      Field 8:
-        Field Name: surface_height
-        Field Type: Node Scalar
-        Field Origin: Mesh
-        Field Usage: Output
+        Field Usage: Output # Required by problem
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
@@ -149,58 +176,65 @@ ANONYMOUS:
         Number Of Time Derivatives: 0
         Method: Ioss
         Restart Index: 1
-        Exodus Input File Name: mesh-pop/gis_basal_populated.exo
+        Exodus Input File Name: mesh-pop/humboldt_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 9
+          Number Of Fields: 7
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
             Field Origin: Mesh
+            #Field Origin: File
+            #File Name: mesh/thickness.ascii
           Field 1:
-            Field Name: observed_ice_thickness
-            Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 2:
-            Field Name: observed_ice_thickness_RMS
-            Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 3:
             Field Name: surface_height
             Field Type: Node Scalar
             Field Origin: Mesh
-          Field 4:
+            #Field Origin: File
+            #File Name: mesh/surface_height.ascii
+          Field 2:
             Field Name: bed_topography
             Field Type: Node Scalar
             Field Origin: Mesh
+            #Field Origin: File
+            #File Name: mesh/bed_topography.ascii
+          Field 3:
+            Field Name: basal_friction_log
+            Field Type: Node Scalar
+            Field Origin: Mesh
+            #Field Origin: File
+            #File Name: mesh/basal_friction_log.ascii
+          Field 4:
+            Field Name: surface_air_temperature
+            Field Type: Node Scalar
+            Field Origin: Mesh
+            #Field Origin: File
+            #File Name: mesh/surface_air_temperature.ascii
           Field 5:
-            Field Name: log_basal_friction
+            Field Name: heat_flux
             Field Type: Node Scalar
             Field Origin: Mesh
+            #Field Origin: File
+            #File Name: mesh/basal_heat_flux.ascii
           Field 6:
-            Field Name: temperature
-            Field Type: Node Layered Scalar
+            Field Name: velocity
+            Field Type: Node Layered Vector
             Field Origin: Mesh
-            Number Of Layers: 11
-          Field 7:
-            Field Name: apparent_mass_balance
-            Field Type: Node Scalar
-            Field Origin: Mesh
-          Field 8:
-            Field Name: apparent_mass_balance_RMS
-            Field Type: Node Scalar
-            Field Origin: Mesh
+            Number Of Layers: 2
+            Vector Dim: 2
+            #Field Origin: File
+            #File Name: mesh/velocity.ascii
       upperside:
         Number Of Time Derivatives: 0
         Method: Ioss
         Restart Index: 1
-        Exodus Input File Name: mesh-pop/gis_upper_populated.exo
+        Exodus Input File Name: mesh-pop/humboldt_upper_populated.exo
         Required Fields Info:
           Number Of Fields: 2
           Field 0:
             Field Name: observed_surface_velocity
             Field Type: Node Vector
-            Vector Dim: 2
             Field Origin: Mesh
+            Vector Dim: 2
           Field 1:
             Field Name: observed_surface_velocity_RMS
             Field Type: Node Scalar
@@ -214,24 +248,44 @@ ANONYMOUS:
         Full Step: 
           Full Step: 1.0
         Method: Backtrack
+        Backtrack:
+          Minimum Step: 1.0e-4
+          Recovery Step: 1.0e-4
       Solver Options: 
         Status Test Check Type: Minimal
       Status Tests: 
-        Test Type: MaxIters
-        Maximum Iterations: 100
+        Test Type: Combo
+        Combo Type: OR
+        Number of Tests: 2
+        Test 0: 
+          Test Type: Combo
+          Combo Type: AND
+          Number of Tests: 2
+          Test 0: 
+            Test Type: NormF
+            Norm Type: Two Norm
+            Scale Type: Scaled
+            Tolerance: 1.0e-06
+          Test 1:
+            Test Type: RelativeNormF
+            Norm Type: Two Norm
+            Tolerance: 0.9999
+        Test 1: 
+          Test Type: MaxIters
+          Maximum Iterations: 50
       Printing: 
         Output Precision: 3
         Output Processor: 0
         Output Information: 
-          Error: false
-          Warning: false
-          Outer Iteration: false
+          Error: true
+          Warning: true
+          Outer Iteration: true
           Parameters: false
           Details: false
           Linear Solver Details: false
-          Stepper Iteration: false
-          Stepper Details: false
-          Stepper Parameters: false
+          Stepper Iteration: true
+          Stepper Details: true
+          Stepper Parameters: true
 
       Direction: 
         Method: Newton
@@ -240,7 +294,7 @@ ANONYMOUS:
           Rescue Bad Newton Solve: true
           Linear Solver:
             Write Linear System: false
-            Tolerance: 1.0e-8
+            Tolerance: 1.0e-7
           Stratimikos Linear Solver: 
             Stratimikos: 
 
@@ -251,23 +305,28 @@ ANONYMOUS:
                   Solver Type: Block GMRES
                   Solver Types:
                     Block GMRES:
-                      Output Frequency: 0
+                      Output Frequency: 20
                       Output Style: 1
                       Verbosity: 33
-                      Maximum Iterations: 1
+                      Maximum Iterations: 200
                       Block Size: 1
                       Num Blocks: 200
                       Flexible Gmres: false
                   VerboseObject:
                     Output File: none
-                    Verbosity Level: none
+                    Verbosity Level: low
 
 #             Preconditioner Information
-              Preconditioner Type: None
+              Preconditioner Type: Ifpack2
               Preconditioner Types:
                 Ifpack2:
                   Overlap: 0
-                  Prec Type: RILUK
+                  Prec Type: Amesos2
                   Ifpack2 Settings:
-                    'fact: iluk level-of-fill': 0
+                    Amesos2 solver name: tacho
+                    Amesos2:
+                      Tacho:
+                        'method' : lu
+                        'variant': 0
+                        'verbose': true
 ...

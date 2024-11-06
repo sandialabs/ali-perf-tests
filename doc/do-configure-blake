@@ -29,6 +29,7 @@ cmake \
   -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad12 \
   -D SFAD16_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad16 \
   -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad24 \
+  -D MALI_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/MALIReleaseInstallGcc \
   -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \
   -D BUILD_SHARED_LIBS:BOOL=ON \

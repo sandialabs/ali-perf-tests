@@ -41,7 +41,7 @@ add_test(${testName}_vel_cheby_adjt_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBA
 add_test(${testName}_vel_cheby_fixt_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_cheby_fixt.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_veldep_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_veldep.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_vel_lsbj_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_lsbj.yaml ${ALBANY_EXTRA_ARGS}")
-add_test(${testName}_velopt_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_velopt.yaml ${ALBANY_EXTRA_ARGS}")
+add_test(${testName}_velopt_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_ANALYSIS_SFAD12_EXE} input_velopt.yaml ${ALBANY_EXTRA_ARGS}")
 
 IF (NOT ALBANY_ENABLE_CUDA)
   add_test(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_lsgs.yaml ${ALBANY_EXTRA_ARGS}")

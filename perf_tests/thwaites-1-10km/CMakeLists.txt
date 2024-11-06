@@ -12,7 +12,7 @@ IF (NOT ALBANY_ENABLE_CUDA)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_cpu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_ent_cpu.yaml COPYONLY)
 
-# Too expensive (linear solves not converging)
+# Too expensive (linear solves not converging) - also doesn't fit on one node
 #  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_if2.yaml
 #                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_if2.yaml COPYONLY)
 #  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fro.yaml
@@ -55,8 +55,8 @@ set_tests_properties(${testName}_vel_gpu_np${ALBANY_NUM_PROCS}
 IF (NOT ALBANY_ENABLE_CUDA)
   set_tests_properties(${testName}_vel_cpu_np${ALBANY_NUM_PROCS}
                        ${testName}_ent_cpu_np${ALBANY_NUM_PROCS}
+                       PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 #                       ${testName}_cop_if2_np${ALBANY_NUM_PROCS}
 #                       ${testName}_cop_fro_np${ALBANY_NUM_PROCS}
-                       PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 ENDIF()
 

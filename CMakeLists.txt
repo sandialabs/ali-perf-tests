@@ -118,6 +118,12 @@ IF (DEFINED SFAD24_EXE_DIR)
 ELSE()
   MESSAGE(FATAL_ERROR "SFAD24_EXE_DIR not set!")
 ENDIF()
+IF (DEFINED MALI_EXE_DIR)
+  MESSAGE("-- MALI_EXE_DIR set: ${MALI_EXE_DIR}.")
+  SET(MALIExePath ${MALI_EXE_DIR}/landice_model)
+ELSE()
+  MESSAGE(FATAL_ERROR "MALI_EXE_DIR not set!")
+ENDIF()
 IF (DEFINED MESH_FILE_DIR)
   MESSAGE("-- MESH_FILE_DIR set: ${MESH_FILE_DIR}.\n")
 ELSE()
@@ -126,10 +132,11 @@ ENDIF()
 
 # Define Albany executables, procs and args
 IF(ALIPT_BUILD_BLAKE)
-  # Note: This causes issues when there are multiple failing tests which don't fail in a clean way and not enough ports are open.
-  # A delay between tests is needed to allow all ranks to unbind.
+  # TempFix: Multiple nodes causes issues when there are multiple failing tests which don't fail in a clean way and not enough ports are open.
+  # A delay between tests is needed to allow all ranks to unbind but this takes too long. Reverting to one node for now.
   #SET(ALBANY_NUM_PROCS 384)
-  SET(ALBANY_NUM_PROCS 192)
+  #SET(ALBANY_NUM_PROCS 192)
+  SET(ALBANY_NUM_PROCS 96)
   SET(ALBANY_MPI_CONFIG "mpirun -n ${ALBANY_NUM_PROCS} --map-by core")
 ELSEIF(ALIPT_BUILD_WEAVER)
   #SET(ALBANY_NUM_PROCS 8) # TempFix: cannot launch multiple nodes on weaver
@@ -143,11 +150,12 @@ ELSE()
   MESSAGE(FATAL_ERROR "ALIPT_BUILD_X not set!")
 ENDIF()
 
-SET(ALBANY_BASH "bash" "-lc")
+SET(ALBANY_BASH "bash" "-lc") # Used for piping commands
 SET(ALBANY_SFAD6_EXE "${ALBANY_MPI_CONFIG} ${SFAD6ExePath}")
 SET(ALBANY_SFAD12_EXE "${ALBANY_MPI_CONFIG} ${SFAD12ExePath}")
 SET(ALBANY_SFAD16_EXE "${ALBANY_MPI_CONFIG} ${SFAD16ExePath}")
 SET(ALBANY_SFAD24_EXE "${ALBANY_MPI_CONFIG} ${SFAD24ExePath}")
+SET(MALI_EXE "${ALBANY_MPI_CONFIG} ${MALIExePath}")
 SET(ALBANY_ANALYSIS_SFAD6_EXE "${ALBANY_MPI_CONFIG} ${SFAD6ExeAnalysisPath}")
 SET(ALBANY_ANALYSIS_SFAD12_EXE "${ALBANY_MPI_CONFIG} ${SFAD12ExeAnalysisPath}")
 SET(ALBANY_ANALYSIS_SFAD16_EXE "${ALBANY_MPI_CONFIG} ${SFAD16ExeAnalysisPath}")

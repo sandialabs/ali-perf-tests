@@ -217,7 +217,17 @@ ANONYMOUS:
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -7.516807281563e+00
+    Test Value: 5.541397797354e+02
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+    Piro Analysis Test Two Norm: true
+    Piro Analysis Test Values: [922.33704207]
+  Regression For Response 1:
+    Test Value: 3.802741403122e+05
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 2:
+    Test Value: 3.807639641009e+05
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 

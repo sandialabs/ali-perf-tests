@@ -1,9 +1,8 @@
 %YAML 1.1
 ---
 ANONYMOUS:
-
 # Problem Description
-  Problem: 
+  Problem:
     Name: LandIce Stokes FO Thermo Coupled 3D
     Solution Method: Steady
     Basal Side Name: basalside
@@ -37,14 +36,14 @@ ANONYMOUS:
       'Glen''s Law n': 3.0
       Flow Rate Type: Temperature Based
     LandIce Enthalpy:
-      Regularization: 
-        Flux Regularization: 
+      Regularization:
+        Flux Regularization:
           alpha: 4.0
           beta: 0.0
-        Basal Melting Regularization: 
+        Basal Melting Regularization:
           alpha: 4.0
           beta: 0.0
-      Stabilization: 
+      Stabilization:
         Type: Upwind
         Parameter Delta: 0.5
       Bed Lubrication:
@@ -254,6 +253,9 @@ ANONYMOUS:
           Recovery Step: 1.0e-4
       Solver Options: 
         Status Test Check Type: Minimal
+      Thyra Group Options:
+        Function Scaling: Row Sum
+        Update Row Sum Scaling: Before Each Nonlinear Solve
       Status Tests: 
         Test Type: Combo
         Combo Type: OR

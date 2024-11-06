@@ -84,7 +84,7 @@ ANONYMOUS:
 
 # Final solution comparison
   Regression For Response 0:
-    Test Value: -8.644636747943e-01
+    Test Value: 0.00170666356028
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 

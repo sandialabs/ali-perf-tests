@@ -238,6 +238,9 @@ ANONYMOUS:
           Recovery Step: 1.0e-4
       Solver Options: 
         Status Test Check Type: Minimal
+      Thyra Group Options:
+        Function Scaling: Row Sum
+        Update Row Sum Scaling: Before Each Nonlinear Solve
       Status Tests: 
         Test Type: MaxIters
         Maximum Iterations: 20

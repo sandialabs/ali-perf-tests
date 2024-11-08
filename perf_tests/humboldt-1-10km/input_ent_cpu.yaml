@@ -52,6 +52,10 @@ ANONYMOUS:
     Dirichlet BCs:
       DBC on NS top for DOF Enth prescribe Field: surface_enthalpy
 
+#   Degrees of Cubature Rules
+    Cubature Degree: 4
+    Basal Cubature Degree: 4
+
 #   Performance parameters
     Use MDField Memoization: true
 
@@ -62,10 +66,6 @@ ANONYMOUS:
       Response 0:
         Name: Solution Average
         Type: Scalar Response
-
-#   Degrees of Cubature Rules
-    Cubature Degree: 4
-    Basal Cubature Degree: 4
 
 # Final solution comparison
   Regression For Response 0:

@@ -18,6 +18,7 @@ ANONYMOUS:
       Gravity Acceleration: 9.80616
       Clausius-Clapeyron Coefficient: 7.9e-08
     LandIce Viscosity:
+      Use Stiffening Factor: true
       Use P0 Temperature: true
       Extract Strain Rate Sq: true
       Type: Glen's Law
@@ -56,6 +57,12 @@ ANONYMOUS:
     Cubature Degrees (Horiz Vert): [4, 3]
     Basal Cubature Degree: 4
     Surface Cubature Degree: 4
+
+#   Performance parameters
+    Use MDField Memoization: true
+    LandIce Rigid Body Modes For Preconditioner:
+      Compute Constant Modes: true
+      Compute Rotation Modes: true
 
 # Optimization parameters
     Parameters: 
@@ -209,12 +216,6 @@ ANONYMOUS:
           Field Rank: Gradient
           Target Value: 0.0
 
-#   Performance parameters
-    Use MDField Memoization: true
-    LandIce Rigid Body Modes For Preconditioner:
-      Compute Constant Modes: true
-      Compute Rotation Modes: true
-
 # Final solution comparison
   Regression For Response 0:
     Test Value: 5.541397797354e+02
@@ -279,7 +280,7 @@ ANONYMOUS:
         Restart Index: 1
         Exodus Input File Name: mesh-pop/ais_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 5
+          Number Of Fields: 6
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
@@ -301,7 +302,7 @@ ANONYMOUS:
             Field Type: Elem Layered Scalar
             Field Origin: Mesh
             Number Of Layers: 5
-          Field 6: 
+          Field 5:
             Field Name: stiffening_factor_log
             Field Type: Node Scalar
             Field Origin: Mesh

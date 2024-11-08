@@ -29,7 +29,7 @@ ANONYMOUS:
         Exodus Input File Name: mesh-decomp/humboldt_2d.exo
         Exodus Output File Name: mesh-pop/humboldt_basal_populated.exo
         Required Fields Info:
-          Number Of Fields: 10
+          Number Of Fields: 12
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
@@ -84,6 +84,17 @@ ANONYMOUS:
             Field Origin: File
             Number Of Layers: 11
             File Name: mesh/temperature.ascii
+          Field 10:
+            Field Name: apparent_mass_balance
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/apparent_mass_balance.ascii
+          Field 11:
+            Field Name: apparent_mass_balance_RMS
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/apparent_mass_balance_uncertainty.ascii
+
       upperside:
         Number Of Time Derivatives: 0
         Method: SideSetSTK

@@ -7,7 +7,7 @@
 #SBATCH --ntasks=96
 #SBATCH --ntasks-per-node=96
 #SBATCH --ntasks-per-socket=48
-#SBATCH --time=04:00:00
+#SBATCH --time=02:00:00
 #SBATCH --exclusive
 ## SBATCH --exclude=node03,node06,node10,node27,node15
 

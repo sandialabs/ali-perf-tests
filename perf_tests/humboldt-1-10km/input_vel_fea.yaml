@@ -63,6 +63,11 @@ ANONYMOUS:
         Regularization Type: Given Value
         Regularization Value: 1.0e-06
 
+#   Degrees of Cubature Rules
+    Cubature Degree: 4
+    Surface Cubature Degree: 4
+    Basal Cubature Degree: 4
+
 #   Performance parameters
     Use MDField Memoization: true
     LandIce Rigid Body Modes For Preconditioner:
@@ -76,11 +81,6 @@ ANONYMOUS:
       Response 0:
         Name: Solution Average
         Type: Scalar Response
-
-#   Degrees of Cubature Rules
-    Cubature Degree: 4
-    Surface Cubature Degree: 4
-    Basal Cubature Degree: 4
 
 # Final solution comparison
   Regression For Response 0:

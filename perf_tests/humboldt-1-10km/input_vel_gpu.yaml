@@ -63,6 +63,11 @@ ANONYMOUS:
         Regularization Type: Given Value
         Regularization Value: 1.0e-06
 
+#   Degrees of Cubature Rules
+    Cubature Degree: 4
+    Surface Cubature Degree: 4
+    Basal Cubature Degree: 4
+
 #   Performance parameters
     Use MDField Memoization: true
     LandIce Rigid Body Modes For Preconditioner:
@@ -72,20 +77,25 @@ ANONYMOUS:
 #   Output
     Phalanx Graph Visualization Detail: 0
     Response Functions:
-      Number Of Responses: 2
+      Number Of Responses: 3
       Response 0:
         Name: Solution Average
         Type: Scalar Response
       Response 1:
-        Name: Surface Velocity Mismatch
-        Regularization Coefficient: 1.0e+03
-        Asinh Scaling: 1.0e+01
-        Scaling Coefficient: 4.540693e-06
-
-#   Degrees of Cubature Rules
-    Cubature Degree: 4
-    Surface Cubature Degree: 4
-    Basal Cubature Degree: 4
+        Scaling: 1.0
+        Name: Squared L2 Difference Side Source ST Target RT
+        Source Field Name: Velocity_upperside
+        Root Mean Square Error Field Name: observed_surface_velocity_RMS_upperside
+        Field Rank: Vector
+        Target Field Name: observed_surface_velocity_upperside
+        Side Set Name: upperside
+      Response 2:
+        Scaling: 1.0
+        Name: Squared L2 Difference Side Source PST Target MST
+        Source Field Name: basal_friction_log_gradient_basalside
+        Side Set Name: basalside
+        Field Rank: Gradient
+        Target Value: 0.0
 
 # Final solution comparison
   Regression For Response 0:
@@ -93,7 +103,11 @@ ANONYMOUS:
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
   Regression For Response 1:
-    Test Value: 1.300374437725e+01
+    Test Value: 4.677554889537e+06
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 2:
+    Test Value: 1.742906033595e+02
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -368,17 +382,17 @@ ANONYMOUS:
                       type: CHEBYSHEV
                       'smoother: pre or post': both
                       ParameterList:
-                        'gpushev: degree': 2
-                        'gpushev: eigenvalue max iterations': 15
-                        'gpushev: ratio eigenvalue': 27.572
+                        'chebyshev: degree': 2
+                        'chebyshev: eigenvalue max iterations': 15
+                        'chebyshev: ratio eigenvalue': 27.572
                     mySmoother4:
                       factory: TrilinosSmoother
                       type: CHEBYSHEV
                       'smoother: pre or post': pre
                       ParameterList:
-                        'gpushev: degree': 4
-                        'gpushev: eigenvalue max iterations': 15
-                        'gpushev: ratio eigenvalue': 25.6539
+                        'chebyshev: degree': 4
+                        'chebyshev: eigenvalue max iterations': 15
+                        'chebyshev: ratio eigenvalue': 25.6539
                   Hierarchy:
                     max levels: 3
                     'coarse: max size': 2000

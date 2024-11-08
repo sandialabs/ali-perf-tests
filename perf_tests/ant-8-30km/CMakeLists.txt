@@ -14,7 +14,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_lsbj.yaml
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_velopt.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_velopt.yaml COPYONLY)
 
-IF (NOT ALBANY_ENABLE_CUDA)
+IF (NOT Kokkos_ENABLE_CUDA)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_lsgs.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_vel_lsgs.yaml COPYONLY)
 ENDIF()
@@ -43,7 +43,7 @@ add_test(${testName}_veldep_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD1
 add_test(${testName}_vel_lsbj_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_lsbj.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_velopt_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_ANALYSIS_SFAD12_EXE} input_velopt.yaml ${ALBANY_EXTRA_ARGS}")
 
-IF (NOT ALBANY_ENABLE_CUDA)
+IF (NOT Kokkos_ENABLE_CUDA)
   add_test(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_lsgs.yaml ${ALBANY_EXTRA_ARGS}")
 ENDIF()
 
@@ -59,7 +59,7 @@ set_tests_properties(${testName}_vel_cheby_adjt_np${ALBANY_NUM_PROCS}
                      ${testName}_velopt_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 
-IF (NOT ALBANY_ENABLE_CUDA)
+IF (NOT Kokkos_ENABLE_CUDA)
   set_tests_properties(${testName}_vel_lsgs_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 ENDIF()

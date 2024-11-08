@@ -18,6 +18,7 @@ ANONYMOUS:
       Gravity Acceleration: 9.80616
       Clausius-Clapeyron Coefficient: 7.9e-08
     LandIce Viscosity:
+      Use Stiffening Factor: true
       Use P0 Temperature: true
       Extract Strain Rate Sq: true
       Type: Glen's Law
@@ -41,8 +42,8 @@ ANONYMOUS:
           Power Exponent: 1.0
           Effective Pressure Type: Hydrostatic Computed At Nodes
           Zero Effective Pressure On Floating Ice At Nodes: true
-          Mu Type: Field
-          Mu Field Name: mu
+          Mu Type: Exponent Of Field At Nodes
+          Mu Field Name: mu_log
       BC 1:
         Type: Lateral
         Cubature Degree: 3
@@ -57,23 +58,58 @@ ANONYMOUS:
     Basal Cubature Degree: 4
     Surface Cubature Degree: 4
 
-#   Output
-    Phalanx Graph Visualization Detail: 0
-    Response Functions:
-      Number Of Responses: 1
-      Response 0:
-        Name: Solution Average
-        Type: Scalar Response
-
 #   Performance parameters
     Use MDField Memoization: true
     LandIce Rigid Body Modes For Preconditioner:
       Compute Constant Modes: true
       Compute Rotation Modes: true
 
+#   Output
+    Phalanx Graph Visualization Detail: 0
+    Response Functions:
+      Number Of Responses: 4
+      Response 0:
+        Name: Solution Average
+        Type: Scalar Response
+      Response 1:
+        Scaling: 1.0
+        Name: Squared L2 Difference Side Source ST Target RT
+        Source Field Name: Velocity_upperside
+        Root Mean Square Error Field Name: observed_surface_velocity_RMS_upperside
+        Field Rank: Vector
+        Target Field Name: observed_surface_velocity_upperside
+        Side Set Name: upperside
+      Response 2:
+        Scaling: 1.0
+        Name: Squared L2 Difference Side Source PST Target MST
+        Source Field Name: mu_log_gradient_basalside
+        Side Set Name: basalside
+        Field Rank: Gradient
+        Target Value: 0.0
+      Response 3:
+        Scaling: 1.0
+        Name: Squared L2 Difference Side Source PST Target MST
+        Source Field Name: stiffening_factor_log_gradient_basalside
+        Side Set Name: basalside
+        Field Rank: Gradient
+        Target Value: 0.0
+        Is Side Set Planar: true
+
 # Final solution comparison
   Regression For Response 0:
     Test Value: -7.516807281563e+00
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 1:
+    Test Value: 5.541397797354e+02
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 2:
+    Test Value: 3.802741403122e+05
+    Relative Tolerance: 1.0e-05
+    Absolute Tolerance: 1.0e-03
+  Regression For Response 3:
+    Test Value: 3.807639641009e+05
     Relative Tolerance: 1.0e-05
     Absolute Tolerance: 1.0e-03
 
@@ -89,12 +125,12 @@ ANONYMOUS:
 #   Field Information
     Thickness Field Name: ice_thickness
     Surface Height Field Name: surface_height
-    Extrude Basal Node Fields: [ice_thickness, surface_height]
-    Basal Node Fields Ranks: [1, 1]
+    Extrude Basal Node Fields: [ice_thickness, surface_height, mu_log, stiffening_factor_log]
+    Basal Node Fields Ranks: [1, 1, 1, 1]
     Interpolate Basal Elem Layered Fields: [temperature]
     Basal Elem Layered Fields Ranks: [1]
     Required Fields Info:
-      Number Of Fields: 3
+      Number Of Fields: 5
       Field 0:
         Field Name: ice_thickness
         Field Type: Node Scalar
@@ -107,16 +143,24 @@ ANONYMOUS:
         Field Name: temperature
         Field Type: Elem Scalar
         Field Origin: Mesh
+      Field 3:
+        Field Name: mu_log
+        Field Type: Node Scalar
+        Field Origin: Mesh
+      Field 4:
+        Field Name: stiffening_factor_log
+        Field Type: Node Scalar
+        Field Origin: Mesh
 
 #   Sideset Discretizations descriptions
     Side Set Discretizations: 
-      Side Sets: [basalside]
+      Side Sets: [basalside, upperside]
       basalside:
         Number Of Time Derivatives: 0
         Method: Ioss
         Exodus Input File Name: mesh-decomp/ais_2d.exo
         Required Fields Info:
-          Number Of Fields: 5
+          Number Of Fields: 6
           Field 0:
             Field Name: ice_thickness
             Field Type: Node Scalar
@@ -133,16 +177,37 @@ ANONYMOUS:
             Field Origin: File
             File Name: mesh/bed_topography.ascii
           Field 3:
-            Field Name: mu
+            Field Name: mu_log
             Field Type: Node Scalar
             Field Origin: File
-            File Name: mesh/mu.ascii
+            File Name: mesh/mu_log.ascii
           Field 4:
             Field Name: temperature
             Field Type: Elem Layered Scalar
             Number Of Layers: 5
             Field Origin: File
             File Name: mesh/temperature.ascii
+          Field 5:
+            Field Name: stiffening_factor_log
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/stiffening_factor_log.ascii
+      upperside:
+        Number Of Time Derivatives: 0
+        Method: SideSetSTK
+        Required Fields Info:
+          Number Of Fields: 2
+          Field 0:
+            Field Name: observed_surface_velocity
+            Field Type: Node Vector
+            Vector Dim: 2
+            Field Origin: File
+            File Name: mesh/surface_velocity.ascii
+          Field 1:
+            Field Name: observed_surface_velocity_RMS
+            Field Type: Node Scalar
+            Field Origin: File
+            File Name: mesh/surface_velocity_uncertainty.ascii
 
   Piro: 
 #   Nonlinear Solver Information

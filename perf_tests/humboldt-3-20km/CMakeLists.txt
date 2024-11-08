@@ -4,7 +4,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_pop.yaml
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_gpu.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_vel_gpu.yaml COPYONLY)
 
-IF (NOT ALBANY_ENABLE_CUDA)
+IF (NOT Kokkos_ENABLE_CUDA)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_cpu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_vel_cpu.yaml COPYONLY)
 ENDIF()
@@ -27,7 +27,7 @@ add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_E
 # Add tests for performance
 add_test(${testName}_vel_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_gpu.yaml ${ALBANY_EXTRA_ARGS}")
 
-IF (NOT ALBANY_ENABLE_CUDA)
+IF (NOT Kokkos_ENABLE_CUDA)
   add_test(${testName}_vel_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_cpu.yaml ${ALBANY_EXTRA_ARGS}")
 ENDIF()
 
@@ -39,7 +39,7 @@ set_tests_properties(${testName}_pop_np${ALBANY_NUM_PROCS}
 set_tests_properties(${testName}_vel_gpu_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 
-IF (NOT ALBANY_ENABLE_CUDA)
+IF (NOT Kokkos_ENABLE_CUDA)
   set_tests_properties(${testName}_vel_cpu_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 ENDIF()

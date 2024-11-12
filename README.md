@@ -82,6 +82,7 @@ New systems can be added by modifying CMakeLists.txt.
 | ant-2km\_vel\_gpu | Structured 2km AIS, Velocity problem, GPU preconditioner |
 | ant-1km\_vel\_cpu | Structured 1km AIS, Velocity problem, CPU preconditioner |
 | ant-1km\_vel\_gpu | Structured 1km AIS, Velocity problem, GPU preconditioner |
+
 New cases can be added by modifying CMakeLists.txt.
 
 ## Timers:
@@ -117,6 +118,8 @@ These are other timers that are stored but not used in reporting:
 | Albany: SolveFO: | Total wall-clock time of Albany velocity solve |
 | Residual Fill: Evaluate | Compute the Residual, local/global assembly |
 | Residual Fill: Export | Update global Residual across MPI ranks |
+| Jacobian Fill: Evaluate | Compute the Jacobian, local/global assembly |
+| Jacobian Fill: Export | Update global Jacobian across MPI ranks |
 
 New timers can be added by modifying jupyter\_nb/scripts/ctest2json.py
 

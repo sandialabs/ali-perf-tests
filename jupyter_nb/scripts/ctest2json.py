@@ -81,7 +81,7 @@ def ctest2json(file, allTimers):
             # Extract timer information
             for timer in timers:
                 if timer in line:
-                    wtime = float(line.split(timer)[1].split()[wtimeAvgLoc])
+                    wtime = float(line.split(timer)[1].split()[wtimeAvgLoc]) # should work with MALI timers too
                     testInfo['timers'][timer] = wtime
                     #calls = int(line.split(timer)[1].split('[')[1].split(']')[0])
                     #testInfo['timers'][timer] = wtime / calls
@@ -148,7 +148,12 @@ if __name__ == "__main__":
     files = glob.glob(os.path.join(dir,'LastTest_*'))
 
     # Specify timers to extract from ctest file (note: must be unique names per test in file)
-    timers = ('Albany Total Time:',
+    timers = (
+              '1 total time',
+              'Albany Velocity Solver:',
+              'Albany: Extrude 3D Grid:',
+              'Albany: SolveFO:',
+              'Albany Total Time:',
               'Albany: Setup Time:',
               'Albany: Total Fill Time:',
               'Albany Fill: Residual:',
@@ -157,8 +162,13 @@ if __name__ == "__main__":
               'Albany Fill: Jacobian:',
               'Albany Jacobian Fill: Evaluate:',
               'Albany Jacobian Fill: Export:',
+              'Albany Fill: Distributed Parameter Derivative:'
               'NOX Total Preconditioner Construction:',
-              'NOX Total Linear Solve:')
+              'NOX Total Linear Solve:',
+              'Albany Fill: Response Distributed Parameter Hessian Vector Product:',
+              'Albany Fill: Response Parameter Hessian Vector Product:',
+              'Albany Fill: Residual Distributed Parameter Hessian Vector Product:'
+              )
 
     # Loop over files
     for file in files:

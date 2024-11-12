@@ -9,6 +9,7 @@ rm -rf slurm*
 rm -rf modules*out 
 
 ulimit -c 0
+export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 unset http_proxy
 unset https_proxy

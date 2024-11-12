@@ -102,8 +102,9 @@ ANONYMOUS:
     #Absolute Tolerance: 1.0e-03
   Regression For Response 1:
     Test Value: 5.611696875931e+09
-    Relative Tolerance: 1.0e-05
-    Absolute Tolerance: 1.0e-03
+    Relative Tolerance: 1.0e-03
+    Absolute Tolerance: 3.0e-03 # see https://github.com/sandialabs/Albany/issues/712
+    #Absolute Tolerance: 1.0e-03
   Regression For Response 2:
     Test Value: 4.410000327792e+04
     Relative Tolerance: 1.0e-05

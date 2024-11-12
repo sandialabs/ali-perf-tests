@@ -67,7 +67,7 @@ ANONYMOUS:
 #   Output
     Phalanx Graph Visualization Detail: 0
     Response Functions:
-      Number Of Responses: 4
+      Number Of Responses: 3 # Turning off stiffening factor response due to missing evaluator
       Response 0:
         Name: Solution Average
         Type: Scalar Response

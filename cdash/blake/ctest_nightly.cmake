@@ -96,14 +96,6 @@ find_program (CTEST_GIT_COMMAND NAMES git)
 
 set (ALIPerfTests_REPOSITORY_LOCATION git@github.com:sandialabs/ali-perf-tests.git)
 set (GithubIO_REPOSITORY_LOCATION git@github.com:sandialabs/ali-perf-data.git)
-set (MPI_PATH $ENV{MPI_ROOT})  
-set (MKL_PATH $ENV{MKL_ROOT})  
-set (SUPERLU_PATH $ENV{SUPERLU_ROOT})  
-set (BOOST_PATH $ENV{BOOST_ROOT}) 
-set (NETCDF_PATH $ENV{NETCDF_ROOT}) 
-set (PNETCDF_PATH $ENV{PNETCDF_ROOT}) 
-set (HDF5_PATH $ENV{HDF5_ROOT})
-set (ZLIB_PATH $ENV{ZLIB_ROOT})  
 
 if (CLEAN_BUILD)
   # Initial cache info
@@ -212,7 +204,9 @@ if (BUILD_ALI_PERF_TESTS)
     "-DTRILINOS_DIR:FILEPATH=${TRILINSTALLDIR}"
     "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad6"
     "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad12"
+    "-DSFAD16_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad16"
     "-DSFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad24"
+    "-DMALI_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/MALIReleaseInstallGcc"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"

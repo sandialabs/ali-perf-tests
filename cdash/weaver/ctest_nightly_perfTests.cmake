@@ -131,13 +131,6 @@ find_program (CTEST_GIT_COMMAND NAMES git)
 
 set (ALIPerfTests_REPOSITORY_LOCATION git@github.com:sandialabs/ali-perf-tests.git)
 set (GithubIO_REPOSITORY_LOCATION git@github.com:sandialabs/ali-perf-data.git)
-set (MPI_PATH $ENV{MPI_ROOT})  
-set (MKL_PATH $ENV{MKL_ROOT})  
-set (BOOST_PATH $ENV{BOOST_ROOT}) 
-set (NETCDF_PATH $ENV{NETCDF_ROOT}) 
-set (PNETCDF_PATH $ENV{PNETCDF_ROOT}) 
-set (HDF5_PATH $ENV{HDF5_ROOT})
-set (ZLIB_PATH $ENV{ZLIB_ROOT})  
 
 if (CLEAN_BUILD)
   # Initial cache info
@@ -244,11 +237,10 @@ if (BUILD_ALI_PERF_TESTS)
     "-Wno-dev"
     "-DALIPT_BUILD_WEAVER:BOOL=ON"
     "-DTRILINOS_DIR:FILEPATH=${TRILINSTALLDIR}"
-    "-DSFAD4_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad4"
     "-DSFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6"
-    "-DSFAD8_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad"
     "-DSFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12"
     "-DSFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad24"
+    "-DMALI_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/MALIInstall"
     "-DMESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes"
     "-DCMAKE_BUILD_TYPE:STRING=RELEASE"
     "-DBUILD_SHARED_LIBS:BOOL=ON"
@@ -321,7 +313,7 @@ if (RUN_ALI_PERF_TESTS)
   #
   # Run tests  
   #
-  set (CTEST_TEST_TIMEOUT 1200)
+  set (CTEST_TEST_TIMEOUT 1800)
 
   CTEST_TEST(
     BUILD "${CTEST_BINARY_DIRECTORY}/ALIPerfTestsBuild"

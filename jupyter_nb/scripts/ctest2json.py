@@ -162,7 +162,7 @@ if __name__ == "__main__":
               'Albany Fill: Jacobian:',
               'Albany Jacobian Fill: Evaluate:',
               'Albany Jacobian Fill: Export:',
-              'Albany Fill: Distributed Parameter Derivative:'
+              'Albany Fill: Distributed Parameter Derivative:',
               'NOX Total Preconditioner Construction:',
               'NOX Total Linear Solve:',
               'Albany Fill: Response Distributed Parameter Hessian Vector Product:',

@@ -339,5 +339,6 @@ ANONYMOUS:
                       Tacho:
                         'method' : lu
                         'variant': 0
-                        'verbose': true
+                        'dofs-per-node': 4
+                        'perturb-pivot': true
 ...

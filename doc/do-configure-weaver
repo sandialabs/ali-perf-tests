@@ -25,9 +25,9 @@ cmake \
   -Wno-dev \
   -D ALIPT_BUILD_WEAVER:BOOL=ON \
   -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/TrilinosInstall \
-  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6 \
-  -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12 \
-  -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad24 \
+  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad6/src \
+  -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad12/src \
+  -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/AlbBuildSFad24/src \
   -D MALI_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashWeaver/build/MALIInstall \
   -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \

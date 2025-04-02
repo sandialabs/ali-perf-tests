@@ -5,22 +5,29 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_fea.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_vel_fea.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_gpu.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_vel_gpu.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_fea.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_ent_fea.yaml COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_gpu.yaml
-               ${CMAKE_CURRENT_BINARY_DIR}/input_ent_gpu.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fea.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fea.yaml COPYONLY)
+
+IF (ALBANY_SFAD6_EXE)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_fea.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_ent_fea.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_gpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_ent_gpu.yaml COPYONLY)
+ENDIF()
 
 IF (NOT Kokkos_ENABLE_CUDA)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_cpu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_vel_cpu.yaml COPYONLY)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_cpu.yaml
-                 ${CMAKE_CURRENT_BINARY_DIR}/input_ent_cpu.yaml COPYONLY)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_if2_slu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_if2_slu.yaml COPYONLY)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fro_slu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fro_slu.yaml COPYONLY)
+
+  IF (ALBANY_SFAD6_EXE)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_cpu.yaml
+                   ${CMAKE_CURRENT_BINARY_DIR}/input_ent_cpu.yaml COPYONLY)
+  ENDIF()
+
 ELSE()
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_if2_tch.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_if2_tch.yaml COPYONLY)
@@ -46,14 +53,18 @@ add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_E
 # Add tests for performance
 add_test(${testName}_vel_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_fea.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_vel_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_gpu.yaml ${ALBANY_EXTRA_ARGS}")
-add_test(${testName}_ent_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_fea.yaml ${ALBANY_EXTRA_ARGS}")
-add_test(${testName}_ent_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_gpu.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_cop_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_fea.yaml ${ALBANY_EXTRA_ARGS}")
+IF (ALBANY_SFAD6_EXE)
+  add_test(${testName}_ent_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_fea.yaml ${ALBANY_EXTRA_ARGS}")
+  add_test(${testName}_ent_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_gpu.yaml ${ALBANY_EXTRA_ARGS}")
+ENDIF()
 IF (NOT Kokkos_ENABLE_CUDA)
   add_test(${testName}_vel_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_cpu.yaml ${ALBANY_EXTRA_ARGS}")
-  add_test(${testName}_ent_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_cpu.yaml ${ALBANY_EXTRA_ARGS}")
   add_test(${testName}_cop_if2_slu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_if2_slu.yaml ${ALBANY_EXTRA_ARGS}")
   add_test(${testName}_cop_fro_slu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_fro_slu.yaml ${ALBANY_EXTRA_ARGS}")
+  IF (ALBANY_SFAD6_EXE)
+    add_test(${testName}_ent_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_cpu.yaml ${ALBANY_EXTRA_ARGS}")
+  ENDIF()
 ELSE()
   add_test(${testName}_cop_if2_tch_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_if2_tch.yaml ${ALBANY_EXTRA_ARGS}")
   add_test(${testName}_cop_fro_tch_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_fro_tch.yaml ${ALBANY_EXTRA_ARGS}")
@@ -66,16 +77,22 @@ set_tests_properties(${testName}_pop_np${ALBANY_NUM_PROCS}
                      LABELS "pop")
 set_tests_properties(${testName}_vel_fea_np${ALBANY_NUM_PROCS}
                      ${testName}_vel_gpu_np${ALBANY_NUM_PROCS}
-                     ${testName}_ent_fea_np${ALBANY_NUM_PROCS}
-                     ${testName}_ent_gpu_np${ALBANY_NUM_PROCS}
                      ${testName}_cop_fea_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
+IF (ALBANY_SFAD6_EXE)
+  set_tests_properties(${testName}_ent_fea_np${ALBANY_NUM_PROCS}
+                       ${testName}_ent_gpu_np${ALBANY_NUM_PROCS}
+                       PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
+ENDIF()
 IF (NOT Kokkos_ENABLE_CUDA)
   set_tests_properties(${testName}_vel_cpu_np${ALBANY_NUM_PROCS}
-                       ${testName}_ent_cpu_np${ALBANY_NUM_PROCS}
                        ${testName}_cop_if2_slu_np${ALBANY_NUM_PROCS}
                        ${testName}_cop_fro_slu_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
+  IF (ALBANY_SFAD6_EXE)
+    set_tests_properties(${testName}_ent_cpu_np${ALBANY_NUM_PROCS}
+                         PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
+  ENDIF()
 ELSE()
   set_tests_properties(${testName}_cop_if2_tch_np${ALBANY_NUM_PROCS}
                        ${testName}_cop_fro_tch_np${ALBANY_NUM_PROCS}

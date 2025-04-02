@@ -23,15 +23,13 @@ rm -rf CMake*
 
 cmake \
   -Wno-dev \
-  -D ALIPT_BUILD_BLAKE:BOOL=ON \
-  -D TRILINOS_DIR:FILEPATH=/home/projects/albany/nightlyCDashTrilinosBlake/build-gcc/TrilinosReleaseInstallGcc \
-  -D SFAD6_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad6/src \
-  -D SFAD12_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad12/src \
-  -D SFAD16_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad16/src \
-  -D SFAD24_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/AlbBuildGccSFad24/src \
-  -D MALI_EXE_DIR:FILEPATH=/home/projects/albany/nightlyCDashAlbanyBlake/build-gcc/MALIReleaseInstallGcc \
-  -D MESH_FILE_DIR:FILEPATH=/home/projects/albany/ali-perf-tests-meshes \
+  -D ALIPT_BUILD_PMCPU:BOOL=ON \
+  -D TRILINOS_DIR:FILEPATH=/global/cfs/cdirs/fanssie/automated_testing/weeklyCDashPerlmutter/serial/builds/TrilinosInstall \
+  -D SFAD12_EXE_DIR:FILEPATH=/global/cfs/cdirs/fanssie/automated_testing/weeklyCDashPerlmutter/serial/builds/AlbanyInstallSfad12/bin \
+  -D SFAD24_EXE_DIR:FILEPATH=/global/cfs/cdirs/fanssie/automated_testing/weeklyCDashPerlmutter/serial/builds/AlbanyInstallSfad24/bin \
+  -D MALI_EXE_DIR:FILEPATH=/global/cfs/cdirs/fanssie/automated_testing/weeklyCDashPerlmutter/serial/builds/mali \
+  -D MESH_FILE_DIR:FILEPATH=/global/cfs/cdirs/fanssie/automated_testing/ali-perf-tests-meshes \
   -D CMAKE_BUILD_TYPE:STRING=RELEASE \
   -D BUILD_SHARED_LIBS:BOOL=ON \
   -D CMAKE_VERBOSE_MAKEFILE:BOOL=OFF \
-../
+/global/homes/j/jwatkins/LandIce/ali-perf-tests

@@ -6,7 +6,7 @@
 #SBATCH --error=ALIPT.%j.err
 #SBATCH --constraint=gpu
 #SBATCH --qos=regular
-#SBATCH --nodes=1
+#SBATCH --nodes=2
 #SBATCH --time=02:00:00
 #SBATCH --exclusive
 

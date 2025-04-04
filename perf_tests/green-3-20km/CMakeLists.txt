@@ -9,7 +9,7 @@ IF (ALBANY_SFAD6_EXE)
                  ${CMAKE_CURRENT_BINARY_DIR}/input_ent.yaml COPYONLY)
 ENDIF()
 
-IF (NOT Kokkos_ENABLE_CUDA)
+IF (NOT ALIPT_ENABLE_GPU)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_cpu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_vel_cpu.yaml COPYONLY)
 ENDIF()
@@ -36,7 +36,7 @@ IF (ALBANY_SFAD6_EXE)
   add_test(${testName}_ent_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent.yaml ${ALBANY_EXTRA_ARGS}")
 ENDIF()
 
-IF (NOT Kokkos_ENABLE_CUDA)
+IF (NOT ALIPT_ENABLE_GPU)
   add_test(${testName}_vel_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_cpu.yaml ${ALBANY_EXTRA_ARGS}")
 ENDIF()
 
@@ -53,7 +53,7 @@ IF (ALBANY_SFAD6_EXE)
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 ENDIF()
 
-IF (NOT Kokkos_ENABLE_CUDA)
+IF (NOT ALIPT_ENABLE_GPU)
   set_tests_properties(${testName}_vel_cpu_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 ENDIF()

@@ -2,7 +2,7 @@
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/albany_input_gpu.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/albany_input_gpu.yaml COPYONLY)
 
-IF (NOT Kokkos_ENABLE_CUDA)
+IF (NOT ALIPT_ENABLE_GPU)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/albany_input_cpu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/albany_input_cpu.yaml COPYONLY)
 ENDIF()
@@ -31,7 +31,7 @@ set(MALI_PRE_TEST "rm -rf log.landice.* log.albany.* rst.2051-01-01.nc rst.2052-
 set(MALI_POST_TEST "cat ${CMAKE_CURRENT_BINARY_DIR}/log.landice.* ${CMAKE_CURRENT_BINARY_DIR}/log.albany.0000.out ${CMAKE_CURRENT_BINARY_DIR}/log.albany.timers.out")
 
 add_test(${testName}_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${MALI_PRE_TEST} ; cp albany_input_gpu.yaml albany_input.yaml ; ${MALI_EXE} ; ${MALI_POST_TEST}")
-IF (NOT Kokkos_ENABLE_CUDA)
+IF (NOT ALIPT_ENABLE_GPU)
   add_test(${testName}_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${MALI_PRE_TEST} ; cp albany_input_cpu.yaml albany_input.yaml ; ${MALI_EXE} ; ${MALI_POST_TEST}")
 ENDIF()
 

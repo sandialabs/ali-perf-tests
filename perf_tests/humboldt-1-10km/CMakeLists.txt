@@ -7,6 +7,8 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_vel_gpu.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_vel_gpu.yaml COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fea.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fea.yaml COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_gpu.yaml
+               ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_gpu.yaml COPYONLY)
 
 IF (ALBANY_SFAD6_EXE)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_fea.yaml
@@ -22,6 +24,8 @@ IF (NOT ALIPT_ENABLE_GPU)
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_if2_slu.yaml COPYONLY)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fro_slu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fro_slu.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_cpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_cpu.yaml COPYONLY)
 
   IF (ALBANY_SFAD6_EXE)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_cpu.yaml
@@ -54,6 +58,7 @@ add_test(${testName}_pop_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_E
 add_test(${testName}_vel_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_fea.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_vel_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_gpu.yaml ${ALBANY_EXTRA_ARGS}")
 add_test(${testName}_cop_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_fea.yaml ${ALBANY_EXTRA_ARGS}")
+add_test(${testName}_cop_tko_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_tko_gpu.yaml ${ALBANY_EXTRA_ARGS}")
 IF (ALBANY_SFAD6_EXE)
   add_test(${testName}_ent_fea_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_fea.yaml ${ALBANY_EXTRA_ARGS}")
   add_test(${testName}_ent_gpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_gpu.yaml ${ALBANY_EXTRA_ARGS}")
@@ -62,6 +67,7 @@ IF (NOT ALIPT_ENABLE_GPU)
   add_test(${testName}_vel_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD12_EXE} input_vel_cpu.yaml ${ALBANY_EXTRA_ARGS}")
   add_test(${testName}_cop_if2_slu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_if2_slu.yaml ${ALBANY_EXTRA_ARGS}")
   add_test(${testName}_cop_fro_slu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_fro_slu.yaml ${ALBANY_EXTRA_ARGS}")
+  add_test(${testName}_cop_tko_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD24_EXE} input_cop_tko_cpu.yaml ${ALBANY_EXTRA_ARGS}")
   IF (ALBANY_SFAD6_EXE)
     add_test(${testName}_ent_cpu_np${ALBANY_NUM_PROCS} ${ALBANY_BASH} "${ALBANY_SFAD6_EXE} input_ent_cpu.yaml ${ALBANY_EXTRA_ARGS}")
   ENDIF()
@@ -78,6 +84,7 @@ set_tests_properties(${testName}_pop_np${ALBANY_NUM_PROCS}
 set_tests_properties(${testName}_vel_fea_np${ALBANY_NUM_PROCS}
                      ${testName}_vel_gpu_np${ALBANY_NUM_PROCS}
                      ${testName}_cop_fea_np${ALBANY_NUM_PROCS}
+                     ${testName}_cop_tko_gpu_np${ALBANY_NUM_PROCS}
                      PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
 IF (ALBANY_SFAD6_EXE)
   set_tests_properties(${testName}_ent_fea_np${ALBANY_NUM_PROCS}
@@ -88,6 +95,7 @@ IF (NOT ALIPT_ENABLE_GPU)
   set_tests_properties(${testName}_vel_cpu_np${ALBANY_NUM_PROCS}
                        ${testName}_cop_if2_slu_np${ALBANY_NUM_PROCS}
                        ${testName}_cop_fro_slu_np${ALBANY_NUM_PROCS}
+                       ${testName}_cop_tko_cpu_np${ALBANY_NUM_PROCS}
                        PROPERTIES FIXTURES_REQUIRED ${testName}_pop)
   IF (ALBANY_SFAD6_EXE)
     set_tests_properties(${testName}_ent_cpu_np${ALBANY_NUM_PROCS}

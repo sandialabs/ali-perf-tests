@@ -10,6 +10,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fea.yaml
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_gpu.yaml
                ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_gpu.yaml COPYONLY)
 
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_mlu_gpu.yaml
+               ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_mlu_gpu.yaml COPYONLY)
+
 IF (ALBANY_SFAD6_EXE)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_fea.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_ent_fea.yaml COPYONLY)
@@ -27,6 +30,15 @@ IF (NOT ALIPT_ENABLE_GPU)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_cpu.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_cpu.yaml COPYONLY)
 
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fro_cpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fro_cpu.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_fro_cpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_fro_cpu.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_mlu_cpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_mlu_cpu.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_mlu_fro_cpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_mlu_fro_cpu.yaml COPYONLY)
+
   IF (ALBANY_SFAD6_EXE)
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_ent_cpu.yaml
                    ${CMAKE_CURRENT_BINARY_DIR}/input_ent_cpu.yaml COPYONLY)
@@ -37,6 +49,13 @@ ELSE()
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_if2_tch.yaml COPYONLY)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fro_tch.yaml
                  ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fro_tch.yaml COPYONLY)
+
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_fro_gpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_fro_gpu.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_fro_gpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_fro_gpu.yaml COPYONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input_cop_tko_mlu_fro_gpu.yaml
+                 ${CMAKE_CURRENT_BINARY_DIR}/input_cop_tko_mlu_fro_gpu.yaml COPYONLY)
 ENDIF()
 
 # Create symlink for mesh directory

@@ -264,7 +264,7 @@ ANONYMOUS:
       Solver Options: 
         Status Test Check Type: Minimal
       Thyra Group Options:
-        Function Scaling: Row Sum
+        Function Scaling: None
         Update Row Sum Scaling: Before Each Nonlinear Solve
       Status Tests: 
         Test Type: Combo

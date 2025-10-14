@@ -9,7 +9,7 @@ ANONYMOUS:
     Surface Side Name: upperside
     Needs Dissipation: true
     Needs Basal Friction: true
-    Flat Bed Approximation: true
+    Flat Bed Approximation: false
 
 #   LandIce parameters
     LandIce Physical Parameters:
@@ -42,12 +42,13 @@ ANONYMOUS:
           beta: 0.0
         Basal Melting Regularization:
           alpha: 4.0
-          beta: 0.0
+          beta: 4.0
       Stabilization:
         Type: Upwind
         Parameter Delta: 0.5
       Bed Lubrication:
-        Type: Dry
+        Type: Basal Friction Based
+        Basal Friction Threshold: 10.0
     Body Force: 
       Type: FO INTERP SURF GRAD
 

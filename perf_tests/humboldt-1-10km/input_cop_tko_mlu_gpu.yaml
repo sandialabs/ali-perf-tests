@@ -433,12 +433,23 @@ ANONYMOUS:
                           factory: RebalanceAcFactory
                           A: myRAPFact
                           TransferFactories: { }
+                        mySmootherJacobiBlockTriDi:
+                          factory: TrilinosSmoother
+                          type: LINESMOOTHING_TRIDI_RELAXATION
+                          'smoother: pre or post': both
+                          ParameterList:
+                            'partitioner: block size': 2
+                            'relaxation: container': BlockTriDi
+                            'relaxation: type': MT Split Jacobi
+                            'relaxation: sweeps': 1
+                            'relaxation: damping factor': 0.65
                         mySmoother1:
                           factory: TrilinosSmoother
                           type: CHEBYSHEV
                           'smoother: pre or post': both
                           ParameterList:
                             'chebyshev: degree': 2
+                            #'chebyshev: algorithm': opt_fourth
                             'chebyshev: eigenvalue max iterations': 15
                             'chebyshev: ratio eigenvalue': 27.572
                         mySmoother4:
@@ -447,6 +458,7 @@ ANONYMOUS:
                           'smoother: pre or post': pre
                           ParameterList:
                             'chebyshev: degree': 4
+                            #'chebyshev: algorithm': opt_fourth
                             'chebyshev: eigenvalue max iterations': 15
                             'chebyshev: ratio eigenvalue': 25.6539
                       Hierarchy:
@@ -455,7 +467,8 @@ ANONYMOUS:
                         verbosity: medium
                         use kokkos refactor: true
                         Finest: 
-                          Smoother: mySmoother1
+                          Smoother: mySmootherJacobiBlockTriDi
+                          #Smoother: mySmoother1
                           CoarseSolver: mySmoother4
                           P: myRebalanceProlongatorFact
                           Nullspace: myRebalanceProlongatorFact
@@ -570,20 +583,22 @@ ANONYMOUS:
                           TransferFactories: { }
                         mySmoother1:
                           factory: TrilinosSmoother
-                          type: RELAXATION
+                          type: CHEBYSHEV
                           'smoother: pre or post': both
                           ParameterList:
-                            'relaxation: damping factor': 0.9841
-                            'relaxation: sweeps': 2
-                            'relaxation: type': MT Gauss-Seidel
+                            'chebyshev: degree': 2
+                            #'chebyshev: algorithm': opt_fourth
+                            'chebyshev: eigenvalue max iterations': 15
+                            'chebyshev: ratio eigenvalue': 27.572
                         mySmoother4:
                           factory: TrilinosSmoother
-                          type: RELAXATION
+                          type: CHEBYSHEV
                           'smoother: pre or post': pre
                           ParameterList:
-                            'relaxation: inner damping factor': 1.1319
-                            'relaxation: sweeps': 2
-                            'relaxation: type': Two-stage Gauss-Seidel
+                            'chebyshev: degree': 4
+                            #'chebyshev: algorithm': opt_fourth
+                            'chebyshev: eigenvalue max iterations': 15
+                            'chebyshev: ratio eigenvalue': 25.6539
                       Hierarchy:
                         max levels: 3
                         'coarse: max size': 2000

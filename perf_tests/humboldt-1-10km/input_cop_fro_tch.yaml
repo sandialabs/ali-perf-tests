@@ -351,7 +351,7 @@ ANONYMOUS:
                           'method' : lu
                           'variant': 0
                           'dofs-per-node': 4
-                          'perturb-pivot': true
+                          'shift-diag': true
                   IPOUHarmonicCoarseOperator:
                     'Reuse: Coarse Basis': true                            # Reuse of the coarse basis functions
                     'Reuse: Coarse Matrix': false                           # Reuse of the coarse matrix
@@ -377,7 +377,7 @@ ANONYMOUS:
                           'method' : lu
                           'variant': 0
                           'dofs-per-node': 4
-                          'perturb-pivot': true
+                          'shift-diag': true
                     Distribution:                                           # Parallel distribution of the coarse problem
                       Type: linear                                          # Specifies the parallel distribution strategy. For now, we use "linear"
                       NumProcs: 1                                           # Number of ranks used for the coarse problem
@@ -390,5 +390,5 @@ ANONYMOUS:
                           'method' : lu
                           'variant': 0
                           'dofs-per-node': 4
-                          'perturb-pivot': true
+                          'shift-diag': true
 ...

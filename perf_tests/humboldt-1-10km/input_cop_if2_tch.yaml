@@ -340,5 +340,5 @@ ANONYMOUS:
                         'method' : lu
                         'variant': 0
                         'dofs-per-node': 4
-                        'perturb-pivot': true
+                        'shift-diag': true
 ...

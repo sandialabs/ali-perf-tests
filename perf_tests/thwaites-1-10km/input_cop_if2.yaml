@@ -7,8 +7,6 @@ ANONYMOUS:
     Solution Method: Steady
     Basal Side Name: basalside
     Surface Side Name: upperside
-    Needs Dissipation: true
-    Needs Basal Friction: true
     Flat Bed Approximation: true
 
 #   LandIce parameters

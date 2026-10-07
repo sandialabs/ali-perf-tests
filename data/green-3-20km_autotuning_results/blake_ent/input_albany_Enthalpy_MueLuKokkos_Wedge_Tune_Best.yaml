@@ -7,8 +7,6 @@ ANONYMOUS:
     Name: LandIce Enthalpy 3D
     Solution Method: Steady
     Basal Side Name: basalside
-    Needs Dissipation: true
-    Needs Basal Friction: true
 
 #   LandIce parameters
     LandIce Physical Parameters:

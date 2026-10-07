@@ -9,8 +9,6 @@ ANONYMOUS:
     Required Fields: [basal_friction, surface_air_temperature]
     Required Basal Fields: [ice_thickness]
     Basal Side Name: basalside
-    Needs Dissipation: true
-    Needs Basal Friction: true
 
 #   LandIce parameters
     LandIce Physical Parameters:

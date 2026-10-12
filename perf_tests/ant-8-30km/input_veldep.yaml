@@ -20,7 +20,6 @@ ANONYMOUS:
       Clausius-Clapeyron Coefficient: 7.9e-08
     LandIce Viscosity:
       Use Stiffening Factor: true
-      Use P0 Temperature: true
       Extract Strain Rate Sq: true
       Type: Glen's Law
       Glen's Law Homotopy Parameter: 0.3

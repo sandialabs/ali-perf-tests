@@ -141,7 +141,7 @@ ANONYMOUS:
         Field Origin: Mesh
       Field 2:
         Field Name: temperature
-        Field Type: Elem Scalar
+        Field Type: QuadPoint Scalar
         Field Origin: Mesh
       Field 3:
         Field Name: mu_log
